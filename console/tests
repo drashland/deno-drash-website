@@ -5,14 +5,14 @@
   export DENO_DRASH_DOCS_MEMBERS=$PWD/tests/members.ts
   export DENO_DRASH_DOCS_PATH=$PWD
 
-  function testIt() {
+  function runTests() {
     cd $1
     echo -e "\n$1"
     deno --allow-net --allow-read --allow-write --allow-env ../test.ts
     cd - > /dev/null
   }
 
-  testIt "src/example_code/advanced_tutorials/content_negotiation/user_profiles/part_5"
+  runTests "src/example_code/advanced_tutorials/content_negotiation/user_profiles/part_5"
 
-  testIt "src/example_code/advanced_tutorials/creating_an_api/coffee_and_tea/part_4"
+  runTests "src/example_code/advanced_tutorials/creating_an_api/coffee_and_tea/part_4"
 )
