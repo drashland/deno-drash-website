@@ -49,6 +49,7 @@ function runTest(name, testFn) {
 }
 
 export default {
+  Drash,
   assert: {
     equals: assertEquals,
     responseJsonEquals: responseJsonEquals
