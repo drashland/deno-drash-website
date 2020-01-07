@@ -29,6 +29,7 @@
     "production": "console/production",
     "sass": "sass public/assets/css/style-docs.scss public/assets/css/style-docs.css",
     "staging": "console/staging",
+    "tests": "console/tests",
     "webpack": "console/run_webpack"
   }
 }

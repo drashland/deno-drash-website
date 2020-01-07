@@ -51,3 +51,24 @@ npm run sass
 ## Screenshots
 
 Sometimes you will need to add screenshots to documentation pages. Screenshots should be 1400x1000.
+
+## Testing
+
+```
+npm run tests
+```
+
+Example Output
+
+```diff
+
+    [Diff] Left / Right
+
+
++   "hello
+-   "jello
+
+```
+
+Green = expected
+Red = actual
