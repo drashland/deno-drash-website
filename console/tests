@@ -14,5 +14,5 @@
 
   runTests "src/example_code/advanced_tutorials/content_negotiation/user_profiles/part_5"
 
-  runTests "src/example_code/advanced_tutorials/creating_an_api/coffee_and_tea/part_4"
+  # runTests "src/example_code/advanced_tutorials/creating_an_api/coffee_and_tea/part_4"
 )
