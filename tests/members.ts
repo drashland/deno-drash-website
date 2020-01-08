@@ -48,14 +48,41 @@ function runTest(name, testFn) {
   return test(testFn);
 }
 
+function readFileContents(file: string) {
+  let fileContentsRaw = Deno.readFileSync(file);
+  const decoder = new TextDecoder();
+  let decoded = decoder.decode(fileContentsRaw);
+  return decoded;
+}
+
+function close(server: Drash.Http.Server) {
+  server.deno_server.close();
+  fetch("http://localhost:1447");
+}
+
+const http = async (request): Promise<any> => {
+  return new Promise(resolve => {
+    fetch(request)
+      .then((response) => {
+        return response.text()
+      })
+      .then((body) => {
+        resolve(body);
+      });
+  });
+};
+
 export default {
   Drash,
   assert: {
     equals: assertEquals,
     responseJsonEquals: responseJsonEquals
   },
+  close,
   decoder,
+  http,
   mockRequest,
+  readFileContents,
   runTests,
   test: runTest,
 };

@@ -5,18 +5,6 @@ members.Drash.Http.Response = response;
 
 import UsersResource from "./part_5/users_resource.ts";
 
-const http = async (request): Promise<any> => {
-  return new Promise(resolve => {
-    fetch(request)
-      .then((response) => {
-        return response.text()
-      })
-      .then((body) => {
-        resolve(body);
-      });
-  });
-};
-
 members.test("response", async () => {
 
   let server = new members.Drash.Http.Server({
@@ -29,7 +17,7 @@ members.test("response", async () => {
 
   let res;
 
-  res = await http("http://localhost:1447/users/1?response_content_type=application/json");
+  res = await members.http("http://localhost:1447/users/1?response_content_type=application/json");
 
   members.assert.equals(
     JSON.parse(res),
@@ -42,69 +30,49 @@ members.test("response", async () => {
     }
   );
 
-  res = await http("http://localhost:1447/users/1?response_content_type=text/html");
+  res = await members.http("http://localhost:1447/users/1?response_content_type=text/html");
 
   members.assert.equals(
     res,
-    getHtmlCaptainAmerica()
+    generateHtml({
+      alias: "Captain America",
+      name: "Steve Rogers"
+    })
   );
 
-  server.deno_server.close();
+  res = await members.http("http://localhost:1447/users/1?response_content_type=text/xml");
+
+  members.assert.equals(
+    res,
+    generateXml({
+      alias: "Captain America",
+      name: "Steve Rogers"
+    })
+  );
+
+  members.close(server);
 });
-
-
-
-
-
-
-// members.test("responses", async () => {
-//   let request;
-//   let actual;
-
-//   request = members.mockRequest("/users/1?response_content_type=application/json");
-//   actual = await server.handleHttpRequest(request);
-//   members.assert.responseJsonEquals(
-//     actual.body,
-//     {
-//       id: 1,
-//       alias: "Captain America",
-//       name: "Steve Rogers",
-//       api_key: "**********",
-//       api_secret: "**********"
-//     }
-//   );
-
-//   request = members.mockRequest("/users/1?response_content_type=text/html");
-//   actual = await server.handleHttpRequest(request);
-//   members.assert.equals(
-//     members.decoder.decode(actual.body),
-//     getHtmlCaptainAmerica()
-//   );
-// });
-
-function getHtmlCaptainAmerica() {
-  return generateHtml({
-    alias: "Captain America",
-    name: "Steve Rogers"
-  });
-}
 
 function generateHtml(user) {
   try {
-    let html = readFileContents("./user.html");
-    html = html
+    let template = members.readFileContents("./user.html");
+    template = template
       .replace(/\{\{ alias \}\}/, user.alias)
       .replace(/\{\{ name \}\}/, user.name);
-    return html;
+    return template;
   } catch (error) {
   }
 }
 
-function readFileContents(file: string) {
-  let fileContentsRaw = Deno.readFileSync(file);
-  const decoder = new TextDecoder();
-  let decoded = decoder.decode(fileContentsRaw);
-  return decoded;
+function generateXml(user) {
+  try {
+    let template = members.readFileContents("./user.xml");
+    template = template
+      .replace(/\{\{ alias \}\}/, user.alias)
+      .replace(/\{\{ name \}\}/, user.name);
+    return template;
+  } catch (error) {
+  }
 }
 
 members.runTests();
