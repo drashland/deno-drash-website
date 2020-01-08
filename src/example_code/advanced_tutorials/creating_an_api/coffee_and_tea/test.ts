@@ -6,18 +6,24 @@ members.Drash.Http.Response = response;
 import CoffeeResource from "./part_4/coffee_resource.ts";
 import TeaResource from "./part_4/tea_resource.ts";
 
-let server = new members.Drash.Http.Server({
-  resources: [CoffeeResource, TeaResource]
-});
-
 members.test("responses", async () => {
-  let request;
-  let actual;
 
-  request = members.mockRequest("/coffee/17");
-  actual = await server.handleHttpRequest(request);
-  members.assert.responseJsonEquals(
-    actual.body,
+  let server = new members.Drash.Http.Server({
+    address: "localhost:1447",
+    resources: [
+      CoffeeResource,
+      TeaResource
+    ]
+  });
+
+  server.run();
+
+  let res;
+
+  res = await members.http("http://localhost:1447/coffee/17");
+
+  members.assert.equals(
+    JSON.parse(res),
     {
       status_code: 200,
       status_message: "OK",
@@ -33,10 +39,10 @@ members.test("responses", async () => {
     }
   );
 
-  request = members.mockRequest("/coffee/15");
-  actual = await server.handleHttpRequest(request);
-  members.assert.responseJsonEquals(
-    actual.body,
+  res = await members.http("http://localhost:1447/coffee/15");
+
+  members.assert.equals(
+    JSON.parse(res),
     {
       status_code: 404,
       status_message: "Not Found",
@@ -47,6 +53,8 @@ members.test("responses", async () => {
       }
     }
   );
+
+  members.close(server);
 });
 
 members.runTests();
