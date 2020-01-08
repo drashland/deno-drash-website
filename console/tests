@@ -9,6 +9,9 @@
     cd $1
     echo -e "--------------------------------------------------------------------------------\n\n$1\n"
     deno --allow-net --allow-read --allow-write --allow-env ../test.ts
+    if [[ $? == 1 ]]; then
+      exit
+    fi
     cd - > /dev/null
   }
 
