@@ -26,7 +26,6 @@ members.test("response", async () => {
       alias: "Captain America",
       name: "Steve Rogers",
       api_key: "**********",
-      api_secret: "**********",
     }
   );
 
