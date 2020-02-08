@@ -27,7 +27,7 @@ export {
 }
 
 members.test("deno_mysql", async () => {
-  server.run();
+  server.run({address: "localhost:3002"});
   const response = await members.fetch.get("http://localhost:1447");
   members.assert.responseJsonEquals(await response.text(), [
     {

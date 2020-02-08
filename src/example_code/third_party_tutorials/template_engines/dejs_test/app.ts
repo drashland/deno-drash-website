@@ -40,7 +40,7 @@ let expected = `<!DOCTYPE html>
 `;
 
 members.test("dejs", async () => {
-  server.run();
+  server.run({address:"localhost:3003"});
   const response = await members.fetch.get("http://localhost:1447");
   members.assert.equals(await response.text(), expected);
   server.deno_server.close();
