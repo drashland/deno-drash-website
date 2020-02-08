@@ -47,4 +47,6 @@ page-tutorial(
           template(v-slot:title) response.ts
           template(v-slot:code)
             | {{ example_code.response.contents }}
+      p A very important task you must take on when handling your dependencies is writing tests for all of your core logic. That is at the very least. Drash, for example, has unit tests that ensure different types of servers (e.g., servers with/without middleware, servers with different HTTP methods, etc.) can be created, pinged, and send responses accordingly. This is how Drash maintains upgrading its dependecies without issues. If there is an issue, it is easily identified and fixed before a new release is made.
+      p So, please make sure you test your code. Drash tries to keep up with Deno's latest versions, but there are many breaking changes and not all changes are caught. This is especially true for edge cases that have yet to be found.
 </template>
