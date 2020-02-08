@@ -28,7 +28,7 @@ export {
 
 members.test("deno-postgres", async () => {
   server.run({address: "localhost:3001"});
-  const response = await members.fetch.get("http://localhost:1447");
+  const response = await members.fetch.get("http://localhost:3001");
   members.assert.responseJsonEquals(await response.text(), [["eric","m"]]);
   server.deno_server.close();
 });
