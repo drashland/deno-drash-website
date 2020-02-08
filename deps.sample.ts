@@ -1,5 +1,7 @@
-import Drash from "../deno-drash/mod.ts";
-const decoder = new TextDecoder("utf-8");
+export Drash from "../deno-drash/mod.ts";
+export {
+  decoder: new TextDecoder("utf-8")
+};
 
 export {
   serve,
@@ -14,8 +16,3 @@ export {
 export {
   assertEquals
 } from "https://deno.land/std@v0.32.0/testing/asserts.ts";
-
-export {
-  Drash,
-  decoder
-};
