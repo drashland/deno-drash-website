@@ -8,8 +8,8 @@ export default class HomeResource extends Drash.Http.Resource {
   public async GET() {
     // Set the data if any
     let data = {
-      name: this.request.getQueryParam("name")
-        ? this.request.getQueryParam("name")
+      name: this.request.getUrlQueryParam("name")
+        ? this.request.getUrlQueryParam("name")
         : "(name not specified)"
     };
     // Render and serve the template to the client
