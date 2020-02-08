@@ -19,4 +19,7 @@ export {
   Drash
 };
 
-export default Drash;
+export {
+  Drash,
+  decoder
+};
