@@ -1,4 +1,5 @@
 import Drash from "../deno-drash/mod.ts";
+const decoder = new TextDecoder("utf-8");
 
 export {
   serve,

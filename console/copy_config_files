@@ -3,4 +3,5 @@
 (
   cp deps.sample.ts deps.ts
   cp conf/app.ci.ts conf/app.ts
+  cp deps.sample.ts deps.ts
 )
