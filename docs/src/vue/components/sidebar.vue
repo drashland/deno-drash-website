@@ -157,6 +157,7 @@ div.c-sidebar
           p.arrow.right
           a Databases
         div.l-submenu-1.hide--soft
+          a-base-url(href="/third-party-tutorials/databases/deno-mongo") deno_mongo
           a-base-url(href="/third-party-tutorials/databases/deno-mysql") deno_mysql
           a-base-url(href="/third-party-tutorials/databases/deno-postgres") deno-postgres
         span.sub-heading
