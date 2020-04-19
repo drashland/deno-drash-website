@@ -17,3 +17,11 @@ server.run({
   hostname: "localhost",
   port: 1447
 });
+
+// Or you can run an HTTPS server
+// server.runTLS({
+//   hostname: "localhost",
+//   port: 1447,
+//   certFile: "/path/to/certFile.crt",
+//   keyFile: "/path/to/keyFile.key",
+// });
