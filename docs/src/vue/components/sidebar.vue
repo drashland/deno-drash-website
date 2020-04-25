@@ -177,6 +177,11 @@ div.c-sidebar
           a-base-url(href="/third-party-tutorials/template-engines/dejs") dejs
       span.heading
         p.arrow.right
+        span.heading-link Versions
+      div.c-sidebar__menu-body.hide--soft
+        a(href="/docs/v0.41.1/") v0.41.1
+      span.heading
+        p.arrow.right
         span.heading-link API Reference
       div.c-sidebar__menu-body.hide--soft
         span.sub-heading
