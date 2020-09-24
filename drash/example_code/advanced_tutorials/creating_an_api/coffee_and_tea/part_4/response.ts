@@ -8,7 +8,7 @@ export default class Response extends Drash.Http.Response {
       data: this.body,
       request: {
         method: this.request.method.toUpperCase(),
-        uri: this.request.uri
+        uri: this.request.getUrlPath(this.request)
       }
     };
 
