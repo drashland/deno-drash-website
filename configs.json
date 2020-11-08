@@ -20,7 +20,7 @@
     "latest_version": "v1.2.0"
   },
   "rhum": {
-    "latest_version": "v1.1.4"
+    "latest_version": "refs/heads/release-v1.1.5"
   },
   "sockets": {
     "latest_version": "v0.5.0"
