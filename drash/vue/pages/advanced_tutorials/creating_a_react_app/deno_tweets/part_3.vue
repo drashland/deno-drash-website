@@ -23,7 +23,7 @@ export default {
       ],
       title,
       subtitle,
-      index_html: indeHtml,
+      index_html: indexHtml,
     };
   },
 }
