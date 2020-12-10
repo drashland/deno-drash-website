@@ -7,7 +7,7 @@ div
     h2-hash Table Of Contents
     ul.mb-5
       li(v-for="item in toc")
-        a(:href="base_url + $route.path + '#' + normalizeHref(item)") {{ item }}
+        a(:href="base_url + '/#' + $route.path + '#' + normalizeHref(item)") {{ item }}
   hr
   slot
 </template>

@@ -2,14 +2,14 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-sacle=1.0, user-scalable=0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
   <title>{{ title }}</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito&display=swap"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/{{ module }}/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/{{ module }}/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/{{ module }}/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/{{ module }}/favicon-16x16.png">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
 </head>
@@ -20,6 +20,7 @@
     <script>
       window.drash_api_configs = {{ drash_api_configs }};
     </script>
-  <script src="/assets/bundles/{{ module }}_app.{{ version }}.js"></script>
+  <script src="/assets/bundles/{{ module }}.{{ version }}.js"></script>
+  <script src="/assets/bundles/vendors~{{ module }}.{{ version }}.js"></script>
 </body>
 </html>

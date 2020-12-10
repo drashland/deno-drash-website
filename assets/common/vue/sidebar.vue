@@ -44,7 +44,7 @@ export default {
     current_version() {
       return window.location.href
         .match(/v[0-9].+\//)[0]
-        .replace(/\/#.+/, "");
+        .replace(/\/?#.+/, "");
     },
   },
   mounted() {
@@ -66,7 +66,7 @@ export default {
       if (menuItemName == "Example Applications") {
         return href;
       }
-      return this.base_url + href;
+      return `${this.base_url}/#${href}`;
     },
     toggleVersionSelector(forceClose = false) {
       if (forceClose) {
@@ -276,7 +276,7 @@ div.sidebar.text-sm(:style="'background-color: ' + styles.background_color + ';'
             a.pointer-events-none {{ link_text }}
           ul.menu-items-list.overflow-hidden.mb-0(v-if="typeof href == 'object'")
             li.menu2-item(v-for="(href, link_text) in sub_menu_items[link_text]")
-              a.menu2-item-link(:href="base_url + href" @click="closeSidebar()") {{ link_text }}
+              a.menu2-item-link(:href="base_url + '/#' + href" @click="closeSidebar()") {{ link_text }}
           a.menu-item-link(
             v-else-if="menu_item_name == 'Latest News'"
             :href="getMenuItemLink(menu_item_name, href)"

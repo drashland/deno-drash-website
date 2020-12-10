@@ -265,7 +265,7 @@ div(
     :class="{'is-mobile': is_mobile}"
     style="margin-top: 75px; margin-bottom: 125px"
   )
-    div.max-w-screen-md.mx-auto.px-10
+    div.max-w-screen-lg.mx-auto.px-10
       transition
         keep-alive
           router-view

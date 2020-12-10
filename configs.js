@@ -8,41 +8,39 @@ export const configs = {
     "latest_version": "0.78.0"
   },
   "dmm": {
-    "base_url": "/dmm/v1.3.0",
+    "base_url": "/dmm/v1.x",
     "latest_version": "v1.3.0",
     "latest_url_deno_land": "https://deno.land/x/dmm@v1.2.0/mod.ts",
     "latest_url_nest_land": "https://x.nest.land/dmm@v1.2.0/mod.ts",
     "versions": [
-      "v1.3.0",
-      "v1.2.0"
+      "v1.x"
     ]
   },
   "drash": {
-    "base_url": "/drash/v1.3.0",
+    "base_url": "/drash/v1.x",
     "latest_version": "v1.3.1",
     "latest_url_deno_land": "https://deno.land/x/drash@v1.3.1/mod.ts",
     "latest_url_nest_land": "https://x.nest.land/deno-drash@v1.3.1/mod.ts",
     "versions": [
-      "v1.3.1",
-      "v1.3.0"
+      "v1.x"
     ]
   },
   "rhum": {
-    "base_url": "/rhum/v1.1.4",
+    "base_url": "/rhum/v1.x",
     "latest_version": "v1.1.4",
     "latest_url_deno_land": "https://deno.land/x/rhum@v1.1.4/mod.ts",
     "latest_url_nest_land": "https://x.nest.land/rhum@v1.1.4/mod.ts",
     "versions": [
-      "v1.1.4"
+      "v1.x"
     ]
   },
   "wocket": {
-    "base_url": "/wocket/v0.5.0",
-    "latest_version": "v0.5.0",
+    "base_url": "/wocket/v0.x",
+    "latest_version": "v0.6.2",
+    "latest_url_deno_land": "https://deno.land/x/wocket@v0.6.2/mod.ts",
+    "latest_url_nest_land": "https://x.nest.land/wocket@v0.6.2/mod.ts",
     "versions": [
-      "v0.6.1",
-      "v0.6.0",
-      "v0.5.0"
+      "v0.x"
     ]
   }
 };

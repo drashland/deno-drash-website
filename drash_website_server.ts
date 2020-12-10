@@ -8,20 +8,20 @@ Drash.Http.Response = Response
 
 const server = new Drash.Http.Server({
   resources: [
-      LandingResource,
-      ModuleResource,
-      StagingModuleResource,
+    LandingResource,
+    ModuleResource,
+    StagingModuleResource,
   ],
   response_output: "text/html",
-  static_paths: [
-      "/assets"
-  ],
+  static_paths: {
+    "/assets": "/assets",
+  },
   directory: "."
 })
 
 await server.run({
   hostname: "localhost",
   port: 1445
-})
+});
 
 console.log(`Running server on http://${server.hostname}:${server.port}`)

@@ -5,7 +5,6 @@ const decoder = new TextDecoder();
 export class LandingResource extends BaseResource {
   static paths = [
     "/",
-    "/staging",
   ]
 
   //////////////////////////////////////////////////////////////////////////////
@@ -21,18 +20,23 @@ export class LandingResource extends BaseResource {
       return this.sendError(404);
     }
 
-    let content = decoder.decode(Deno.readFileSync(filename));
-    const environment = this.getEnvironment();
-    const titleSuffix = environment != "production"
-      ? ` [${environment}]`
-      : "";
-    content = content
-        .replace("{{ environment }}", environment)
-        .replace("{{ title }}", "Drash Land" + titleSuffix)
-        .replace("{{ drash_api_configs }}", this.getServerConfigs());
+    try {
+      let content = decoder.decode(Deno.readFileSync(filename));
+      const environment = this.getEnvironment();
+      const titleSuffix = environment != "production"
+        ? ` [${environment}]`
+        : "";
+      content = content
+          .replace("{{ environment }}", environment)
+          .replace("{{ title }}", "Drash Land" + titleSuffix)
+          .replace("{{ drash_api_configs }}", this.getServerConfigs());
 
-    this.response.body = content;
+      this.response.body = content;
 
-    return this.response
+      return this.response
+    } catch (error) {
+      this.log(error.stack);
+      this.response.body = error;
+    }
   }
 }

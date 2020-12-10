@@ -45,28 +45,21 @@ export class BaseResource extends Drash.Http.Resource {
   }
 
   /**
-   * Get the current environment based on headers and URIs. The only
-   * environments we support are:
-   *
-   *     - production
-   *     - staging
-   *     - development
+   * Get the current environment based on headers and URIs.
    *
    * @returns The environment name.
    */
   protected getEnvironment(): string {
-      const uri = this.request.url_path;
-      const isDrashIo = this.request.headers.get("x-forwarded-host");
-      const isStaging = uri.includes("/staging");
-      if (isDrashIo) {
-        if (isStaging) {
-          return "staging";
-        }
-        return "production";
-      }
+      const host = this.request.headers.get("host") || "";
+      const isRunningOnLiveServer = this.request.headers.get("x-forwarded-host");
+      const isStaging = host.includes("staging");
 
       if (isStaging) {
         return "staging";
+      }
+
+      if (isRunningOnLiveServer) {
+        return "production";
       }
 
       return "development";
@@ -81,7 +74,7 @@ export class BaseResource extends Drash.Http.Resource {
    */
   protected getServerConfigs(): string {
     let sanitizedConfigs = configs;
-    sanitizedConfigs.root_directory = "drash";
+    sanitizedConfigs.root_directory = "***";
     return JSON.stringify(Object.assign(sanitizedConfigs, {
       environment: this.getEnvironment(),
     }));
@@ -109,15 +102,11 @@ export class BaseResource extends Drash.Http.Resource {
    */
   protected sendDocsPage(moduleName: string, version: string = ""): Drash.Http.Response {
     this.response.body = decoder.decode(Deno.readFileSync("./src/module.html"))
-        .replace("{{ title }}", "Drash Land - " + this.ucfirst(moduleName))
-        .replace(/\{\{ module \}\}/g, moduleName)
-        .replace("{{ drash_api_configs }}", this.getServerConfigs());
-      if (this.getEnvironment() == "development") {
-        this.response.body = this.response.body.replace("{{ version }}", "development")
-      } else {
-        this.response.body = this.response.body.replace("{{ version }}", version)
-      }
-      return this.response;
+      .replace("{{ title }}", "Drash Land - " + this.ucfirst(moduleName))
+      .replace(/\{\{ module \}\}/g, moduleName)
+      .replace("{{ drash_api_configs }}", this.getServerConfigs());
+      this.response.body = this.response.body.replace(/\{\{ version \}\}/g, version)
+    return this.response;
   }
 
   /**
@@ -139,7 +128,7 @@ export class BaseResource extends Drash.Http.Resource {
    * Send versioned documentation pages. Versioned documentation pages are just
    * Vue apps with the name of the module and the version. For example:
    *
-   *     drash_app.v1.3.0.js
+   *     drash.v1.3.0.js
    *
    * See /assets/bundles for all versioned documentation.
    *
@@ -151,7 +140,8 @@ export class BaseResource extends Drash.Http.Resource {
     moduleName: string,
     version: string
   ): Promise<Drash.Http.Response> {
-    const filename = `./assets/bundles/${moduleName}_app.${version}.js`;
+    let filename = `./assets/bundles/${moduleName}.${version}.js`;
+
     this.log(`Getting Vue app: ${filename}`);
 
     if (!await this.fileExists(filename)) {

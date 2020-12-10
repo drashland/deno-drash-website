@@ -1,16 +1,20 @@
 # files
+!*.webpack.development.js
 *.development.js
 .DS_Store
-bundle.js
+assets/bundles/*.js
 compiled_*.js
 compiled_*.json
-dist
+configs.server.js
 drash/conf/app.ts
+ecosystem.config.js
+package-lock.json
 
 # directories
 .sass-cache
-tmp/*
+dist
 node_modules
+tmp/*
 
 # exceptions
 !.gitkeep

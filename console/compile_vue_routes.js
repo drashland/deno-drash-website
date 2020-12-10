@@ -1,11 +1,14 @@
+const configs = require("../configs.node.js");
 const fs = require("fs");
 const path = require("path");
-const configs = require("../configs_node.js");
-const moduleName = process.argv[2];
-const directory = configs.root_directory + "/src/modules/" + moduleName + "/vue/pages";
-const outFile = configs.root_directory + "/src/modules/" + moduleName +"/compiled_vue_routes.js";
 
-console.log(`Compiling ${outFile}`);
+const moduleName = process.argv[2].split("-")[0];
+const moduleVersion = process.argv[2].split("-")[1];
+
+const directory = configs.root_directory + "/src/" + moduleName + "/vue/pages";
+const outFile = configs.root_directory + "/src/" + moduleName +"/compiled_vue_routes.js";
+
+console.log(`Compiling ${outFile} for ${moduleName}-${moduleVersion}`);
 
 let importString = ``;
 let exportString = `
@@ -25,7 +28,7 @@ function walk(directory) {
       walk(filepath);
     } else if (stats.isFile()) {
       importString += `
-import * as ${filenameWithoutExtension}_${count} from "/${filepath.replace("src/modules/", "")}";`;
+import * as ${filenameWithoutExtension}_${count} from "/${filepath.replace("src/", "")}";`;
       exportString += `  ${filenameWithoutExtension}_${count},\n`;
     }
     count += 1;
