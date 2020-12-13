@@ -27,11 +27,12 @@ export const configs = {
   },
   "rhum": {
     "base_url": "/rhum/v1.x",
-    "latest_version": "v1.1.4",
-    "latest_url_deno_land": "https://deno.land/x/rhum@v1.1.4/mod.ts",
-    "latest_url_nest_land": "https://x.nest.land/rhum@v1.1.4/mod.ts",
+    "latest_version": "v1.1.5",
+    "latest_url_deno_land": "https://deno.land/x/rhum@v1.1.5/mod.ts",
+    "latest_url_nest_land": "https://x.nest.land/rhum@v1.1.5/mod.ts",
     "versions": [
-      "v1.x"
+      "v1.x",
+      "v1.1.5"
     ]
   },
   "wocket": {
