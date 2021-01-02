@@ -2,10 +2,9 @@ import { BaseResource } from "./base_resource.ts";
 import { configs } from "../../deps.ts";
 
 export class StagingModuleResource extends BaseResource {
-
   static paths = [
     "/staging/:module/:version?",
-  ]
+  ];
 
   //////////////////////////////////////////////////////////////////////////////
   // FILE MARKER - METHODS - HTTP //////////////////////////////////////////////
@@ -35,4 +34,3 @@ export class StagingModuleResource extends BaseResource {
     return this.response.redirect(302, `/${moduleName}/${version}/`);
   }
 }
-

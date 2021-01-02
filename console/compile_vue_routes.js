@@ -19,7 +19,7 @@ let count = 0;
 
 function walk(directory) {
   const files = fs.readdirSync(directory);
-  for (let index in files) {
+  for (const index in files) {
     const file = files[index];
     const filepath = path.join(directory, file);
     const stats = fs.statSync(filepath);

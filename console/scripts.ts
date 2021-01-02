@@ -5,7 +5,7 @@ const decoder = new TextDecoder();
  *
  * @param parentBranch - One of the parent branches (e.g., rhum-v1.x).
  */
-export async function buildDocs(parentBranch: string = "") {
+export async function buildDocs(parentBranch = "") {
   if (parentBranch != "") {
     await run(["git", "checkout", parentBranch]);
   }
@@ -19,7 +19,9 @@ export async function buildDocs(parentBranch: string = "") {
  */
 export async function gitMergeMainInto(parentBranch: string) {
   await run(["git", "checkout", parentBranch]);
-  await run(["git", "merge", "--no-ff", "main", "-m", "update with main branch"]);
+  await run(
+    ["git", "merge", "--no-ff", "main", "-m", "update with main branch"],
+  );
   await run(["git", "push"]);
 }
 
@@ -44,7 +46,7 @@ export async function run(command: string[]) {
     stderr: "piped",
   });
 
-  const status = await p.status()
+  const status = await p.status();
 
   if (status.code === 1) {
     console.log(decoder.decode(await p.stderrOutput()));

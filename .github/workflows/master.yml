@@ -1,0 +1,31 @@
+name: Master
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  builds:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build:docs script works
+        run: npm run build:docs
+
+      - name: Server runs
+        run: |
+          echo "server.close()" >> drash_website_server.ts
+          deno run -A drash_website_server.ts
+
+  linter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Formatter
+        run: deno fmt --ignore=src/drash,src/dmm,src/rhum,src/wocket,assets,console/compile_vue_routes.js,configs.webpack.js,console/update_module_versions.js,configs.node.js,ecosystem.config.sample.js
+
+      - name: Linter
+        run: deno lint --unstable --ignore=src/drash,src/dmm,src/rhum,src/wocket,assets,console/compile_vue_routes.js,configs.webpack.js,console/update_module_versions.js,configs.node.js,ecosystem.config.sample.js

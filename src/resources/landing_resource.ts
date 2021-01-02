@@ -5,13 +5,13 @@ const decoder = new TextDecoder();
 export class LandingResource extends BaseResource {
   static paths = [
     "/",
-  ]
+  ];
 
   //////////////////////////////////////////////////////////////////////////////
   // FILE MARKER - METHODS - HTTP //////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////
 
-  public async GET () {
+  public async GET() {
     this.log("Requested landing page.");
 
     const filename = "./src/landing.html";
@@ -27,13 +27,13 @@ export class LandingResource extends BaseResource {
         ? ` [${environment}]`
         : "";
       content = content
-          .replace("{{ environment }}", environment)
-          .replace("{{ title }}", "Drash Land" + titleSuffix)
-          .replace("{{ drash_api_configs }}", this.getServerConfigs());
+        .replace("{{ environment }}", environment)
+        .replace("{{ title }}", "Drash Land" + titleSuffix)
+        .replace("{{ drash_api_configs }}", this.getServerConfigs());
 
       this.response.body = content;
 
-      return this.response
+      return this.response;
     } catch (error) {
       this.log(error.stack);
       this.response.body = error;

@@ -1,21 +1,22 @@
-import { Drash } from "../deps.ts"
+import { Drash } from "../deps.ts";
 
-const decoder = new TextDecoder()
+const decoder = new TextDecoder();
 
 export class Response extends Drash.Http.Response {
-
   protected error_codes: number[] = [
     400,
     401,
     403,
     404,
-    500
+    500,
   ];
 
-  public generateResponse (): string {
+  public generateResponse(): string {
     if (this.error_codes.indexOf(this.status_code) != -1) {
       try {
-        this.body = decoder.decode(Deno.readFileSync(`./src/Error${this.status_code}.html`));
+        this.body = decoder.decode(
+          Deno.readFileSync(`./src/Error${this.status_code}.html`),
+        );
       } catch (error) {
         console.log(error);
       }
@@ -25,6 +26,6 @@ export class Response extends Drash.Http.Response {
       this.body = decoder.decode(Deno.readFileSync(`./src/Error400.html`));
     }
 
-    return this.body as string
+    return this.body as string;
   }
 }
