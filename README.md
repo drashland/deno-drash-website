@@ -3,77 +3,49 @@
 ## Table Of Contents
 
 * [Requirements](#requirements)
-* [Running The Development Environment](#running-the-development-environment)
-* [Setting Up An Environment](#setting-up-an-environment)
-    * [Build The Environment](#build-the-environment)
-    * [Run The Environment Online](#run-the-environment-online)
-* [Scripts](#scripts)
+* [Development Work](#development-work)
+* [Setup  For Staging/Production](#setup-for-stagingproduction)
+* [Building A New Release Version](#building-a-new-release-version)
+* [Updating Staging/Prod](#updating-stagingprod)
 * [Technology Stack](#technology-stack)
 
 ## Requirements
 
-* Git v2.22+ (the build scripts use `git branch --show-current` and this is a feature of v2.22+)
 * Node v12.x (use this version to prevent `node-sass` errors)
 * Deno v1.5.4+
 
-## Running The Development Environment
+## Development Work
 
-1. Install npm dependencies.
+**What**
 
-```
-$ npm install
-```
+- This compiles the vue routes for the modulee you will be working on and watches it
+- Bundles the vue code for the module, setting it as the latest major release
 
-2. Check out the branch you want to work on.
+**Why**
 
-```
-$ git checkout drash-v1.x
-```
+For when you are working on a feature, or investigating.
 
-3. Run the development server.
+**How**
 
-```
-$ npm run dev:server <module>-<version>
-```
-
-4. Run webpack
+1. Build the documentation. For example if i was goingto work on drash:
 
 ```
-$ npm run dev:webpack <module>-<version>
+$ npm run build:docs development drash
 ```
 
-## Setting Up An Environment
+2. Run the development server.
 
-In the event you want to build an environment (e.g., staging, production, QA), you will need to take the following steps:
-
-### Build The Environment
-
-1. Clone the repo and go into it.
+*Note: This will have to be in a separate shell as you are watching webpack*
 
 ```
-$ git clone https://github.com/drashland/website.git
-$ cd website
+$ npm run dev:server
 ```
 
-2. Check out the `main` branch.
+3. Start coding!
 
-```
-$ git checkout main
-```
+4. Run `npm run build:docs production` and commit the bundled file changes, to ensure the documentation changes are saved
 
-3. Build the entire ecosystem.
-
-```
-$ npm run build:ecosystem
-```
-
-4. Test that the environment works.
-
-```
-$ deno run --allow-net --allow-read drash_website_server.ts
-```
-
-### Run The Environment Online
+## Setup For Staging/Production
 
 1. Set up a web server to handle serving the website application. The website application runs on `localhost:1445`.
 
@@ -82,7 +54,10 @@ $ deno run --allow-net --allow-read drash_website_server.ts
 
 2. Install [PM2](https://pm2.keymetrics.io/).
 
-3. Make a copy of `ecosystem.config.sample.js` to `ecosystem.config.js`. Edit your copied file as necessary. Make sure the `cwd` field properly points to your website repository clone.
+3. Run `npm run build:ecosystem`, this will:
+ - install NPM  dependencies
+ - Rebuild `node-sass`
+ - Create an `ecosystem.config.js` from `ecosystem.config.sample.js` Make a copy of `ecosystem.config.sample.js` to `ecosystem.config.js`.
 
 3. Run PM2. PM2 will use your `ecosystem.config.js` file to start the website application and keep your application online 24/7.
 
@@ -100,57 +75,30 @@ $ pm2 start
 └─────┴────────────────────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
 ```
 
-## Scripts
+## Building A New Release Version
 
-### build
+This is for creating a new bundle for a module, when you wish to create a new release, for example, say you hav started working on Drash v2.0.0 docs, you will need to create a new bundle so you don't override the v1.x bundle
 
-* `npm run build:docs <module> <version>`
+1. Add the version to the `versions` property in `configs.js`, eg add `"v2.x"` above `"v1.x"`
 
-    Builds documentation pages for a specific module.
+2. Build the new bundle: `npm run build:docs`
 
-    Example:
+3. Now any current work done will be bundled into that v2.x file, and the v1.x file will be left untouched
 
-    The following will build `/assets/bundles/drash.v1.x.js` and `/assets/bundles/vendors~drash.v1.x.js`.
-    
-    ```shell
-    $ git checkout drash-v1.x
-    $ npm run build:docs drash v1.x
-    ```
+## Updating Staging/Prod
 
-* `npm run build:ecosystem`
-    
-    Builds documentation pages for all modules -- storing all bundles in the `/assets/bundles` directory. Run `npm run git:pull-all` before running this script to ensure all documentation code is up to date.
+Once master has your new changes, you now need to:
 
-### dev
+1. ssh onto the server
 
-* `npm run dev:server <module> <version>`
+2. Pull the latest of main
 
-    Starts the development environment for a specific module and version.
-
-    Example:
-
-    The following will start the development environment for the `drash-v1.x` branch.
-
-    ```shell
-    $ git checkout <module>-<version>
-    $ npm run dev:server drash v1.x
-    ```
-
-### git
-
-* `npm run git:merge-main`
-
-    Merges the `main` branch into all `<module>-<version>` branches. All `<module>-<version>` branches should be kept up to date with the `main` branch. This script makes it easier to do this.
-
-* `npm run git:pull-all`
-
-    Checks out and pulls down the latest changes from all `<module>-<version>` branches. Run this script before using `npm run build:ecosystem`. This ensures all documentation code is up to date.
+3. `pm2 restart 0`. Should this not work, do `pm2 kill && pm2 start`
 
 ## Technology Stack
 
 * [Deno](https://deno.land)
 * [Drash](https://drash.land)
 * [Vue](https://vuejs.org)
-* [denon](https://github.com/denosaurs/denon)
 * [pug](https://pugjs.org/api/getting-started.html)
 * [webpack](https://webpack.js.org/)

@@ -3,12 +3,9 @@
   "version": "0.0.1",
   "description": "Drash Land",
   "scripts": {
-    "build:docs": "deno run --allow-read --allow-run console/build_docs.ts $(git branch --show-current)",
+    "build:docs": "console/build_docs",
     "build:ecosystem": "deno run --allow-read --allow-run --allow-write console/build_ecosystem.ts",
-    "dev:server": "denon run -A console/serve_dev.ts",
-    "dev:webpack": "console/webpack",
-    "git:merge-main": "deno run --allow-run console/git_merge_main.ts",
-    "git:pull-all": "deno run --allow-run console/git_pull_all.ts",
+    "dev:server": "console/dev_server",
     "rm:ds_store": "find . -name '.DS_Store' -type f -delete"
   },
   "author": "Drash Land",

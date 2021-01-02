@@ -1,13 +1,56 @@
 #!/bin/bash
 
-BRANCH="$(git branch --show-current)"
-PARENT_BRANCH="$1"
+ENVIRONMENT="$1"
+MODULE_TO_WATCH="$2"
+if [ "$ENVIRONMENT" == "" ]; then
+  ENVIRONMENT="production"
+fi
 
-echo -e "Building bundles for $PARENT_BRANCH/$BRANCH"
+echo -e "Installing NPM dependencies"
 
-node console/compile_vue_routes.js $PARENT_BRANCH
+npm install
 
-node_modules/.bin/webpack \
-  --config ./configs.webpack.production.js \
-  --hide-modules \
-  --env.branch=$PARENT_BRANCH \
+echo -e "Building bundles for $ENVIRONMENT"
+
+if [ "$MODULE_TO_WATCH" != "" ] && [ "$ENVIRONMENT" != "production" ]; then
+
+  node console/compile_vue_routes.js $MODULE_TO_WATCH && \
+  echo -e "Watching $MODULE_TO_WATCH" && \
+  node_modules/.bin/webpack \
+    --config ./configs.webpack.js \
+    --hide-modules \
+    --env.module="$MODULE_TO_WATCH" \
+    --env.environment=$ENVIRONMENT \
+    --watch
+
+else
+
+  node console/compile_vue_routes.js drash
+  node console/compile_vue_routes.js dmm
+  node console/compile_vue_routes.js wocket
+  node console/compile_vue_routes.js rhum
+
+  node_modules/.bin/webpack \
+    --config ./configs.webpack.js \
+    --hide-modules \
+    --env.module=drash \
+    --env.environment=$ENVIRONMENT
+
+  node_modules/.bin/webpack \
+    --config ./configs.webpack.js \
+    --hide-modules \
+    --env.module=dmm \
+    --env.environment=$ENVIRONMENT
+
+  node_modules/.bin/webpack \
+    --config ./configs.webpack.js \
+    --hide-modules \
+    --env.module=wocket \
+    --env.environment=$ENVIRONMENT
+
+  node_modules/.bin/webpack \
+    --config ./configs.webpack.js \
+    --hide-modules \
+    --env.module=rhum \
+    --env.environment=$ENVIRONMENT
+fi

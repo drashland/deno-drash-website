@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pkill -f drash_website_server.ts
+echo -e "Starting and watching the server..."
+deno run -A --watch --unstable drash_website_server.ts
