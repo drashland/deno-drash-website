@@ -1,7 +1,6 @@
 # files
 *.development.js
 .DS_Store
-assets/bundles/vendors*.js
 compiled_*.js
 compiled_*.json
 configs.server.js
