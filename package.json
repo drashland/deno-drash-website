@@ -5,9 +5,9 @@
   "scripts": {
     "compile:drash-v1.x-api-reference": "console/compile_drash_v1.x_api_reference",
     "compile:vue-routes": "node console/compile_vue_routes.js",
-    "server": "~/.local/bin/deno run -A console/server.ts",
-    "webpack:development": "~/.local/bin/deno run -A console/webpack_development.ts",
-    "webpack:production": "~/.local/bin/deno run -A console/webpack_production.ts",
+    "server": "deno run -A console/server.ts",
+    "webpack:development": "deno run -A console/webpack_development.ts",
+    "webpack:production": "deno run -A console/webpack_production.ts",
     "remove-ds-store": "find . -name '.DS_Store' -type f -delete"
   },
   "author": "Drash Land",

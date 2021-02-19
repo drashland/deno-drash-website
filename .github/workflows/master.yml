@@ -20,8 +20,6 @@ jobs:
       - name: Install Deno
         uses: denolib/setup-deno@v2
 
-      - run: ln -s ~/.deno ~/.local/.deno
-
       - name: Server Integration Tests
         run: |
           npm run webpack:development
@@ -38,6 +36,7 @@ jobs:
 
       - name: Creating Drash API Reference Works
         run: |
+          git clone https://github.com/drashland/deno-drash  ../deno-drash
           npm run compile:drash-v1.x-api-reference
 
       - name: Bundling Frontend Works For Development
