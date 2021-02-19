@@ -19,6 +19,7 @@ jobs:
 
       - name: Server Integration Tests
         run: |
+          npm run webpack:development
           deno test -A tests/integration
 
   builds:

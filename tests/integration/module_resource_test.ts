@@ -1,5 +1,5 @@
 import { server } from "../../server.ts";
-import { Rhum } from "./deps.ts";
+import { Rhum } from "../deps.ts";
 
 const serverConfigs = {
   hostname: "localhost",
