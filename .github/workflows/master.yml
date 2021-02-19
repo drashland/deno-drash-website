@@ -20,11 +20,8 @@ jobs:
       - name: Install Deno
         uses: denolib/setup-deno@v2
 
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '12'
-
-      - run: npm --version
+      - run: npm config set script-shell bash
+        if: startsWith(matrix.os, 'windows')
 
       - name: Server Integration Tests
         run: |
