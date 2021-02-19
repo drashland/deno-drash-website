@@ -91,7 +91,7 @@ Rhum.testPlan("tests/integration/module_resource_test.ts", () => {
       const title = text.split("<title>")[1].split("</title>")[0];
       Rhum.asserts.assertEquals(title, "Drash Land - Drash");
       const bundle = text.includes(
-        `<script src="/assets/bundles/drash.v1.x.js"></script>`,
+        `<script src="/assets/bundles/drash-v1.x.js"></script>`,
       );
       Rhum.asserts.assertEquals(bundle, true);
     });
@@ -106,7 +106,7 @@ Rhum.testPlan("tests/integration/module_resource_test.ts", () => {
       const title = text.split("<title>")[1].split("</title>")[0];
       Rhum.asserts.assertEquals(title, "Drash Land - Dmm");
       const bundle = text.includes(
-        `<script src="/assets/bundles/dmm.v1.x.js"></script>`,
+        `<script src="/assets/bundles/dmm-v1.x.js"></script>`,
       );
       Rhum.asserts.assertEquals(bundle, true);
     });
@@ -120,7 +120,7 @@ Rhum.testPlan("tests/integration/module_resource_test.ts", () => {
       const title = text.split("<title>")[1].split("</title>")[0];
       Rhum.asserts.assertEquals(title, "Drash Land - Rhum");
       const bundle = text.includes(
-        `<script src="/assets/bundles/rhum.v1.x.js"></script>`,
+        `<script src="/assets/bundles/rhum-v1.x.js"></script>`,
       );
       Rhum.asserts.assertEquals(bundle, true);
     });
@@ -134,7 +134,7 @@ Rhum.testPlan("tests/integration/module_resource_test.ts", () => {
       const title = text.split("<title>")[1].split("</title>")[0];
       Rhum.asserts.assertEquals(title, "Drash Land - Wocket");
       const bundle = text.includes(
-        `<script src="/assets/bundles/wocket.v0.x.js"></script>`,
+        `<script src="/assets/bundles/wocket-v0.x.js"></script>`,
       );
       Rhum.asserts.assertEquals(bundle, true);
     });
@@ -148,7 +148,7 @@ Rhum.testPlan("tests/integration/module_resource_test.ts", () => {
       const title = text.split("<title>")[1].split("</title>")[0];
       Rhum.asserts.assertEquals(title, "Drash Land - Sinco");
       const bundle = text.includes(
-        `<script src="/assets/bundles/sinco.v1.x.js"></script>`,
+        `<script src="/assets/bundles/sinco-v1.x.js"></script>`,
       );
       Rhum.asserts.assertEquals(bundle, true);
     });
