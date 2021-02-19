@@ -10,18 +10,12 @@ on:
 
 jobs:
   tests:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
       - name: Install Deno
         uses: denolib/setup-deno@v2
-
-      - run: npm config set script-shell bash
-        if: startsWith(matrix.os, 'windows')
 
       - name: Server Integration Tests
         run: |
@@ -56,7 +50,7 @@ jobs:
       - name: Our Drash Server Works And Compiles
         run: |
           echo "server.close()" >> app.ts
-          npm run server
+          deno run -A app.ts
 
       - name: Can Start PM2
         run: |
