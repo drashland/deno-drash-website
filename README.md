@@ -52,9 +52,7 @@ you will need to take the following steps:
 
 3. Install dependencies:  `npm i`
 
-4. Make a copy of `ecosystem.config.sample.js` to `ecosystem.config.js`. Edit
-   your copied file as necessary. Make sure the `cwd` field properly points to
-   your website repository clone.
+4. Make a copy of `ecosystem.config.sample.js` to `ecosystem.config.js`.
    
 5. Build bundles: `npm run webpack:development #  or :production`
 

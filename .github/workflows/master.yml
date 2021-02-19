@@ -55,6 +55,7 @@ jobs:
       - name: Can Start PM2
         run: |
           npm i pm2
+          cp ecosystem.config.sampel.js ecosystem.config.js
           node_modules/.bin/pm2 start
 
   linter:

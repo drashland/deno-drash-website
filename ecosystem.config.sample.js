@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      cwd: "/path/to/website",
+      cwd: __dirname,
       name: "Drash Land",
       script: "deno run --allow-net --allow-read ./app.ts",
       watch: "true",
