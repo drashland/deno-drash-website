@@ -30,6 +30,10 @@ jobs:
       - name: Install Deno
         uses: denolib/setup-deno@v2
 
+#      - run: |
+#          mkdir -p ~/.local/bin
+#          ln -s ~/.deno/bin/deno ~/.local/bin/deno
+
       - name: Compiling Vue Routes Works
         run: |
           npm run compile:vue-routes
@@ -55,7 +59,7 @@ jobs:
       - name: Can Start PM2
         run: |
           npm i pm2
-          cp ecosystem.config.sampele.js ecosystem.config.js
+          cp ecosystem.config.sample.js ecosystem.config.js
           node_modules/.bin/pm2 start
 
   linter:
