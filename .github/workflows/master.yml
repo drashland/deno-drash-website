@@ -54,8 +54,8 @@ jobs:
 
       - name: Can Start PM2
         run: |
-          npm i -g pm2
-          pm2 start
+          npm i pm2
+          node_modules/.bin/pm2 start
 
   linter:
     runs-on: ubuntu-latest
