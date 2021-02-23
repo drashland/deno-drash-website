@@ -19,16 +19,13 @@ jobs:
 
       - name: Accessibility Tests
         run: |
-          npm i -g pa11y
           npm run webpack:development
+          npm i pa11y
           npm run server &
-          sleep 5;
-          pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445
-          pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445/drash
-          pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445/dmm
-          pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445/wocket
-          pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445/sinco
-          pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445/rhum
+          sleep 10;
+          node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445
+#         Were only testing one, because all module pages are the same
+          node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445/drash
 
   tests:
     runs-on: ubuntu-latest
