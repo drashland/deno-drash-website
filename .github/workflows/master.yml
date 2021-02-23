@@ -24,7 +24,6 @@ jobs:
           npm run server &
           sleep 10
           node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445
-#          Were only testing one, because all module pages are the same
           node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445/drash
 
   tests:
