@@ -240,11 +240,13 @@ div(
     button(
       :class="{'mr-3': is_mobile, 'hide': !can_scroll_to_top}"
       type="button", @click="scrollToTop()"
+      title="Scroll to top"
     )
       i.fa.fa-arrow-up
     button.open-sidebar(
       :class="{'hide': !is_mobile}"
       type="button", @click="toggleSidebar()"
+      title="Open Sidebar"
     )
         i.fa.fa-bars(
           :class="{'hide': open_sidebar}"

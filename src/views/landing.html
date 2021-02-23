@@ -207,7 +207,7 @@
               <div class="row">
                 <div class="col-lg-4 col-md-6">
                   <a href="/drash/" class="card integration-card text-center p-3">
-                    <img height="150" src="/assets/common/img/logo_drash.svg">
+                    <img height="150" src="/assets/common/img/logo_drash.svg" alt="Drash Logo">
                     <div class="card-header">
                       <h4>Drash</h4>
                       <span class="integration-type">A REST microframework</span>
@@ -216,7 +216,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                   <a href="https://github.com/drashland/deno-drash-middleware" class="card integration-card text-center p-3">
-                    <img height="150" src="/assets/common/img/logo_drash_middleware.svg">
+                    <img height="150" src="/assets/common/img/logo_drash_middleware.svg" alt="Drash Middleware Logo">
                     <div class="card-header">
                       <h4>Drash Middleware</h4>
                       <span class="integration-type">A middleware library for Drash</span>
@@ -225,7 +225,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                   <a href="/wocket/" class="card integration-card text-center p-3">
-                    <img height="150" src="/assets/common/img/logo_wocket.svg">
+                    <img height="150" src="/assets/common/img/logo_wocket.svg" alt="Wocket Logo">
                     <div class="card-header">
                       <h4>Wocket</h4>
                       <span class="integration-type">A WebSocket library</span>
@@ -234,7 +234,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                   <a href="/dmm/" class="card integration-card text-center p-3">
-                    <img height="150" src="/assets/common/img/logo_dmm.svg">
+                    <img height="150" src="/assets/common/img/logo_dmm.svg" alt="Dmm Logo">
                     <div class="card-header">
                       <h4>dmm</h4>
                       <span class="integration-type">A lightweight module manager</span>
@@ -243,7 +243,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                   <a href="/rhum/" class="card integration-card text-center p-3">
-                    <img height="150" src="/assets/common/img/logo_rhum.svg">
+                    <img height="150" src="/assets/common/img/logo_rhum.svg" alt="Rhum logo">
                     <div class="card-header">
                       <h4>Rhum</h4>
                       <span class="integration-type">A lightweight testing framework</span>
@@ -252,7 +252,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                   <a href="/sinco/" class="card integration-card text-center p-3">
-                    <img height="150" src="/assets/common/img/logo_sinco.svg">
+                    <img height="150" src="/assets/common/img/logo_sinco.svg" alt="Sinco Logo">
                     <div class="card-header">
                       <h4>Sinco</h4>
                       <span class="integration-type">Browser automation and testing tool</span>
@@ -288,9 +288,7 @@
               <header class="section-header text-center u-text--light">
                 <p class="lead">Develop with confidence.</p>
                 <p>Released under the MIT License.</p>
-                <a href="https://github.com/drashland" target="_BLANK" class="text-white mb-3">
-                  <i class="fab fa-github fa-3x"></i>
-                </a>
+                <span id="github-icon" data-url="https://github.com/drashland" class="text-white mb-3 fab fa-github fa-3x"></span>
               </header>
             </div>
           </div>
@@ -334,6 +332,9 @@
           let json = await res.json();
           json = json.slice(0, 6);
           this.news = json;
+          document.getElementById("github-icon").addEventListener("click", (e) => {
+            window.open(e.target.dataset.url)
+          })
         },
       });
       const vm = app.mount("#app");
