@@ -45,6 +45,66 @@ export default {
 }
 </script>
 
+<style>
+    :root {
+        --dark-black: #000000de;
+        --light-dark: #36304a;
+        --bright-white: #f4f4f4;
+    }
+    /*
+     * Change theme of wocket to black and white
+    */
+    body {
+        background-color: var(--dark-black);
+        scrollbar-color: var(--bright-white)
+    }
+    p, h1, h2, h3, h4, h5, li {
+        color: var(--bright-white) !important;
+    }
+    .bg-teal-100 {
+        background-color: var(--dark-black);
+    }
+    div[role="alert"] {
+        background-color: var(--dark-black);
+    }
+    .code-block > pre.header {
+        opacity: 87%;
+        background: var(--light-dark);
+    }
+    .code-block > pre.header > .header {
+        background: none;
+        color: var(--bright-white);
+    }
+    .code-block > div.code-toolbar > pre {
+        background-color: var(--dark-black);
+        border-color: var(--bright-white);
+    }
+    .sidebar {
+        background-color: var(--dark-black);
+        border-color: var(--light-dark);
+    }
+    .sidebar .menu-name {
+        background-color: var(--light-dark);
+    }
+    .sidebar .menu-name + ul .menu-item {
+        background-color: var(--dark-black);
+    }
+    .sidebar .menu-name + ul .menu-item:hover {
+        background-color: var(--bright-white);
+        color: var(--dark-black);
+    }
+    #current_version_item {
+        opacity: 87%;
+        color: var(--dark-black);
+    }
+    .version-menu {
+        opacity: 87%;
+    }
+    hr  {
+        border-color: var(--light-dark);
+    }
+</style>
+
 <template lang="pug">
 app-root(
   :sidebar="sidebar"

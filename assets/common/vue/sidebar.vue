@@ -97,8 +97,13 @@ ul li ul li a {
   padding-left: 3rem !important;
 }
 
+:root {
+    --background-color: #282633;
+}
+
 .sidebar {
   -webkit-overflow-scrolling: touch;
+    background-color: var(--background-color);
   display: block;
   height: 100%;
   overflow: auto;
@@ -252,17 +257,17 @@ span.menu-item-link:hover > a {
 </style>
 
 <template lang="pug">
-div.sidebar.text-sm(:style="'background-color: ' + styles.background_color + ';'")
+div.sidebar.text-sm
   a(:href="base_url + '/'")
     img(:alt="module" :src="logo" style="height: 150px").mx-auto.m-10
   div.version-selector.mx-5.mb-5.cursor-pointer.relative
     div.current-version.relative
-      p#current_version_item.self-center.mb-0.block.px-5.rounded-lg(
+      p#current_version_item.self-center.mb-0.block.px-5.rounded-t-lg(
         @click="toggleVersionSelector()"
         style="background-color: #f4f4f4"
       ) {{ current_version }}
         span.absolute.ml-2.fas.fa-caret-down
-    div.version-menu.bg-white.rounded-lg.overflow-hidden.absolute.w-full.shadow-lg(
+    div.version-menu.bg-white.rounded-b-lg.overflow-hidden.absolute.w-full.shadow-lg(
       :class="{'active': version_selector_is_active}"
     )
       a.version-link.block.px-5(
