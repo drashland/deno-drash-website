@@ -27,9 +27,9 @@ export const configs = {
   },
   "rhum": {
     "base_url": "/rhum/v1.x",
-    "latest_version": "v1.1.7",
-    "latest_url_deno_land": "https://deno.land/x/rhum@v1.1.7/mod.ts",
-    "latest_url_nest_land": "https://x.nest.land/rhum@v1.1.7/mod.ts",
+    "latest_version": "v1.1.8",
+    "latest_url_deno_land": "https://deno.land/x/rhum@v1.1.8/mod.ts",
+    "latest_url_nest_land": "https://x.nest.land/rhum@v1.1.8/mod.ts",
     "versions": [
       "v1.x"
     ]
