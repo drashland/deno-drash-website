@@ -52,7 +52,7 @@ Rhum.testPlan("tests/integration/module_resource_test.ts", () => {
           await res.text();
           server.close();
           Rhum.asserts.assertEquals(res.status, 200);
-          Rhum.asserts.assertEquals(res.url, `${url}/wocket/v0.x/`);
+          Rhum.asserts.assertEquals(res.url, `${url}/wocket/v1.x/`);
         },
       );
       Rhum.testCase(
@@ -135,6 +135,20 @@ Rhum.testPlan("tests/integration/module_resource_test.ts", () => {
       Rhum.asserts.assertEquals(title, "Drash Land - Wocket");
       const bundle = text.includes(
         `<script src="/assets/bundles/wocket-v0.x.js"></script>`,
+      );
+      Rhum.asserts.assertEquals(bundle, true);
+    });
+    Rhum.testCase("Responds with 200 for /wocket/v1.x", async () => {
+      await server.run(serverConfigs);
+      const res = await fetch(`${url}/wocket/v1.x`);
+      Rhum.asserts.assertEquals(res.status, 200);
+      Rhum.asserts.assertEquals(res.url, `${url}/wocket/v1.x`);
+      const text = await res.text();
+      server.close();
+      const title = text.split("<title>")[1].split("</title>")[0];
+      Rhum.asserts.assertEquals(title, "Drash Land - Wocket");
+      const bundle = text.includes(
+        `<script src="/assets/bundles/wocket-v1.x.js"></script>`,
       );
       Rhum.asserts.assertEquals(bundle, true);
     });
