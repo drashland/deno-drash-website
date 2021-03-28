@@ -89,7 +89,7 @@ export class BaseResource extends Drash.Http.Resource {
   protected async log(message: string) {
     const bytes = encoder.encode(message);
     const date = new Date().toISOString().split("T")[0]; // e.g., 2021-03-24
-    await Deno.writeFile(`${date}.log`, bytes);
+    await Deno.writeFile(`${date}.log`, bytes, {append: true});
   }
 
   /**
@@ -129,7 +129,7 @@ export class BaseResource extends Drash.Http.Resource {
    *
    * @param code - The error status code (only 400 and above).
    */
-  protected async sendError(code: number): Drash.Http.Response {
+  protected async sendError(code: number): Promise<Drash.Http.Response> {
     await this.log(`Sending ${code} error response.`);
     this.response.status_code = code;
     return this.response;
