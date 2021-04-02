@@ -39,6 +39,24 @@ jobs:
           npm run webpack:development
           deno test -A tests/integration
 
+  docker_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Deno
+        uses: denolib/setup-deno@v2
+
+      - name: Build docker image
+        run: docker build --tag website .
+
+      - name: Start docker container
+        run: docker run --rm --name website --publish 1445:1445 website
+
+      - name: Server Alive Tests
+        run: |
+          npm run webpack:development
+          deno test -A tests/docker
   builds:
     runs-on: ubuntu-latest
     steps:
