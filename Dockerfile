@@ -14,4 +14,5 @@ FROM hayd/distroless-deno
 WORKDIR /usr/src/app
 COPY --from=builder /usr/src/app .
 EXPOSE 1445
+RUN deno cache app.ts
 CMD [ "run", "--allow-net", "--allow-read", "app.ts" ]

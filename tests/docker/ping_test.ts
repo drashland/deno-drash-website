@@ -6,7 +6,7 @@ const serverConfigs = {
 
 const url = `http://${serverConfigs.hostname}:${serverConfigs.port}`;
 
-Rhum.testPlan("tests/integration/landing_resource_test.ts", () => {
+Rhum.testPlan("tests/docker/ping_test.ts", () => {
   Rhum.testSuite("GET /", () => {
     Rhum.testCase("Responds with a 200 on request", async () => {
       // Development

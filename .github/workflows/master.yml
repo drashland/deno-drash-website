@@ -50,11 +50,10 @@ jobs:
       - name: Build docker image
         run: docker build --tag website .
 
-      - name: Start docker container
-        run: docker run --detach --rm --name website --publish 1445:1445 website
-
-      - name: Server Alive Tests
-        run: deno test -A tests/docker
+      - name: Start docker container and run tests
+        run: |
+          docker run --detach --rm --name website --publish 1445:1445 website
+          deno test -A tests/docker
   builds:
     runs-on: ubuntu-latest
     steps:
