@@ -10,7 +10,7 @@ COPY . .
 RUN yarn compile:vue-routes
 RUN node console/compile_vue_routes.js
 
-FROM hayd/distroless-deno
+FROM hayd/alpine-deno
 WORKDIR /usr/src/app
 COPY --from=builder /usr/src/app .
 EXPOSE 1445
