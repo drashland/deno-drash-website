@@ -2,6 +2,7 @@ import { Drash } from "../../deps.ts";
 import { configs } from "../../deps.ts";
 
 const decoder = new TextDecoder();
+const encoder = new TextEncoder();
 
 export class BaseResource extends Drash.Http.Resource {
   /**
@@ -85,8 +86,10 @@ export class BaseResource extends Drash.Http.Resource {
    * They should NOT use their own console.log() calls. This method allows us to
    * see what resource made the log call.
    */
-  protected log(message: string) {
-    console.log(`${this.constructor.name} | ${message}`);
+  protected async log(message: string) {
+    const bytes = encoder.encode(message);
+    const date = new Date().toISOString().split("T")[0]; // e.g., 2021-03-24
+    await Deno.writeFile(`${date}.log`, bytes, {append: true});
   }
 
   /**
@@ -126,8 +129,8 @@ export class BaseResource extends Drash.Http.Resource {
    *
    * @param code - The error status code (only 400 and above).
    */
-  protected sendError(code: number): Drash.Http.Response {
-    this.log(`Sending ${code} error response.`);
+  protected async sendError(code: number): Promise<Drash.Http.Response> {
+    await this.log(`Sending ${code} error response.`);
     this.response.status_code = code;
     return this.response;
   }
@@ -150,11 +153,11 @@ export class BaseResource extends Drash.Http.Resource {
   ): Promise<Drash.Http.Response> {
     const filename = `./assets/bundles/${moduleName}-${version}.js`;
 
-    this.log(`Getting Vue app: ${filename}`);
+    await this.log(`Getting Vue app: ${filename}`);
 
     if (!await this.fileExists(filename)) {
-      this.log(`Module version "${version}" unknown.`);
-      return this.sendError(404);
+      await this.log(`Module version "${version}" unknown.`);
+      return await this.sendError(404);
     }
 
     return this.sendDocsPage(moduleName, version);
