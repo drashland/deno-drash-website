@@ -87,7 +87,7 @@ export class BaseResource extends Drash.Http.Resource {
    * see what resource made the log call.
    */
   protected async log(message: string) {
-    const bytes = encoder.encode(message);
+    const bytes = encoder.encode(message + "\n");
     const date = new Date().toISOString().split("T")[0]; // e.g., 2021-03-24
     await Deno.writeFile(`${date}.log`, bytes, {append: true});
   }
