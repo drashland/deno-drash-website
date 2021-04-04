@@ -48,6 +48,7 @@ export default {
             "Responses": {
               //"Accept Header": "/tutorials/responses/accept-header",
               "Redirects": "/tutorials/responses/redirects",
+              "Content Type": "/tutorials/responses/content-type"
             },
             "Middleware": {
               "Introduction": "/tutorials/middleware/introduction",
