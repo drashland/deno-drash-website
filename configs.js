@@ -45,11 +45,11 @@ export const configs = {
   },
   "sinco": {
     "base_url": "/sinco/v1.x",
-    "latest_version": "v1.1.0",
+    "latest_version": "v1.1.1",
     "versions": [
       "v1.x"
     ],
-    "latest_url_deno_land": "https://deno.land/x/sinco@v1.1.0/mod.ts",
-    "latest_url_nest_land": "https://x.nest.land/sinco@v1.1.0/mod.ts"
+    "latest_url_deno_land": "https://deno.land/x/sinco@v1.1.1/mod.ts",
+    "latest_url_nest_land": "https://x.nest.land/sinco@v1.1.1/mod.ts"
   }
 };
