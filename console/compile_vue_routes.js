@@ -31,7 +31,7 @@ modules.forEach((moduleAndVersion) => {
     const files = fs.readdirSync(directory);
     for (let index in files) {
       const file = files[index];
-      const filepath = path.join(directory, file);
+      const filepath = directory + "/" + file; // This was path.join(directory, file), but it was causing issues for windows, and the resulting string would be ./src\modules\dmm-v1.x\vue\pages\..., as you can see, it replaces the / and uses an escape character, so when it gets written to the compiled routes file, the import lines look like `import * as name_1 from "/src\modules\...", so when webpack tries to bundle, it sees these as `/srcmodulesdmm-v1.x`
       const stats = fs.statSync(filepath);
       const filenameWithoutExtension = path.basename(filepath).split(".")[0];
       const filepathKebabCase =
@@ -40,7 +40,7 @@ modules.forEach((moduleAndVersion) => {
         walk(filepath);
       } else if (stats.isFile()) {
         importString += `
-  import * as ${filenameWithoutExtension}_${count} from "/${filepath}";`;
+  import * as ${filenameWithoutExtension}_${count} from "${filepath.substring(1)}";`; // Using substring to remove the `.` from the start
         exportString += `  ${filenameWithoutExtension}_${count},\n`;
       }
       count += 1;
@@ -49,6 +49,5 @@ modules.forEach((moduleAndVersion) => {
 
   walk(directory);
   exportString += `];`;
-
   fs.writeFileSync(outFile, importString + exportString);
 });

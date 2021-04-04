@@ -6,29 +6,28 @@ export const resource = {
   }
 }
 
-const public_index_html =
-  `<!DOCTYPE html>
-   <html>
-   <head></head>
-   <body>
-       <form>
-            <input name="username" type="text">
-            <input type="file" name="profile-picture">
-            <button id="submit" type="button">Submit</button>
-       </form>
-       <script>
-           window.addEventListener("DOMContentLoaded", () => {
-             document.getElementById("submit").addEventListener("click", async () => {
-               const form = document.querySelector("form");
-               await fetch("http://localhost:1447/profile", {
-                 method:  "POST",
-                 body: new FormData(form)
-               });
-             });
-           });
-       <\/script>
-    </body>
-    </html>`
+const public_index_html =`<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <form>
+      <input name="username" type="text">
+      <input type="file" name="profile-picture">
+      <button id="submit" type="button">Submit</button>
+    </form>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("submit").addEventListener("click", async () => {
+          const form = document.querySelector("form");
+          await fetch("http://localhost:1447/profile", {
+            method:  "POST",
+            body: new FormData(form)
+          });
+        });
+      });
+    <\/script>
+  </body>
+</html>`
 
 export default {
   data() {
