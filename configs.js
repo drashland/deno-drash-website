@@ -9,9 +9,9 @@ export const configs = {
   },
   "dmm": {
     "base_url": "/dmm/v1.x",
-    "latest_version": "v1.3.1",
-    "latest_url_deno_land": "https://deno.land/x/dmm@v1.3.1/mod.ts",
-    "latest_url_nest_land": "https://x.nest.land/dmm@v1.3.1/mod.ts",
+    "latest_version": "v1.3.2",
+    "latest_url_deno_land": "https://deno.land/x/dmm@v1.3.2/mod.ts",
+    "latest_url_nest_land": "https://x.nest.land/dmm@v1.3.2/mod.ts",
     "versions": [
       "v1.x"
     ]
