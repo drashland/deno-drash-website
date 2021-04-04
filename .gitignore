@@ -9,6 +9,7 @@ configs.server.js
 drash/conf/app.ts
 ecosystem.config.js
 *-lock.json # we ignore this because package.json is in charge of versioning
+package-lock.json
 *.log
 
 # directories
