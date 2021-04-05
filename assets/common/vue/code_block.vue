@@ -66,6 +66,17 @@ export default {
   },
   mounted() {
     Prism.highlightAll();
+    
+    // For safari, highlighted lines of code appear buggy - the 'highlight' is slightly above the line of code eg not aligned.
+    // PrismJS seems to set a `top: xxpx` property on highlighted code. How you can do this is: inspect the whole code block elements and expand it, and scroll down to the bottom - whilst you may think the style would be applied in order, it isn't, and there are separate tags at the end of the main code block element that are used to style the highlighting.
+    // It seems that adding 5% of the existing `top` property on those elements fixes it for safari
+    const highlightedElems = document.querySelectorAll(".line-highlight")
+    for (const elem of highlightedElems) {
+      const top = elem.style.top
+      const [size] = top.split("px")
+      const newSize = Number(size) * (1 + 0.05) // + 5%
+      elem.style.top = newSize
+    }
   }
 }
 </script>
@@ -104,6 +115,10 @@ ol .code-block.is-mobile {
 .line-highlight:after,
 .line-highlight:before {
   display: none;
+}
+pre.header {
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 </style>
 
