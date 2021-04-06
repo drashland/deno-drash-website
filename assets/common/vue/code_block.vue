@@ -81,7 +81,6 @@ window.addEventListener("DOMContentLoaded", () => {
     const top = elem.style.top
     const [size] = top.split("px")
     const newSize = Number(size) * (1 + 0.05) // + 5%
-    console.log(newSize)
     elem.style.top = newSize + "px"
   }
 })
