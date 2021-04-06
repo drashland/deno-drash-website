@@ -16,7 +16,6 @@ package-lock.json
 .sass-cache
 dist
 node_modules
-tmp/*
 
 # exceptions
 !.gitkeep
