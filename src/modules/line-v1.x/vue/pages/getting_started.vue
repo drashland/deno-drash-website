@@ -27,7 +27,7 @@ export default {
 
 <template lang="pug">
 div
-  introduction-header(heading="Sinco" description="TODO")
+  introduction-header(heading="Line" description="A command-line interface (CLI) framework")
   div.flex.mb-5
     a(href="https://github.com/drashland/line/releases" target="_BLANK")
       img.mr-1(alt="Latest Line Release" src="https://img.shields.io/github/release/drashland/line.svg?color=brightgreen&label=Latest" width="auto" height="20")
@@ -44,9 +44,87 @@ div
     h2-hash Quickstart
     ol
       li
-        p TODO 
-        code-block(title="test.ts" language="typescript")
-          | TODO
+        p Create your CLI that will read a given file, and write a given file.
+        code-block(title="app.ts" language="typescript")
+          | import { Line, Subcommand } from "https://deno.land/x/line/mod.ts";
+          |
+          | const decoder = new TextDecoder();
+          | const encoder = new TextEncoder();
+          |
+          | class Read extends Subcommand {
+          |   public signature = "read [file]";
+          |   public description = "Read a file.";
+          |
+          |   public handle(): void { // can also be async
+          |     const file = this.getArgumentValue("file");
+          |     if (!file) {
+          |       return console.log("File not specified");
+          |     }
+          |     const contents = Deno.readFileSync(file);
+          |     console.log(decoder.decode(contents));
+          |   }
+          | }
+          |
+          | class Write extends Subcommand {
+          |   public signature = "write [file] [contents]";
+          |   public description = "Write contents to a file.";
+          |
+          |   public handle(): void { // can also be async
+          |     const file = this.getArgumentValue("file");
+          |     if (!file) {
+          |       return console.log("File not specified");
+          |     }
+          |     const contents = this.getArgumentValue("contents");
+          |     if (!contents) {
+          |       return console.log("Contents not specified");
+          |     }
+          |     try {
+          |       Deno.writeFileSync(file, encoder.encode(contents));
+          |       console.log("Successfully wrote file.");
+          |     } catch (error) {
+          |       console.log(error);
+          |     }
+          |   }
+          | }
+          |
+          | const service = new Line({
+          |   command: "fm",
+          |   name: "File Manager",
+          |   description: "A file manager.",
+          |   version: "v1.0.0",
+          |   subcommands: [
+          |     Read,
+          |     Write,
+          |   ],
+          | });
+          |
+          | service.run();
+      li
+        p Install your CLI as a binary under the name <code>fm</code>
+        code-block(title="Terminal" language="bash")
+          | $ deno install --allow-read --allow-write --name fm app.ts
+      li
+        p Run your CLI.
+        code-block(title="Terminal" language="shell")
+          | $ fm
+          | 
+          | File Manager - A file manager.
+          |
+          | USAGE
+          |
+          |     fm [option | [[subcommand] [args] [deno flags] [options]]
+          |
+          | OPTIONS
+          |
+          |     -h, --help    Show this menu.
+          |     -v, --version Show this CLI's version.
+          |
+          | SUBCOMMANDS
+          |
+          |     read
+          |         Read a file.
+          |     write
+          |         Write contents to a file.
     hr
     h2-hash Importing
     code-block-import(name="Line" repo="line" :version="$conf.line.latest_version")
@@ -56,5 +134,5 @@ div
       li
         p Zero 3rd party dependencies
       li
-        p TODO
+        p Scalable for large scale CLIs
 </template>
