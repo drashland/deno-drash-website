@@ -19,6 +19,9 @@ export default {
             FAQ: "/faq",
           },
           "Latest News": {},
+          Tutorials: {
+            "Automate Updating Dependencies": "/tutorials/automate-updating-dependencies"
+          },
           "CLI Commands": {
             //Introduction: "/tutorials",
             "check": "/cli-commands/check",

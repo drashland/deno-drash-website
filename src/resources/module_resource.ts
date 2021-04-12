@@ -10,19 +10,19 @@ export class ModuleResource extends BaseResource {
   // FILE MARKER - METHODS - HTTP //////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////
 
-  public GET() {
+  public async GET() {
     const moduleName = this.request.getPathParam("module") as string;
     let version = this.request.getPathParam("version") as string;
 
-    this.log(`Requested docs for "${moduleName}" module.`);
+    await this.log(`Requested docs for "${moduleName}" module.`);
 
     if (this.recognized_modules.indexOf(moduleName) == -1) {
-      this.log(`Module "${moduleName}" unknown.`);
-      return this.sendError(404);
+      await this.log(`Module "${moduleName}" unknown.`);
+      return await this.sendError(404);
     }
 
     if (version) {
-      return this.sendVersionedDocsPage(moduleName, version);
+      return await this.sendVersionedDocsPage(moduleName, version);
     }
 
     // @ts-ignore (crookse) We ignore this because we can't use a dynamic
