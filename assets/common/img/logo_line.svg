@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="508px" height="508px" viewBox="0 0 508 508" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>back</title>
+    <g id="line" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="polygons" transform="translate(253.500000, 276.000000) rotate(-13.000000) translate(-253.500000, -276.000000) translate(103.000000, 43.000000)">
+            <polygon id="Triangle" fill="#F4D002" transform="translate(214.321914, 311.624664) rotate(-5.000000) translate(-214.321914, -311.624664) " points="230.424503 360.713542 131.852539 294.370669 296.79129 262.535786"></polygon>
+            <polygon id="Triangle" fill="#32B240" transform="translate(145.524710, 375.106404) rotate(-320.000000) translate(-145.524710, -375.106404) " points="87.5725727 328.217118 203.476848 305.557105 110.075262 444.655703"></polygon>
+            <polygon id="Triangle" fill="#1788B3" transform="translate(155.598974, 260.618827) rotate(-30.000000) translate(-155.598974, -260.618827) " points="97.1288749 213.609397 214.069073 191.05526 119.964717 330.182395"></polygon>
+            <polygon id="Triangle" fill="#FF0000" transform="translate(168.748642, 88.712493) rotate(-30.000000) translate(-168.748642, -88.712493) " points="110.86326 42.0981971 226.634025 19.7334279 133.470905 157.691558"></polygon>
+            <polygon id="Triangle" fill="#E10709" transform="translate(97.975958, 160.811385) rotate(-30.000000) translate(-97.975958, -160.811385) " points="156.44614 207.426288 39.5057765 229.790042 133.611148 91.8327291"></polygon>
+            <polygon id="Triangle" fill="#109ED3" transform="translate(85.158489, 325.556853) rotate(-30.000000) translate(-85.158489, -325.556853) " points="143.628671 372.171756 26.6883077 394.53551 120.793679 256.578197"></polygon>
+        </g>
+    </g>
+</svg>

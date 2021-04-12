@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      base_url: this.$conf.wocket.base_url,
+      base_url: this.$conf.wocket.base_url + "/#",
       base_uri: "/advanced-tutorials/creating-a-chat-app",
       title: title,
       subtitle: subtitle,

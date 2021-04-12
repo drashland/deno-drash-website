@@ -1,15 +1,5 @@
 # Drash Land Website
 
-## Table Of Contents
-
-- [Requirements](#requirements)
-- [Running The Development Environment](#running-the-development-environment)
-- [Setting Up An Environment](#setting-up-an-environment)
-  - [Build The Environment](#build-the-environment)
-  - [Run The Environment Online](#run-the-environment-online)
-- [Scripts](#scripts)
-- [Technology Stack](#technology-stack)
-
 ## Requirements
 
 - Node v12.x (use this version to prevent `node-sass` errors)
