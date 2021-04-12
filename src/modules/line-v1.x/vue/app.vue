@@ -33,6 +33,6 @@ export default {
 <template lang="pug">
 app-root(
   :sidebar="sidebar"
-  module="sinco"
+  module="line"
 )
 </template>
