@@ -37,11 +37,11 @@ page(
   h2-hash Before You Get Started
   p Sinco is a browser and automation testing tool. Sinco currently supports the following browsers:
   ul
-    li Chrome
-    li Firefox
+    li Chrome (or other Chromium based browsers)
+    li Firefox (or other Gecko Engine based browsers)
   p Sinco does this by creating a headless browser and connecting to the remote devtools protocol. Sinco uses the latest version of Chrome and Firefox when creating a client.
   p To create and build a client, Sinco provides a <code>.buildFor()</code> method, where you can specify which browser to build for, and any extra configuration options you wish to supply, to customise how the client is setup.
-  p Both the Chrome and Firefox clients provide the exact same API, so you could create a Chrome client, write 100 lines of code using this API, ad only need to change one line of code to switch to Firefox.
+  p Both the Chrome and Firefox clients provide the exact same API, so you could create a Chrome client, write 100 lines of code using this API, and only need to change one line of code to switch to Firefox.
   p In this tutorial, you will:
   ul
     li Create both a headless browser instance for Chrome and Firefox; and
