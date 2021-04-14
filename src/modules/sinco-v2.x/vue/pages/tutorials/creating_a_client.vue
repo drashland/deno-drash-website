@@ -65,11 +65,12 @@ page(
         | //     - The port for the headless browser process to start a debugger server on. This is only important if you wish to occupy a different port than the default one. Defaults to 9293.
         | //     - The default URL to navigate to when the browser starts. Defaults to "https://chromestatus.com" for a Chrome browser, and "https://developer.mozilla.org" for a Firefox browser
         | //     - The full path to the browser binary. Useful when the binary is installed in a different location or using an alternate browser of the same underlying engine. A good example would be Brave Browser (Chromium based).
-        | //     e.g. await buildFor("chrome/firefox",
-        | //                          { hostname: "some-host-address",
-        | //                            debuggerPort: some-number,
-        | //                            defaultUrl: "http://some.url",
-        | //                            binaryPath: "full/system/path/to/some/browser/binary" });
+        | //     e.g. await buildFor("chrome", {
+        | //            hostname: "localhost",
+        | //            debuggerPort: 9292,
+        | //            defaultUrl: "http://drash.land",
+        | //            binaryPath: "C:\\Users\\Nishchay\\brave\\brave.exe"
+        | //          });
         | const Chrome = await buildFor("chrome");
         | const Firefox = await buildFor("firefox");
         | // Both clients provide the exact same API
