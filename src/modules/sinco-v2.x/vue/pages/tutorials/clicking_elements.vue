@@ -1,5 +1,5 @@
 <script>
-const title = "Creating an Extensive Test";
+const title = "Clicking Elements";
 
 export const resource = {
   paths: [
@@ -57,11 +57,10 @@ page(
     li
       p Create your test file.
       code-block(title="/path/to/your/project/app_test.ts" language="typescript")
-        | import { HeadlessBrowser } from "https://deno.land/x/sinco@{{ $conf.sinco.latest_version }}/mod.ts";
+        | import { buildFor } from "https://deno.land/x/sinco@{{ $conf.sinco.latest_version }}/mod.ts";
         |
         | Deno.test("My web app works as expected", async () => {
-        |   const Sinco = new HeadlessBrowser();
-        |   await Sinco.build();
+        |   const Sinco = await buildFor("chrome");
         |   await Sinco.goTo("https://chromestatus.com");
         |   await Sinco.click('a[href="/features/schedule"]');
         |   await Sinco.waitForPageChange();

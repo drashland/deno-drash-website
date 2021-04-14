@@ -54,12 +54,11 @@ page(
     li
       p Create your test file.
       code-block(title="/path/to/your/project/app_test.ts" language="typescript")
-        | import { HeadlessBrowser } from "https://deno.land/x/sinco@{{ $conf.sinco.latest_version }}/mod.ts";
+        | import { buildFor } from "https://deno.land/x/sinco@{{ $conf.sinco.latest_version }}/mod.ts";
         | import { assertEquals } from "https://deno.land/std@{{ $conf.deno_std.latest_version }}/testing/asserts.ts";
         |
         | Deno.test("My web app works as expected", async () => {
-        |   const Sinco = new HeadlessBrowser();
-        |   await Sinco.build();
+        |   const Sinco = await buildFor("chrome");
         |   await Sinco.goTo("https://chromestatus.com");
         |   await Sinco.type('input[placeholder="Filter"]', "hello world");
         |   const val = await Sinco.getInputValue('input[placeholder="Filter"]');

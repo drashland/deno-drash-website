@@ -69,12 +69,24 @@ page(
         |   && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list \
         |   && apt-get update && apt-get -qqy install ${CHROME_VERSION:-google-chrome-stable}
         |
+        | # Install firefox driver
+        | RUN apt update && apt install wget curl bzip2 -y
+        | RUN apt-get remove iceweasel
+        | ENV FILENAME "firefox-latest.tar.bz2"
+        | RUN wget -O $FILENAME --content-disposition "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US" \
+        |   && apt install bzip2
+        | RUN tar -jxf $FILENAME -C /opt/
+        | RUN ln -sf /opt/firefox/firefox  /usr/bin/firefox
+        | RUN rm $FILENAME
+        | RUN apt install libgtk-3-0 libx11-6 libx11-xcb1 libdbus-glib-1-2 xdg-utils -y
+        | RUN apt clean
+        |
         | # Install deno
         | RUN apt install curl unzip -y
         | RUN curl -fsSL https://deno.land/x/install/install.sh | DENO_INSTALL=/usr/local sh
         | RUN export DENO_INSTALL="/root/.local"
         | RUN export PATH="$DENO_INSTALL/bin:$PATH"
-      p Here, you are using a very small image (debian-slim) as your baseline for your docker container. Then you install the chrome-driver, which allows Sinco to create a headless browser instance. Then you install Deno, because whilst you may have Deno installed on your host machine, it won't be from within docker unless you tell it to.
+      p Here, you are using a very small image (debian-slim) as your baseline for your docker container. Then you install the chrome-driver and firefox-driver, which allows Sinco to create a headless browser instance for these browsers. Then you install Deno, because whilst you may have Deno installed on your host machine, it won't be from within docker unless you tell it to.
 
     li
       p Create your docker compose file.
@@ -82,7 +94,7 @@ page(
         | version: '3'
         |
         | services:
-        |   chrome:
+        |   app:
         |     container_name: my_app
         |     build:
         |       context: .
@@ -95,16 +107,21 @@ page(
 
       p Create your test file.
       code-block(title="/path/to/your/project/src/app_test.ts" language="typescript")
-        | import { HeadlessBrowser } from "https://deno.land/x/sinco@{{ $conf.sinco.latest_version }}/mod.ts";
+        | import { buildFor } from "https://deno.land/x/sinco@{{ $conf.sinco.latest_version }}/mod.ts";
         |
         | Deno.test("My web app works as expected", async () => {
-        |   const Sinco = new HeadlessBrowser();
-        |   await Sinco.build();
-        |   await Sinco.goTo("https://chromestatus.com");
-        |   await Sinco.click('a[href="/features/schedule"]');
-        |   await Sinco.waitForPageChange();
-        |   await Sinco.assertUrlIs("https://chromestatus.com/features/schedule");
-        |   await Sinco.done();
+        |   const Chrome = await buildFor("chrome");
+        |   await Chrome.goTo("https://chromestatus.com");
+        |   await Chrome.click('a[href="/features/schedule"]');
+        |   await Chrome.waitForPageChange();
+        |   await Chrome.assertUrlIs("https://chromestatus.com/features/schedule");
+        |   await Chrome.done();
+        |   const Firefox = await buildFor("chrome");
+        |   await Firefox.goTo("https://chromestatus.com");
+        |   await Firefox.click('a[href="/features/schedule"]');
+        |   await Firefox.waitForPageChange();
+        |   await Firefox.assertUrlIs("https://chromestatus.com/features/schedule");
+        |   await Firefox.done();
         | })
       p Here you are going to create your headless browser instance, and navigate to <code>https://chromestatus.com</code>. Once the page has loaded, you will click an element matching the <code>a[href="/features/schedule"]</code> selector, which will send you to a different page. To assert this, you are going to use <code>.assertUrlIs()</code> to assert the page you are currently on, has now changed.
   hr
