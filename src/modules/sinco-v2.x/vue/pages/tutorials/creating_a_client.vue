@@ -60,10 +60,16 @@ page(
         |
         | // `buildFor()` takes two arguments:
         | //   1. The browser name to build for. This can be "firefox" or "chrome". This is required.
-        | //   2. Options for creating the client. This is optional, and can be left out. This can be:
+        | //   2. Options for creating the client. This is optional, and can be left out. This can be any or all of the following:
         | //     - The hostname of the system that the client was created on. For you, this is your host machine. Defaults to "0.0.0.0" for MacOS and Linux, and "127.0.0.1" for Windows.
         | //     - The port for the headless browser process to start a debugger server on. This is only important if you wish to occupy a different port than the default one. Defaults to 9293.
         | //     - The default URL to navigate to when the browser starts. Defaults to "https://chromestatus.com" for a Chrome browser, and "https://developer.mozilla.org" for a Firefox browser
+        | //     - The full path to the browser binary. Useful when the binary is installed in a different location or using an alternate browser of the same underlying engine. A good example would be Brave Browser (Chromium based).
+        | //     e.g. await buildFor("chrome/firefox",
+        | //                          { hostname: "some-host-address",
+        | //                            debuggerPort: some-number,
+        | //                            defaultUrl: "http://some.url",
+        | //                            binaryPath: "full/system/path/to/some/browser/binary" });
         | const Chrome = await buildFor("chrome");
         | const Firefox = await buildFor("firefox");
         | // Both clients provide the exact same API
