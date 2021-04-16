@@ -99,6 +99,7 @@ div
           | });
           |
           | service.run();
+        p The classes act as your commands, eg <code>fm read</code>, and the <code>service</code> acts as your main CLI tool - it will handle the display of help messages and version messages, hence why <code>version</code> is a property you set, and why you need to proivde some more information when creating an instance of <code>Line</code>.
       li
         p Install your CLI as a binary under the name <code>fm</code>
         code-block(title="Terminal" language="bash")
