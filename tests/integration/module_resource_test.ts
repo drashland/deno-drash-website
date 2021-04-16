@@ -63,7 +63,7 @@ Rhum.testPlan("tests/integration/module_resource_test.ts", () => {
           await res.text();
           server.close();
           Rhum.asserts.assertEquals(res.status, 200);
-          Rhum.asserts.assertEquals(res.url, `${url}/sinco/v1.x/`);
+          Rhum.asserts.assertEquals(res.url, `${url}/sinco/v2.x/`);
         },
       );
       Rhum.testCase(
@@ -174,6 +174,20 @@ Rhum.testPlan("tests/integration/module_resource_test.ts", () => {
       Rhum.asserts.assertEquals(title, "Drash Land - Line");
       const bundle = text.includes(
         `<script src="/assets/bundles/line-v1.x.js"></script>`,
+      );
+      Rhum.asserts.assertEquals(bundle, true);
+    })
+    Rhum.testCase("Responds with 200 for /sinco/v2.x", async () => {
+      await server.run(serverConfigs);
+      const res = await fetch(`${url}/sinco/v2.x`);
+      Rhum.asserts.assertEquals(res.status, 200);
+      Rhum.asserts.assertEquals(res.url, `${url}/sinco/v2.x`);
+      const text = await res.text();
+      server.close();
+      const title = text.split("<title>")[1].split("</title>")[0];
+      Rhum.asserts.assertEquals(title, "Drash Land - Sinco");
+      const bundle = text.includes(
+        `<script src="/assets/bundles/sinco-v2.x.js"></script>`,
       );
       Rhum.asserts.assertEquals(bundle, true);
     });

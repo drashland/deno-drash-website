@@ -8,7 +8,8 @@ const modules = [
   "rhum-v1.x",
   "sinco-v1.x",
   "wocket-v0.x",
-  "line-v1.x"
+  "line-v1.x",
+  "sinco-v2.x"
 ];
 
 modules.forEach((moduleAndVersion) => {
