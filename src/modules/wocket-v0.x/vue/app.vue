@@ -1,5 +1,6 @@
 <script>
 import AppRoot from "/assets/common/vue/app_root.vue";
+import { selectedVersion } from "/assets/common/js/util.js"
 
 export default {
   components: {
@@ -9,7 +10,7 @@ export default {
     return {
       sidebar: {
         api_reference_href: "https://doc.deno.land/https/deno.land/x/wocket@" + this.$conf.wocket.latest_version + "/mod.ts",
-        base_url: this.$conf.wocket.base_url,
+        base_url: "/wocket/" + selectedVersion(),
         github_href: "https://github.com/drashland/wocket",
         logo: "/assets/common/img/logo_wocket.svg",
         menus: {
