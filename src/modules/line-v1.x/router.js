@@ -47,7 +47,7 @@ router.beforeEach((to, from, next) => {
   if (!to.meta.title) {
     to.meta.title = "404 (Not Found)";
   }
-  document.title = "Sinco - " + to.meta.title;
+  document.title = "Line - " + to.meta.title;
   next();
 });
 
