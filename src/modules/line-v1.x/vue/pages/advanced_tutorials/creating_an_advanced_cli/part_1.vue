@@ -52,7 +52,7 @@ page(
       p Create the <code>cli.ts</code> file.
       p
         code-block(title="/path/to/your/project/cli.ts" language="typescript" line_highlight="2,3,11,12")
-          | import { Line, Subcommand } from "https://deno.land/x/line@{{ $conf.line.latest_version }}/mod.ts";
+          | import { Line } from "https://deno.land/x/line@{{ $conf.line.latest_version }}/mod.ts";
           | import { WriteSubcommand } from "./subcommands/write.ts";
           | import { ReadSubcommand } from "./subcommands/read.ts";
           | 

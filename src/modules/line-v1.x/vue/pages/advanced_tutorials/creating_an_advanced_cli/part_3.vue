@@ -60,8 +60,6 @@ page(
         code-block(title="/path/to/your/project/options/overwrite.ts" language="typescript")
           | import { SubcommandOption } from "https://deno.land/x/line@{{ $conf.line.latest_version }}/mod.ts";
           |
-          | const decoder = new TextDecoder()
-          |
           | export class OverwriteOption extends SubcommandOption {
           |   public name = "--overwrite";
           |   public description = "Allow the destination file to be overwritten";

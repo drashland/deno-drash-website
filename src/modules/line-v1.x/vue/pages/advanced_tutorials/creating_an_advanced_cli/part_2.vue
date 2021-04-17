@@ -66,7 +66,8 @@ page(
           |   public handle(): void {
           |     const file = this.getArgumentValue("file");
           |     if (!file) {
-          |       return this.showHelp();
+          |       this.showHelp();
+          |       return;
           |     }
           |     const contents = Deno.readFileSync(file);
           |     console.log(decoder.decode(contents));
@@ -76,11 +77,9 @@ page(
     li
       p Now create your write subcommand.
       p
-        code-block(title="/path/to/your/project/subcommands/write.ts" language="typescript" line_highlight="2,10")
+        code-block(title="/path/to/your/project/subcommands/write.ts" language="typescript" line_highlight="2,8")
           | import { Subcommand } from "https://deno.land/x/line@{{ $conf.line.latest_version }}/mod.ts";
           | import { OverwriteOption } from "../options/overwrite.ts";
-          |
-          | const decoder = new TextDecoder()
           |
           | export class WriteSubcommand extends Subcommand {
           |   public signature = "write [src] [dst]";
@@ -92,7 +91,8 @@ page(
           |     const source = this.getArgumentValue("src");
           |     const destination = this.getArgumentValue("dst")
           |     if (!source || !destination) {
-          |       return this.showHelp();
+          |       this.showHelp();
+          |       return;
           |     }
           |     try {
           |       Deno.statSync(destination) // Will throw an error if file doesnt exist
