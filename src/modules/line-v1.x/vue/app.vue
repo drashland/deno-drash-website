@@ -21,7 +21,12 @@ export default {
           },
           //"Latest News": {},
           Tutorials: {
-            
+            "Command": "/tutorials/command",
+            "Subcommands": "/tutorials/subcommands",
+            "Options": "/tutorials/options",
+          },
+          "Advanced Tutorials": {
+            "Creating An Advanced CLI": "/advanced-tutorials/creating-an-advanced-cli"
           }
         },
         module: "line",

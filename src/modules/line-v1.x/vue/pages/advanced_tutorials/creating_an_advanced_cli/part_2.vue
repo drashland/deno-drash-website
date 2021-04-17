@@ -20,7 +20,6 @@ export default {
         "Before You Get Started",
         "Folder Structure End State",
         "Steps",
-        "Verification",
       ],
       title,
       subtitle,
@@ -67,13 +66,13 @@ page(
           |   public handle(): void {
           |     const file = this.getArgumentValue("file");
           |     if (!file) {
-          |       return console.error("File not specified");
+          |       return this.showHelp();
           |     }
           |     const contents = Deno.readFileSync(file);
           |     console.log(decoder.decode(contents));
           |   }
           | }
-      p You have now create your first subcommand. This subcommand will attempt to read the given file, and display the output to the user. If no arugment was provided (the filename), the it will log an error.
+      p You have now created your first subcommand. This subcommand will attempt to read the given file, and display the output to the user. If no arugment was provided (the filename), then it will display the help output specific to this subcommand.
     li
       p Now create your write subcommand.
       p
@@ -93,13 +92,21 @@ page(
           |     const source = this.getArgumentValue("src");
           |     const destination = this.getArgumentValue("dst")
           |     if (!source || !destination) {
-          |       return console.error("Both a source and destination must be provided");
+          |       return this.showHelp();
           |     }
-          |     const contents = Deno.readFileSync(file);
-          |     console.log(decoder.decode(contents));
+          |     try {
+          |       Deno.statSync(destination) // Will throw an error if file doesnt exist
+          |       if (!this.getOptionValue("--overwrite")) {
+          |         return console.error(`${destination} already exists! Try use the --overwrite flag to overwrite it.`);
+          |       }
+          |     } catch (_err) {
+          |       // Do nothing, carry on...
+          |     }
+          |     const contents = Deno.readFileSync(source);
+          |     Deno.writeFileSync(destination, contents)
           |   }
           | }
-      p With your write subcommand, it will handle two parameters: a source and destination. If one isn't defined, your code will log an error to the user. If they are both defined, your subcommand will attempt to write the contents of one file, into another.
+      p With your write subcommand, it will handle two parameters: a source and destination. If one isn't defined, your code will display the help output specific to this subcommand. If they are both defined, your subcommand will attempt to write the contents of one file, into another.
       p You will notice that your subcommand is also using a <code>OverwriteOption</code>. You will be creating this in the next part.
   hr
   div-alert-next-tutorial-part

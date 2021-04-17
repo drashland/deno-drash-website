@@ -4,7 +4,7 @@ const subtitle = "Part 1: Create Your Command";
 const baseUri = "/advanced-tutorials/creating-an-advanced-cli";
 
 export const resource = {
-    paths: ["/advanced-tutorials/creating-an-advanced-clin/part-1"],
+    paths: ["/advanced-tutorials/creating-an-advanced-cli/part-1"],
     meta: {
       title,
       subtitle,
@@ -20,7 +20,6 @@ export default {
         "Before You Get Started",
         "Folder Structure End State",
         "Steps",
-        "Verification",
       ],
       title,
       subtitle,
@@ -63,10 +62,12 @@ page(
           |   description: "A file manager to handle reading and writing of files.",
           |   version: "v1.0.0",
           |   subcommands: [
-          |     Read,
-          |     Write,
+          |     ReadSubcommand,
+          |     WriteSubcommand,
           |   ],
           | });
+          |
+          | fm.run();
         p You will notice that we have included 2 subcommands. You will create those in the next step.
         p Here, your CLI will have the following information:
         ul

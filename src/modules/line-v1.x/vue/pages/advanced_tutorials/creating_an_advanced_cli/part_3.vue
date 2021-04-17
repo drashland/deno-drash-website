@@ -20,7 +20,6 @@ export default {
         "Before You Get Started",
         "Folder Structure End State",
         "Steps",
-        "Verification",
       ],
       title,
       subtitle,
@@ -37,11 +36,11 @@ page(
   :title="title"
   :toc="toc"
 )
-  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="2" :parts="4")
+  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="3" :parts="4")
   hr
   h2-hash Before You Get Started
   p Now that you have your subcommands set up, you will need to create your option for your write subcommand.
-  p You will create 1 option, it will allow users to add an option on whether the File Manager is allowed to overwrite existing file when using the write subcommand.
+  p You will create 1 option, it will allow you to add an option on whether the File Manager is allowed to overwrite existing file when using the write subcommand.
   hr
   folder-structure-end-state
     code-block(:header="false" language="text" :line_numbers="false")
@@ -71,5 +70,5 @@ page(
   hr
   div-alert-next-tutorial-part
   hr
-  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="2" :parts="4")
+  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="3" :parts="4")
 </template>
