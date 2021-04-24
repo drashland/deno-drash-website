@@ -79,7 +79,7 @@ page(
         | // Now you close the connections and processes, as you are done here
         | await Chrome.done();
         | await Firefox.done();
-      p Here you are going to create your headless browser instance for Firefox and Chrome. Note that you wouldn't need to creatte both at the same time, you are only doing that here for demonstration purposes.
+      p Here you are going to create your headless browser instance for Firefox and Chrome. Note that you wouldn't need to create both at the same time, you are only doing that here for demonstration purposes.
       p When building a client for Firefox, note that it will create a temporary profile that will be used, due to this, a Firefox client requires a <code>--allow-write=$TMPDIR</code> flag
   hr
   h2-hash Verification
