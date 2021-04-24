@@ -25,6 +25,15 @@ export const configs = {
       "v1.x"
     ]
   },
+  "line": {
+    "base_url": "/line/v0.x",
+    "latest_version": "v0.1.0",
+    "latest_url_deno_land": "https://deno.land/x/line@v0.1.0/mod.ts",
+    "latest_url_nest_land": "https://x.nest.land/line@v0.1.0/mod.ts",
+    "versions": [
+      "v0.x"
+    ]
+  },
   "rhum": {
     "base_url": "/rhum/v1.x",
     "latest_version": "v1.1.9",
@@ -53,13 +62,4 @@ export const configs = {
     "latest_url_deno_land": "https://deno.land/x/sinco@v2.0.0/mod.ts",
     "latest_url_nest_land": "https://x.nest.land/sinco@v2.0.0/mod.ts"
   },
-  "line": {
-    "base_url": "/line/v1.x",
-    "latest_version": "v1.0.0",
-    "latest_url_deno_land": "https://deno.land/x/line@v1.0.0/mod.ts",
-    "latest_url_nest_land": "https://x.nest.land/line@v1.0.0/mod.ts",
-    "versions": [
-      "v1.x"
-    ]
-  }
 };
