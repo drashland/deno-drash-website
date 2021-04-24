@@ -44,9 +44,9 @@ page(
   h2-hash End State
   p Below are samples of what you will create.
   p
-    img(:src="'/assets/line-v1.x/img/example_code/advanced_tutorials/creating_an_advanced_cli/TODO/part_5/verification_2.png'")
+    img(:src="'/assets/line-v0.x/img/example_code/advanced_tutorials/creating_an_advanced_cli/TODO/part_5/verification_2.png'")
   p
-    img(:src="'/assets/drash-v1.x/img/example_code/advanced_tutorials/content_negotiation/TODO/part_4/verification_3_json.png'")
+    img(:src="'/assets/drash-v0.x/img/example_code/advanced_tutorials/content_negotiation/TODO/part_4/verification_3_json.png'")
   hr
   breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="-1" :parts="4")
 </template>

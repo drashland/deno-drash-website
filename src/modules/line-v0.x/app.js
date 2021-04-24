@@ -10,7 +10,7 @@ Vue.prototype.$conf = window.drash_api_configs;
 // FILE MARKER - COMPONENTS ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-import VueAppRoot from "/src/modules/line-v1.x/vue/app.vue";
+import VueAppRoot from "/src/modules/line-v0.x/vue/app.vue";
 import "/assets/common/vue/global_components.js";
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -29,7 +29,7 @@ Vue.filter("markdown-it", function (value) {
 
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
-import router from "/src/modules/line-v1.x/router.js";
+import router from "/src/modules/line-v0.x/router.js";
 
 ////////////////////////////////////////////////////////////////////////////////
 // FILE MARKER - VUE APP INITIALIZATION ////////////////////////////////////////
