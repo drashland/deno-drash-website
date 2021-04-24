@@ -51,7 +51,7 @@ div
           |     --allow-net='cdn.deno.land,api.deno.land,x.nest.land,raw.githubusercontent.com,github.com,api.github.com' \
           |     --allow-read='.' \
           |     --allow-write='deps.ts' \
-          |     https://deno.land/x/dmm@v1.3.0/mod.ts \
+          |     https://deno.land/x/dmm@{{ $conf.dmm.latest_version }}/mod.ts \
           |     update
         code-block(title="Terminal" language="shell-session")
           | INFO Reading deps.ts to gather your dependencies...
@@ -71,7 +71,7 @@ div
             |   --allow-net='cdn.deno.land,api.deno.land,x.nest.land,raw.githubusercontent.com,github.com,api.github.com' \
             |   --allow-read='.' \
             |   --allow-write='deps.ts' \
-            |   https://deno.land/x/dmm@v1.3.0/mod.ts
+            |   https://deno.land/x/dmm@{{ $conf.dmm.latest_version }}/mod.ts
         p
           code-block(title="Terminal" language="shell-session")
             | $ dmm help
@@ -83,7 +83,7 @@ div
             |   --allow-net='cdn.deno.land,api.deno.land,x.nest.land,raw.githubusercontent.com,github.com,api.github.com' \
             |   --allow-read='.' \
             |   --allow-write='deps.ts' \
-            |   https://deno.land/x/dmm@v1.3.0/mod.ts \
+            |   https://deno.land/x/dmm@{{ $conf.dmm.latest_version }}/mod.ts \
             |   help
     hr
     h2-hash Features

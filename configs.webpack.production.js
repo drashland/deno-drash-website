@@ -9,6 +9,7 @@ module.exports = (envVars) => {
       "rhum-v1.x": path.resolve(__dirname, "src/modules/rhum-v1.x/app.js"),
       "sinco-v1.x": path.resolve(__dirname, "src/modules/sinco-v1.x/app.js"),
       "wocket-v0.x": path.resolve(__dirname, "src/modules/wocket-v0.x/app.js"),
+      "sinco-v2.x": path.resolve(__dirname, "src/modules/sinco-v2.x/app.js"),
     },
     mode: "production",
     output: {

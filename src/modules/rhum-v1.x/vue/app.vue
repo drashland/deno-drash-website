@@ -1,6 +1,6 @@
 <script>
 import AppRoot from "/assets/common/vue/app_root.vue";
-
+import { selectedVersion } from "/assets/common/js/util.js"
 
 export default {
   components: {
@@ -10,7 +10,7 @@ export default {
     return {
       sidebar: {
         api_reference_href: "https://doc.deno.land/https/deno.land/x/rhum@" + this.$conf.rhum.latest_version + "/mod.ts",
-        base_url: this.$conf.rhum.base_url,
+        base_url: "/rhum/" + selectedVersion(),
         github_href: "https://github.com/drashland/rhum",
         logo: "/assets/common/img/logo_rhum.svg",
         menus: {

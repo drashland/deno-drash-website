@@ -1,5 +1,6 @@
 <script>
 import AppRoot from "/assets/common/vue/app_root.vue";
+import { selectedVersion } from "/assets/common/js/util.js"
 
 export default {
   components: {
@@ -8,7 +9,7 @@ export default {
   data() {
     return {
       sidebar: {
-        base_url: this.$conf.dmm.base_url,
+        base_url: "/dmm/" + selectedVersion(),
         github_href: "https://github.com/drashland/dmm",
         logo: "/assets/common/img/logo_dmm.svg",
         menus: {
@@ -19,6 +20,9 @@ export default {
             FAQ: "/faq",
           },
           "Latest News": {},
+          Tutorials: {
+            "Automate Updating Dependencies": "/tutorials/automate-updating-dependencies"
+          },
           "CLI Commands": {
             //Introduction: "/tutorials",
             "check": "/cli-commands/check",

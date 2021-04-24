@@ -12,12 +12,12 @@ export class LandingResource extends BaseResource {
   //////////////////////////////////////////////////////////////////////////////
 
   public async GET() {
-    this.log("Requested landing page.");
+    await this.log("Requested landing page.");
 
     const filename = "./src/views/landing.html";
 
     if (!await this.fileExists(filename)) {
-      return this.sendError(404);
+      return await this.sendError(404);
     }
 
     try {
@@ -34,7 +34,7 @@ export class LandingResource extends BaseResource {
 
       return this.response;
     } catch (error) {
-      this.log(error.stack);
+      await this.log(error.stack);
       this.response.body = error;
     }
   }

@@ -1,5 +1,6 @@
 <script>
 import AppRoot from "/assets/common/vue/app_root.vue";
+import { selectedVersion } from "/assets/common/js/util.js"
 
 export default {
   components: {
@@ -10,7 +11,7 @@ export default {
       articles: [],
       sidebar: {
         api_reference_href: "/drash/v1.x/#/api-reference",
-        base_url: this.$conf.drash.base_url,
+        base_url: "/drash/" + selectedVersion(),
         github_href: "https://github.com/drashland/deno-drash",
         logo: "/assets/common/img/logo_drash.svg",
         menus: {
@@ -21,7 +22,8 @@ export default {
             "Features": "/#features",
             "About Drash": "/about-drash",
             "Lifecycle Diagram": "/lifecycle-diagram",
-            "Drash Middleware": "https://github.com/drashland/deno-drash-middleware"
+            "Drash Middleware": "https://github.com/drashland/deno-drash-middleware",
+            "Badge": "/#badge"
           },
           "Latest News": {},
           "Tutorials": {
@@ -47,6 +49,7 @@ export default {
             "Responses": {
               //"Accept Header": "/tutorials/responses/accept-header",
               "Redirects": "/tutorials/responses/redirects",
+              "Content Type": "/tutorials/responses/content-type"
             },
             "Middleware": {
               "Introduction": "/tutorials/middleware/introduction",

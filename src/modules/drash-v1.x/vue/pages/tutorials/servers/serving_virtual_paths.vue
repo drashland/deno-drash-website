@@ -7,6 +7,17 @@ export const resource = {
   }
 }
 
+const html = `<!DOCTYPE html>
+      <html>
+        <head>
+          <title>Drash</title>
+          <link href="/assets/style.css" rel="stylesheet">
+        </head>
+        <body>
+          <h1 class="my-text">This is my title and it is red.</h1>
+        </body>
+      </html>`
+
 export default {
   data() {
     return {
@@ -16,7 +27,8 @@ export default {
         "Folder Structure End State",
         "Steps",
         "Verification"
-      ]
+      ],
+      html: html
     };
   },
 }
@@ -84,17 +96,7 @@ page(
         |   static paths = ["/"];
         | 
         |   public GET() {
-        |     this.response.body = `
-        |     <!DOCTYPE html>
-        |     <html>
-        |       <head>
-        |         <title>Drash</title>
-        |         <link href="/assets/style.css" rel="stylesheet">
-        |       </head>
-        |       <body>
-        |         <h1 class="my-text">This is my title and it is red.</h1>
-        |       </body>
-        |     </html>`;
+        |     this.response.body = `{{ html }}`;
         | 
         |     return this.response;
         |   }
