@@ -1,11 +1,11 @@
-let conf = process.env.conf; // This variable comes from webpack.config.js under `plugins`
+//const conf = process.env.conf; // This variable comes from webpack.config.js under `plugins`
 
 import VueRouter from "vue-router";
 
 import compiledRoutes from "/src/modules/line-v0.x/compiled_vue_routes.js";
 
-let routes = [];
-let routesForErrors = {};
+const routes = [];
+const routesForErrors = {};
 compiledRoutes.forEach((component) => {
   if (component.resource.meta && component.resource.meta.error_code) {
     routesForErrors[component.resource.meta.error_code] = component.default;
@@ -27,7 +27,7 @@ routes.push({
 
 const router = new VueRouter({
   routes: routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(to, _from, _savedPosition) {
     // Make "#" anchor links work as expected
     if (to.hash) {
       return {
@@ -38,7 +38,7 @@ const router = new VueRouter({
   },
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   if (!to.meta) {
     to.meta = {
       title: "404 (Not Found)",
@@ -51,7 +51,7 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-router.afterEach((to, from) => {
+router.afterEach((_to, _from) => {
   window.scrollTo(0, 0);
 });
 
