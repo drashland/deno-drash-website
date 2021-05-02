@@ -173,7 +173,7 @@ Rhum.testPlan("tests/integration/module_resource_test.ts", () => {
       const title = text.split("<title>")[1].split("</title>")[0];
       Rhum.asserts.assertEquals(title, "Drash Land - Line");
       const bundle = text.includes(
-        `<script src="/assets/bundles/line-v1.x.js"></script>`,
+        `<script src="/assets/bundles/line-v0.x.js"></script>`,
       );
       Rhum.asserts.assertEquals(bundle, true);
     })

@@ -44,7 +44,7 @@ div
     h2-hash Quickstart
     ol
       li
-        p Create your CLI that will read a given file, and write a given file.
+        p Create your CLI that will read and write a given file.
         code-block(title="app.ts" language="typescript")
           | import { Line, Subcommand } from "https://deno.land/x/line/mod.ts";
           |
@@ -87,7 +87,7 @@ div
           |   }
           | }
           |
-          | const service = new Line({
+          | const cli = new Line({
           |   command: "fm",
           |   name: "File Manager",
           |   description: "A file manager.",
@@ -98,17 +98,19 @@ div
           |   ],
           | });
           |
-          | service.run();
-        p The classes act as your commands, eg <code>fm read</code>, and the <code>service</code> acts as your main CLI tool - it will handle the display of help messages and version messages, hence why <code>version</code> is a property you set, and why you need to proivde some more information when creating an instance of <code>Line</code>.
+          | cli.run();
+        p The classes act as your commands (e.g., <code>fm read</code>) and the <code>cli</code> variable acts as your main CLI tool. <code>cli</code> will handle displaying your CLI's help messages, version, and other pertinent information to make your CLI easy to navigate and use.
       li
-        p Install your CLI as a binary under the name <code>fm</code>
+        p Install your CLI as a binary under the name <code>fm</code>.
         code-block(title="Terminal" language="bash")
           | $ deno install --allow-read --allow-write --name fm app.ts
+        p The <code>--name</code> option value is what will allow your CLI to install as the <code>fm</code> command. Make sure the <code>command</code> config when you instantiate <code>Line</code> matches the <code>--name</code> option value so that your users do not get confused.
       li
         p Run your CLI.
         code-block(title="Terminal" language="shell")
           | $ fm
-          | 
+        p You should see the following:
+        code-block(title="Terminal" language="text")
           | File Manager - A file manager.
           |
           | USAGE
@@ -136,4 +138,6 @@ div
         p Zero 3rd party dependencies
       li
         p Scalable for large scale CLIs
+      li
+        p Recursive help menus
 </template>
