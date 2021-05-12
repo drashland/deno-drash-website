@@ -36,8 +36,13 @@ page(
   breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="-1" :parts="4")
   hr
   h2-hash Overview
-  p In this tutorial series, you will learn how to create a command-line interface using Line. You will learn how to create your main command, subcommands and options. Alongside this, you will understand how your CLI tool will have version and help commands.
-  p The CLI you will be creating will be a file manager. It will be able to read a given file, write content to a given file, and finally, the write command will support options. Both the command and subcommands will also have help options to support end users.
+  p In this tutorial series, you will learn how to create a CLI using Line. You will learn how to create your main command, subcommands, and options. Alongside this, you will understand how your CLI will handle your help menus for your subcommands.
+  p The CLI you will be creating will be a file manager. It will be able to:
+  ul
+    li Read files
+    li Write files
+    li Copy files
+    li Delete files
   p.mt-10.text-center
     a-get-started(:href="base_url + '/#' + base_uri + '/part-1'")
   hr

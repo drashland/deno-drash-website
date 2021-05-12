@@ -20,6 +20,7 @@ export default {
         "Before You Get Started",
         "Folder Structure End State",
         "Steps",
+        "Verification",
       ],
       title,
       subtitle,
@@ -39,7 +40,7 @@ page(
   breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="1" :parts="4")
   hr
   h2-hash Before You Get Started
-  p First, you are going to write the bread and butter for your command line tool. This starts with creating the command.
+  p First, you are going to write the bread and butter for your command line tool. This starts with creating the main command: <code>fm</code>.
   hr
   folder-structure-end-state
     code-block(:header="false" language="text" :line_numbers="false")
@@ -59,9 +60,11 @@ page(
           | const fm = new Line({
           |   command: "fm",
           |   name: "File Manager",
-          |   description: "A file manager to handle reading and writing of files.",
+          |   description: "Read, write, copy, and delete files.",
           |   version: "v1.0.0",
           |   subcommands: [
+          |     CopySubcommand,
+          |     DeleteSubcommand,
           |     ReadSubcommand,
           |     WriteSubcommand,
           |   ],
@@ -69,14 +72,30 @@ page(
           |
           | fm.run();
         p You will notice that we have included 2 subcommands. You will create those in the next step.
-        p Here, your CLI will have the following information:
+        p Here, your CLI will have the following setup:
         ul
-          li The command will be "fm", which is used in the <code>--help</code> option.
-          li The name will be "File Manager", which is used in the <code>--help</code> option.
-          li The description will also be used in the <code>--help</code> option.
-          li The version will be displayed in the <code>--version</code> option.
-          li The command will have two subcommands
+          li
+            p Your CLI's main command is <code>fm</code>. This is what you will type in the terminal to run your command. It is also used in the help menus for your main command and subcommands.
+          li
+            p Your CLI's name is "File Manager". This is used in the help menu via the <code>--help</code> option.
+          li
+            p Your CLI's description is "Read, write, copy, and delete files." This is used in the <code>--help</code> option.
+          li
+            p Your CLI's version is <code>v1.0.0</code>. This is used in the help menu via the <code>--help</code> option and also used in the <code>--version</code> option.
+          li
+            p Your command will have four subcommands:
+          ul
+            li
+              p <code>CopySubcommand</code>
+            li
+              p <code>DeleteSubcommand</code>
+            li
+              p <code>ReadSubcommand</code>
+            li
+              p <code>WriteSubcommand</code>
   hr
+  h2-hash Verification
+  p There are no verification steps for this tutorial part.
   div-alert-next-tutorial-part
   hr
   breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="1" :parts="4")
