@@ -13,9 +13,10 @@ package-lock.json
 *.log
 
 # directories
-.sass-cache
-dist
-node_modules
+.sass-cache/
+dist/
+node_modules/
+tmp/
 
 # exceptions
 !.gitkeep
