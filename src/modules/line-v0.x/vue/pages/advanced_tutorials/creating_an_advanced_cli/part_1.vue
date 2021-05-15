@@ -37,7 +37,7 @@ page(
   :title="title"
   :toc="toc"
 )
-  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="1" :parts="4")
+  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="1" :parts="3")
   hr
   h2-hash Before You Get Started
   p First, you are going to write the bread and butter for your command line tool. This starts with creating the main command: <code>fm</code>.
@@ -52,10 +52,12 @@ page(
     li
       p Create the <code>cli.ts</code> file.
       p
-        code-block(title="/path/to/your/project/cli.ts" language="typescript" line_highlight="2,3,11,12")
+        code-block(title="/path/to/your/project/cli.ts" language="typescript" line_highlight="2-5,13-16")
           | import { Line } from "https://deno.land/x/line@{{ $conf.line.latest_version }}/mod.ts";
-          | import { WriteSubcommand } from "./subcommands/write.ts";
-          | import { ReadSubcommand } from "./subcommands/read.ts";
+          | import { CopySubcommand } from "./subcommands/write_subcommand.ts";
+          | import { DeleteSubcommand } from "./subcommands/delete_subcommand.ts";
+          | import { ReadSubcommand } from "./subcommands/read_subcommand.ts";
+          | import { WriteSubcommand } from "./subcommands/write_subcommand.ts";
           | 
           | const fm = new Line({
           |   command: "fm",
@@ -71,17 +73,17 @@ page(
           | });
           |
           | fm.run();
-        p You will notice that we have included 2 subcommands. You will create those in the next step.
+        p You will notice in the highlighted lines that there are four subcommands. You will create those in the next tutorial part.
         p Here, your CLI will have the following setup:
         ul
           li
-            p Your CLI's main command is <code>fm</code>. This is what you will type in the terminal to run your command. It is also used in the help menus for your main command and subcommands.
+            p Your CLI's main command is <code>fm</code>. This is what you will type in the terminal to run your command. It is also what Line will use when displaying your help menus.
           li
             p Your CLI's name is "File Manager". This is used in the help menu via the <code>--help</code> option.
           li
             p Your CLI's description is "Read, write, copy, and delete files." This is used in the <code>--help</code> option.
           li
-            p Your CLI's version is <code>v1.0.0</code>. This is used in the help menu via the <code>--help</code> option and also used in the <code>--version</code> option.
+            p Your CLI's version is <code>v1.0.0</code>. This is used in the <code>--help</code> option and the <code>--version</code> option.
           li
             p Your command will have four subcommands:
           ul
@@ -98,5 +100,5 @@ page(
   p There are no verification steps for this tutorial part.
   div-alert-next-tutorial-part
   hr
-  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="1" :parts="4")
+  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="1" :parts="3")
 </template>

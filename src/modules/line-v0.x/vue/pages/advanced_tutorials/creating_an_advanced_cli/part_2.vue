@@ -37,11 +37,11 @@ page(
   :title="title"
   :toc="toc"
 )
-  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="2" :parts="4")
+  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="2" :parts="3")
   hr
   h2-hash Before You Get Started
   p Now that you have your main command set up, you will need to create your four subcommands. Line is a very object-oriented module, so your subcommands will be classes. Specifically, they will be derived classes of Line's <code>Subcommand</code> class.
-  p You will create four subcommands. These subcommands will offer the functionality for your CLI. They are:
+  p In this tutorial part, you will create four subcommands. These subcommands will offer the functionality for your CLI. They are:
   ul
     li
       p <code>CopySubcommand</code>: This will be in charge of copying files from one location to another.
@@ -76,7 +76,7 @@ page(
         |
         |   public options = [];
         |
-        |   public async handle(): Promise&lt;void&;gt {
+        |   public async handle(): Promise&lt;void&gt; {
         |     const source = this.getArgumentValue("source"); // matches [source] in the signature
         |     const destination = this.getArgumentValue("destination"); // matches [destination] in the signature
         |
@@ -189,7 +189,7 @@ page(
     li
       p Install your CLI.
       code-block(language="shell" :header="false")
-        | $ deno install --name fm cli.ts
+        | $ deno install --allow-read --allow-write --name fm cli.ts
     li
       p Run your CLI.
       code-block(language="shell" :header="false")
@@ -253,7 +253,20 @@ page(
         |     at async open (deno:runtime/js/40_files.js:46:17)
         |     at async Object.readFile (deno:runtime/js/40_read_file.js:19:18)
         |     at async ReadSubcommand.handle (file:///subcommands/read_subcommand.ts:21:20)
+    li
+      p Check that your help menus for your subcommands are set up properly.
+      p First, check the <code>copy</code> subcommand help menu.
+      code-block(language="text" :header="false")
+        | $ fm copy
+      p You should see the following:
+      code-block(language="text" :header="false")
+        | USAGE
+        |
+        |     fm copy [source] [destination] [deno flags] [options]
+      p Now check all other subcommands: 
+      code-block(language="text" :header="false")
+        | $ fm [subcommand here]
   div-alert-next-tutorial-part
   hr
-  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="2" :parts="4")
+  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="2" :parts="3")
 </template>

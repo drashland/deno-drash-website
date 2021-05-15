@@ -67,7 +67,7 @@ page(
   ol
     li
       p Create your CLI application.
-      code-block(title="app.ts" language="typescript")
+      code-block(title="/path/to/your/project/app.ts" language="typescript")
         | import { Line } from "https://deno.land/x/line@{{ $conf.line.latest_version }}/mod.ts";
         |
         | const cli = new Line({

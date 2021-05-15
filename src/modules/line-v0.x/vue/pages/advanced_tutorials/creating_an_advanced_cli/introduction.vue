@@ -33,10 +33,10 @@ page(
   :title="title"
   :subtitle="subtitle"
 )
-  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="-1" :parts="4")
+  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="-1" :parts="3")
   hr
   h2-hash Overview
-  p In this tutorial series, you will learn how to create a CLI using Line. You will learn how to create your main command, subcommands, and options. Alongside this, you will understand how your CLI will handle your help menus for your subcommands.
+  p In this tutorial series, you will learn how to create a CLI using Line. You will learn how to create your main command, create your subcommands that give your CLI functionality, and add an option to one of your subcommands. Alongside this, you will understand how your CLI will handle your help menus for your subcommands.
   p The CLI you will be creating will be a file manager. It will be able to:
   ul
     li Read files
@@ -48,10 +48,6 @@ page(
   hr
   h2-hash End State
   p Below are samples of what you will create.
-  p
-    img(:src="'/assets/line-v0.x/img/example_code/advanced_tutorials/creating_an_advanced_cli/TODO/part_5/verification_2.png'")
-  p
-    img(:src="'/assets/drash-v0.x/img/example_code/advanced_tutorials/content_negotiation/TODO/part_4/verification_3_json.png'")
   hr
-  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="-1" :parts="4")
+  breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="-1" :parts="3")
 </template>

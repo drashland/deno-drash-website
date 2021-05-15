@@ -52,7 +52,7 @@ page(
   ol
     li
       p Create your option class and export it.
-      code-block(title="options.ts" language="typescript")
+      code-block(title="/path/to/your/project/options.ts" language="typescript")
         | import { Option } from "https://deno.land/x/line@{{ $conf.line.latest_version }}/mod.ts";
         |
         | /**
@@ -65,7 +65,7 @@ page(
         | }
     li
       p Import your option, create your subcommand using your option, and export your subcommand.
-      code-block(title="subcommands.ts" language="typescript")
+      code-block(title="/path/to/your/project/subcommands.ts" language="typescript")
         | import { Subcommand } from "https://deno.land/x/line@{{ $conf.line.latest_version }}/mod.ts";
         | import { LanguageOption } from "./options.ts";
         |
@@ -115,7 +115,7 @@ page(
         | }
     li
       p Import your subcommand and add them to your CLI application.
-      code-block(title="app.ts" language="typescript")
+      code-block(title="/path/to/your/project/app.ts" language="typescript")
         | import { Line } from "https://deno.land/x/line@{{ $conf.line.latest_version }}/mod.ts";
         | import { GreetSubcommand } from "./subcommands.ts";
         |

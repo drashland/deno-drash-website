@@ -58,7 +58,7 @@ page(
   ol
     li
       p Create your subcommand classes and export them.
-      code-block(title="subcommands.ts" language="typescript")
+      code-block(title="/path/to/your/project/subcommands.ts" language="typescript")
         | import { Subcommand } from "https://deno.land/x/line@{{ $conf.line.latest_version }}/mod.ts";
         |
         | /**
@@ -113,7 +113,7 @@ page(
         | }
     li
       p Import your subcommands and add them to your CLI application.
-      code-block(title="app.ts" language="typescript" line_highlight="8-11")
+      code-block(title="/path/to/your/project/app.ts" language="typescript" line_highlight="8-11")
         | import { Line } from "https://deno.land/x/line@{{ $conf.line.latest_version }}/mod.ts";
         | import { ReadSubcommand, WriteSubcommand } from "./subcommands.ts";
         |
