@@ -6,35 +6,35 @@ const decoder = new TextDecoder();
 let cacheRoadmaps: any = {
   "Drash": {
     repo_uri: "deno-drash",
-    issues: []
+    issues: [],
   },
   "Drash Middleware": {
     repo_uri: "deno-drash-middleware",
-    issues: []
+    issues: [],
   },
   "Dmm": {
     repo_uri: "dmm",
-    issues: []
+    issues: [],
   },
   "Line": {
     repo_uri: "line",
-    issues: []
+    issues: [],
   },
   "Rhum": {
     repo_uri: "rhum",
-    issues: []
+    issues: [],
   },
   "Sinco": {
     repo_uri: "sinco",
-    issues: []
+    issues: [],
   },
   "Website": {
     repo_uri: "website",
-    issues: []
+    issues: [],
   },
   "Wocket": {
     repo_uri: "wocket",
-    issues: []
+    issues: [],
   },
 };
 
@@ -77,12 +77,11 @@ export class LandingResource extends BaseResource {
   }
 
   protected async getRoadmaps(): Promise<string> {
-
     let username = configs.github_api.user;
     let password = configs.github_api.password;
-    let authString = `${username}:${password}`
+    let authString = `${username}:${password}`;
     let headers = new Headers();
-    headers.set('Authorization', 'Basic ' + btoa(authString))
+    headers.set("Authorization", "Basic " + btoa(authString));
 
     for (let moduleName in cacheRoadmaps) {
       if (cacheRoadmaps[moduleName].issues.length <= 0) {
@@ -90,8 +89,8 @@ export class LandingResource extends BaseResource {
         const res = await fetch(
           `https://api.github.com/repos/drashland/${uri}/issues?state=all&labels=Sprint:%202021%20Semester%201`,
           {
-            headers: headers
-          }
+            headers: headers,
+          },
         );
         const json = await res.json();
         cacheRoadmaps[moduleName].issues = json;
