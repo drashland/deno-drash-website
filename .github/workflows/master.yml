@@ -9,6 +9,13 @@ on:
       - main
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create configs.js
+        run: |
+          cp configs.sample.js configs.js
+
   accessibility:
     runs-on: ubuntu-latest
     steps:
