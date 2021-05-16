@@ -61,6 +61,10 @@ div
           | }
           |
           | const server = new Drash.Http.Server({
+          |   logger: new Drash.CoreLoggers.ConsoleLogger({
+          |     enabled: true,
+          |     level: "debug",
+          |   }),
           |   response_output: "text/html",
           |   resources: [HomeResource]
           | });
@@ -69,6 +73,8 @@ div
           |   hostname: "localhost",
           |   port: 1447
           | });
+          |
+          | console.log(`Server running at ${server.hostname}:${server.port}`);
       li
         p Run your <code>app.ts</code> file.
         code-block(title="Terminal" language="shell-session")
