@@ -55,7 +55,7 @@ div
           | class HomeResource extends Drash.Http.Resource {
           |   static paths = ["/"];
           |   public GET() {
-          |     this.response.body = "Hello World!";
+          |     this.response.body = `Hello World! (on ${new Date()})`;
           |     return this.response;
           |   }
           | }
