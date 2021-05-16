@@ -84,8 +84,6 @@ export class LandingResource extends BaseResource {
     let headers = new Headers();
     headers.set('Authorization', 'Basic ' + btoa(authString))
 
-    console.log(cacheRoadmaps);
-
     for (let moduleName in cacheRoadmaps) {
       if (cacheRoadmaps[moduleName].issues.length <= 0) {
         const uri = cacheRoadmaps[moduleName].repo_uri;
