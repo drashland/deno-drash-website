@@ -5,10 +5,11 @@ const path = require("path");
 const modules = [
   "dmm-v1.x",
   "drash-v1.x",
+  "line-v0.x",
   "rhum-v1.x",
   "sinco-v1.x",
+  "sinco-v2.x",
   "wocket-v0.x",
-  "sinco-v2.x"
 ];
 
 modules.forEach((moduleAndVersion) => {

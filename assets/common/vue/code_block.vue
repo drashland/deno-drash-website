@@ -91,15 +91,18 @@ window.addEventListener("DOMContentLoaded", () => {
   padding: 1em;
 }
 .header {
+  font-size: .85rem;
   border-radius: 1rem 1rem 0 0;
   background-color: #454545;
   color: #ffffff;
+  padding: .5rem;
 }
 code.header {
   border-radius: 0;
   line-height: 1rem;
 }
 .body {
+  font-size: .85rem;
   border-radius: 0 0 1rem 1rem;
   margin: 0;
 }

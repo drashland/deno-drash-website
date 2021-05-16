@@ -67,6 +67,17 @@ Rhum.testPlan("tests/integration/module_resource_test.ts", () => {
         },
       );
       Rhum.testCase(
+        "Responds with 302 redirects to latest version when `module` is line",
+        async () => {
+          await server.run(serverConfigs);
+          const res = await fetch(`${url}/line`);
+          await res.text();
+          server.close();
+          Rhum.asserts.assertEquals(res.status, 200);
+          Rhum.asserts.assertEquals(res.url, `${url}/line/v0.x/`);
+        },
+      );
+      Rhum.testCase(
         "Responds with 404 when `module` is not a recognised module",
         async () => {
           await server.run(serverConfigs);
@@ -152,6 +163,20 @@ Rhum.testPlan("tests/integration/module_resource_test.ts", () => {
       );
       Rhum.asserts.assertEquals(bundle, true);
     });
+    Rhum.testCase("Responds with 200 for /line/v0.x", async () => {
+      await server.run(serverConfigs);
+      const res = await fetch(`${url}/line/v0.x`);
+      Rhum.asserts.assertEquals(res.status, 200);
+      Rhum.asserts.assertEquals(res.url, `${url}/line/v0.x`);
+      const text = await res.text();
+      server.close();
+      const title = text.split("<title>")[1].split("</title>")[0];
+      Rhum.asserts.assertEquals(title, "Drash Land - Line");
+      const bundle = text.includes(
+        `<script src="/assets/bundles/line-v0.x.js"></script>`,
+      );
+      Rhum.asserts.assertEquals(bundle, true);
+    })
     Rhum.testCase("Responds with 200 for /sinco/v2.x", async () => {
       await server.run(serverConfigs);
       const res = await fetch(`${url}/sinco/v2.x`);

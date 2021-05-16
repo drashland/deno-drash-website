@@ -2,10 +2,10 @@ export const configs = {
   "copyright_year": "2021",
   "root_directory": ".",
   "deno": {
-    "latest_version": "v1.9.0"
+    "latest_version": "v1.10.1"
   },
   "deno_std": {
-    "latest_version": "0.93.0"
+    "latest_version": "0.96.0"
   },
   "dmm": {
     "base_url": "/dmm/v1.x",
@@ -23,6 +23,15 @@ export const configs = {
     "latest_url_nest_land": "https://x.nest.land/deno-drash@v1.4.4/mod.ts",
     "versions": [
       "v1.x"
+    ]
+  },
+  "line": {
+    "base_url": "/line/v0.x",
+    "latest_version": "v0.1.0",
+    "latest_url_deno_land": "https://deno.land/x/line@v0.1.0/mod.ts",
+    "latest_url_nest_land": "https://x.nest.land/line@v0.1.0/mod.ts",
+    "versions": [
+      "v0.x"
     ]
   },
   "rhum": {

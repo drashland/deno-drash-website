@@ -16,6 +16,7 @@ export class BaseResource extends Drash.Http.Resource {
     "rhum",
     "wocket",
     "sinco",
+    "line",
   ];
 
   //////////////////////////////////////////////////////////////////////////////
@@ -90,7 +91,7 @@ export class BaseResource extends Drash.Http.Resource {
     const ogDate = new Date().toISOString();
     const filename = ogDate.split("T")[0]; // e.g., 2021-03-24
     const bytes = encoder.encode(ogDate + " | " + message + "\n");
-    await Deno.writeFile(`./tmp/logs/${filename}.log`, bytes, {append: true});
+    await Deno.writeFile(`./tmp/logs/${filename}.log`, bytes, { append: true });
   }
 
   /**
