@@ -47,7 +47,29 @@ page(
     a-get-started(:href="base_url + '/#' + base_uri + '/part-1'")
   hr
   h2-hash End State
-  p Below are samples of what you will create.
+  p Below is a sample of what you will create.
+  code-block(language="text" :header="false")
+    | File Manager - Read, write, copy, and delete files.
+    |
+    | USAGE
+    |
+    |     fm [option | [[subcommand] [args] [deno flags] [options]]]
+    |
+    | OPTIONS
+    |
+    |     -h, --help    Show this menu.
+    |     -v, --version Show this CLI's version.
+    |
+    | SUBCOMMANDS
+    |
+    |     copy
+    |         Copy a file from one location to another.
+    |     delete
+    |         Delete a file.
+    |     read
+    |         Read a file.
+    |     write
+    |         Write text to a file.
   hr
   breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="-1" :parts="3")
 </template>
