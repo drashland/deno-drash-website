@@ -3,37 +3,46 @@ import { configs } from "../../configs.js";
 
 const decoder = new TextDecoder();
 
-let cacheRoadmaps: any = {
+interface IRoadmaps {
+  [k: string]: IRoadmapData
+}
+
+interface IRoadmapData {
+  repoUri: string;
+  issues: Record;
+}
+
+const cacheRoadmaps: IRoadmaps = {
   "Drash": {
-    repo_uri: "deno-drash",
+    repoUri: "deno-drash",
     issues: [],
   },
   "Drash Middleware": {
-    repo_uri: "deno-drash-middleware",
+    repoUri: "deno-drash-middleware",
     issues: [],
   },
   "Dmm": {
-    repo_uri: "dmm",
+    repoUri: "dmm",
     issues: [],
   },
   "Line": {
-    repo_uri: "line",
+    repoUri: "line",
     issues: [],
   },
   "Rhum": {
-    repo_uri: "rhum",
+    repoUri: "rhum",
     issues: [],
   },
   "Sinco": {
-    repo_uri: "sinco",
+    repoUri: "sinco",
     issues: [],
   },
   "Website": {
-    repo_uri: "website",
+    repoUri: "website",
     issues: [],
   },
   "Wocket": {
-    repo_uri: "wocket",
+    repoUri: "wocket",
     issues: [],
   },
 };
@@ -77,15 +86,15 @@ export class LandingResource extends BaseResource {
   }
 
   protected async getRoadmaps(): Promise<string> {
-    let username = configs.github_api.user;
-    let password = configs.github_api.password;
-    let authString = `${username}:${password}`;
-    let headers = new Headers();
+    const username = configs.github_api.user;
+    const password = configs.github_api.password;
+    const authString = `${username}:${password}`;
+    const headers = new Headers();
     headers.set("Authorization", "Basic " + btoa(authString));
 
-    for (let moduleName in cacheRoadmaps) {
+    for (const moduleName in cacheRoadmaps) {
       if (cacheRoadmaps[moduleName].issues.length <= 0) {
-        const uri = cacheRoadmaps[moduleName].repo_uri;
+        const uri = cacheRoadmaps[moduleName].repoUri;
         const res = await fetch(
           `https://api.github.com/repos/drashland/${uri}/issues?state=all&labels=Sprint:%202021%20Semester%201`,
           {
