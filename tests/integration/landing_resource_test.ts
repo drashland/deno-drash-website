@@ -1,4 +1,3 @@
-import { server } from "../../server.ts";
 import { Rhum } from "../deps.ts";
 
 const url = `http://localhost:1445`;
