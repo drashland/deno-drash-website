@@ -9,7 +9,8 @@ interface IRoadmaps {
 
 interface IRoadmapData {
   repoUri: string;
-  issues: Record;
+  // deno-lint-ignore no-explicit-any
+  issues: any;
 }
 
 const cacheRoadmaps: IRoadmaps = {
