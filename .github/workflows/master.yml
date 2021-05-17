@@ -42,10 +42,13 @@ jobs:
       - name: Install Deno
         uses: denolib/setup-deno@v2
 
+      - name: Run Server
+        run: |
+          npm run server &
+
       - name: Server Integration Tests
         run: |
           npm run webpack:development
-          npm run server &
           deno test -A tests/integration
 
   builds:
