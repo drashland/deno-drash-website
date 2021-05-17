@@ -35,15 +35,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Create configs.js
-        run: |
-          cp configs.sample.js configs.js
-
       - name: Install Deno
         uses: denolib/setup-deno@v2
 
       - name: Server Integration Tests
         run: |
+          cp configs.sample.js configs.js
           npm run webpack:development
           npm run server &
           sleep 10
