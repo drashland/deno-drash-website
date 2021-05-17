@@ -4,7 +4,7 @@ import { configs } from "../../configs.js";
 const decoder = new TextDecoder();
 
 interface IRoadmaps {
-  [k: string]: IRoadmapData
+  [k: string]: IRoadmapData;
 }
 
 interface IRoadmapData {
