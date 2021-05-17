@@ -146,7 +146,7 @@ Rhum.testPlan("tests/integration/module_resource_test.ts", () => {
         `<script src="/assets/bundles/line-v0.x.js"></script>`,
       );
       Rhum.asserts.assertEquals(bundle, true);
-    })
+    });
     Rhum.testCase("Responds with 200 for /sinco/v2.x", async () => {
       const res = await fetch(`${url}/sinco/v2.x`);
       Rhum.asserts.assertEquals(res.status, 200);
