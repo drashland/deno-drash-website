@@ -46,6 +46,7 @@ jobs:
         run: |
           npm run webpack:development
           npm run server &
+          sleep 10
           deno test -A tests/integration
 
   builds:
