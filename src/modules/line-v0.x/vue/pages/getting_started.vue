@@ -32,7 +32,7 @@ div
     a(href="https://github.com/drashland/line/releases" target="_BLANK")
       img.mr-1(alt="Latest Line Release" src="https://img.shields.io/github/release/drashland/line.svg?color=brightgreen&label=Latest" width="auto" height="20")
     a(href="https://github.com/drashland/line/actions" target="_BLANK")
-      img.mr-1(alt="Line CI" src="https://img.shields.io/github/workflow/status/drashland/line/master?label=CI" width="auto" height="20")
+      img.mr-1(alt="Line CI" src="https://img.shields.io/github/workflow/status/drashland/line/Master?label=CI" width="auto" height="20")
     a(href="https://discord.gg/SgejNXq" target="_BLANK")
       img.mr-1(alt="Drash Land Discord" src="https://img.shields.io/badge/Chat-on%20Discord-blue")
     a(href="https://twitter.com/drash_land" target="_BLANK")
