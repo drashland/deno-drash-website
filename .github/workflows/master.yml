@@ -46,6 +46,16 @@ jobs:
           sleep 10
           deno test -A tests/integration
 
+  pre-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test Updating Module Versions Script Doesnt Fail
+        run: |
+          node console/update_module_versions.js \
+            --module drash \
+            --version release-v1.0.0
+
   builds:
     runs-on: ubuntu-latest
     steps:
