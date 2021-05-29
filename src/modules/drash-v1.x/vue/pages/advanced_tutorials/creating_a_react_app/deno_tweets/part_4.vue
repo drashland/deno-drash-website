@@ -56,7 +56,7 @@ page(
     li
       p Create your Webpack configuration file.
       p
-        code-block(title="webpack.config.js" language="javascript")
+        code-block(title="/path/to/your/project/webpack.config.js" language="javascript")
           | const path = require('path')
           | module.exports = {
           |   entry: {
@@ -88,7 +88,7 @@ page(
     li
       p Create your Typescript configuration file.
       p
-        code-block(title="tsconfig.json" language="json")
+        code-block(title="/path/to/your/project/tsconfig.json" language="json")
           | {
           |   "compilerOptions": {
           |     "strict": true,

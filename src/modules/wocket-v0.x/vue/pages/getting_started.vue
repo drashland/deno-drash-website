@@ -45,7 +45,7 @@ div
     ol
       li
         p Create your server and allow it to handle a single channel named Channel 1.
-        code-block(title="app.ts" language="typescript")
+        code-block(title="/path/to/your/project/app.ts" language="typescript")
           | import { Server } from "https://deno.land/x/wocket@{{ $conf.wocket.latest_version }}/mod.ts";
           |
           | // Create the server

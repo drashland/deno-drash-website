@@ -49,7 +49,7 @@ div
     ol
       li
         p Write your <code>app.ts</code> file.
-        code-block(title="app.ts" language="typescript")
+        code-block(title="/path/to/your/project/app.ts" language="typescript")
           | import { Drash } from "https://deno.land/x/drash@{{ $conf.drash.latest_version }}/mod.ts";
           |
           | class HomeResource extends Drash.Http.Resource {

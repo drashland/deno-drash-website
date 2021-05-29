@@ -45,7 +45,7 @@ div
     ol
       li
         p Create a test file and start interacting with the browser
-        code-block(title="test.ts" language="typescript")
+        code-block(title="/path/to/your/project/test.ts" language="typescript")
           | import { HeadlessBrowser } from "https://deno.land/x/sinco@{{ $conf.sinco.latest_version }}/mod.ts";
           | import { assertEquals } from "https://deno.land/std@{{ $conf.deno_std.latest_version }}/testing/asserts.ts";
           |

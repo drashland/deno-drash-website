@@ -53,7 +53,7 @@ page(
     li
       p Create your home resource file.
       p
-        code-block(title="home_resource.ts" language="typescript")
+        code-block(title="/path/to/your/project/home_resource.ts" language="typescript")
           | import { Drash } from "https://deno.land/x/drash@{{ $conf.drash.latest_version }}/mod.ts";
           |
           | const decoder = new TextDecoder();
@@ -82,7 +82,7 @@ page(
     li
       p Create your contact resource file.
       p
-        code-block(title="contact_resource.ts" language="typescript")
+        code-block(title="/path/to/your/project/contact_resource.ts" language="typescript")
           | import { Drash } from "https://deno.land/x/drash@{{ $conf.drash.latest_version }}/mod.ts";
           |
           | const decoder = new TextDecoder();
@@ -111,7 +111,7 @@ page(
     li
       p Create your about resource file.
       p
-        code-block(title="about_resource.ts" language="typescript")
+        code-block(title="/path/to/your/project/about_resource.ts" language="typescript")
           | import { Drash } from "https://deno.land/x/drash@{{ $conf.drash.latest_version }}/mod.ts";
           |
           | const decoder = new TextDecoder();
