@@ -45,7 +45,7 @@ div
     ol
       li
         p Create your CLI that will read and write a given file.
-        code-block(title="app.ts" language="typescript")
+        code-block(title="/path/to/your/project/app.ts" language="typescript")
           | import { Line, Subcommand } from "https://deno.land/x/line/mod.ts";
           |
           | const decoder = new TextDecoder();

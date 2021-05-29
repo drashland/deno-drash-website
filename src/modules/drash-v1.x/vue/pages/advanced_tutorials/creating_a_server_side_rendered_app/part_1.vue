@@ -50,7 +50,7 @@ page(
     li
       p Create your app file.
       p
-        code-block(title="app.ts" language="typescript" line_highlight="3-5")
+        code-block(title="/path/to/your/project/app.ts" language="typescript" line_highlight="3-5")
           | import { Drash } from "https://deno.land/x/drash@{{ $conf.drash.latest_version }}/mod.ts";
           |
           | import AboutResource from "./about_resource.ts";

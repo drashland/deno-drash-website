@@ -41,7 +41,7 @@ div
     ol
       li
         p Make sure you have out of date dependencies inside your <code>deps.ts</code> file.
-        code-block(title="deps.ts" language="typescript")
+        code-block(title="/path/to/your/project/deps.ts" language="typescript")
           | import { Drash } from "https://deno.land/x/drash@v1.0.0/mod.ts";
           | import { red } from "https://deno.land/std@0.55.0/fmt/colors.ts";
       li

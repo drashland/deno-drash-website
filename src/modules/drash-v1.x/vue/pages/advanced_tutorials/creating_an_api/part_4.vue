@@ -97,7 +97,7 @@ page(
     li
       p Create your <code>response.ts</code> file that will be used to override <code>Drash.Http.Response</code>.
       p
-        code-block(title="response.ts" language="typescript")
+        code-block(title="/path/to/your/project/response.ts" language="typescript")
           | import { Drash } from "https://deno.land/x/drash@{{ $conf.drash.latest_version }}/mod.ts";
           |
           | export default class Response extends Drash.Http.Response {
@@ -128,7 +128,7 @@ page(
     li
       p Import your <code>response.ts</code> file and replace <code>Drash.Http.Response</code> in your <code>app.ts</code>.
       p
-        code-block(title="app.ts" language="typescript" line_highlight="3,4")
+        code-block(title="/path/to/your/project/app.ts" language="typescript" line_highlight="3,4")
           | import { Drash } from "https://deno.land/x/drash@{{ $conf.drash.latest_version }}/mod.ts";
           |
           | import response from "./response.ts";
