@@ -52,7 +52,7 @@ page(
   p In this example, we are updating the dependency passed to the <code>update</code> command.
   code-block(title="Terminal" language="shell-session")
     | $ cat deps.ts
-  code-block(title="dep.ts" language="typescript")
+  code-block(title="/path/to/your/project/dep.ts" language="typescript")
     | import { serve } from "https://deno.land/std@0.55.0/http/server.ts"; // out of date
   code-block(title="Terminal" language="shell-session")
     | $ dmm update http
@@ -62,13 +62,13 @@ page(
     | INFO http was updated from 0.55.0 to {{ $conf.deno_std.latest_version }}
   code-block(title="Terminal" language="shell-session")
     | $ cat deps.ts
-  code-block(title="dep.ts" language="typescript")
+  code-block(title="/path/to/your/project/dep.ts" language="typescript")
     | import { serve } from "https://deno.land/std@{{ $conf.deno_std.latest_version }}/http/server.ts"; // now up to date
   h3 Update multiple dependencies.
   p In this example, we are updating the dependencies passed to the <code>update</code> command.
   code-block(title="Terminal" language="shell-session")
     | $ cat deps.ts
-  code-block(title="dep.ts" language="typescript")
+  code-block(title="/path/to/your/project/dep.ts" language="typescript")
     | import { serve } from "https://deno.land/std@0.55.0/http/server.ts"; // out of date
     | import { Drash } from "https://deno.land/x/drash@v1.0.7/mod.ts"; // out of date
   code-block(title="Terminal" language="shell-session")
@@ -82,7 +82,7 @@ page(
   p In this example, we are updating all dependencies by not passing any arguments to the <code>update</code> command.
   code-block(title="Terminal" language="shell-session")
     | $ cat deps.ts
-  code-block(title="dep.ts" language="typescript")
+  code-block(title="/path/to/your/project/dep.ts" language="typescript")
     | import { serve } from "https://deno.land/std@0.55.0/http/server.ts"; // out of date
     | import { Drash } from "https://deno.land/x/drash@v1.0.7/mod.ts"; // out of date
   code-block(title="Terminal" language="shell-session")

@@ -100,7 +100,7 @@ page(
       p Your coffee resource will try to match the specified coffee <code>id</code> path param to a coffee ID in your "database". If the <code>id</code> is matched, then the record will be sent as the response. If not, then an error response will be sent.
     li
       p Create your tea resource file.
-        code-block(title="tea_resource.ts" language="typescript")
+        code-block(title="/path/to/your/project/tea_resource.ts" language="typescript")
           | import { Drash } from "https://deno.land/x/drash@{{ $conf.drash.latest_version }}/mod.ts";
           |
           | export default class TeaResource extends Drash.Http.Resource {

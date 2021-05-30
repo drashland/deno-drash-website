@@ -61,7 +61,7 @@ page(
       p When this file is run, it will load in Drash, set up your server, and start your server.
       p You will notice that there are <code>import</code> statements for your resource files (highlighted). You will be creating these files in the next tutorial part. For now, you just need to make sure your server expects and registers them.
       p
-        code-block(title="app.ts" language="typescript" line_highlight="3-4,9-10")
+        /path/to/your/project/app.ts" language="typescript" line_highlight="3-4,9-10")
           | import { Drash } from "https://deno.land/x/drash@{{ $conf.drash.latest_version }}/mod.ts";
           |
           | import CoffeeResource from "./coffee_resource.ts";

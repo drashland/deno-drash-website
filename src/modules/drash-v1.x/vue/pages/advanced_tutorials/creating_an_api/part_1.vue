@@ -52,7 +52,7 @@ page(
     li
       p Create the <code>coffee.json</code> file.
       p
-        code-block(title="coffee.json" language="json")
+        code-block(title="/path/to/your/project/coffee.json" language="json")
           | {
           |   "17": {
           |     "id": 17,
@@ -73,7 +73,7 @@ page(
     li
       p Create the <code>tea.json</code> file.
       p
-        code-block(title="tea.json" language="json")
+        code-block(title="/path/to/your/project/tea.json" language="json")
           | {
           |   "50": {
           |     "id": 50,

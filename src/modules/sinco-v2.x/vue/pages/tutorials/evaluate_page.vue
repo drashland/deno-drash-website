@@ -67,7 +67,7 @@ page(
         |
         | Deno.test("My web app works as expected", async () => {
         |   const Sinco = await buildFor("chrome");
-        |   await Sinco.goTo("https://chromestatus.com");
+        |   await Sinco.goTo("https://drash.land");
         |   const pageTitle = await Sinco.evaluatePage(() => {
         |     return document.title;
         |   })
@@ -82,10 +82,10 @@ page(
         |     return document.body.children.length;
         |   })
         |   await Sinco.done();
-        |   assertEquals(pageTitle, "Chrome Platform Status");
+        |   assertEquals(pageTitle, "Drash Land");
         |   assertEquals(sum, 11);
-        |   assertEquals(oldBodyLength, 7);
-        |   assertEquals(newBodyLength, 8);
+        |   assertEquals(oldBodyLength, 14);
+        |   assertEquals(newBodyLength, 15);
         | })
       p Within the function you can pass to <code>evaluatePage()</code>, you have full access to the DOM, meaning you can write client side JavaScript like you normally would, for example:
       code-block(title="" language="typescript")
@@ -99,7 +99,7 @@ page(
     li
       p Create your config
       p A <code>tsconfig.json</code> file is required when targeting the DOM (using document syntax) to tell Deno that this is valid.
-      code-block(title="tsconfig.json" language="json")
+      code-block(title="/path/to/your/project/tsconfig.json" language="json")
         | {
         |   "compilerOptions": {
         |     "lib": ["dom", "deno.ns"]
