@@ -13,7 +13,42 @@ interface IRoadmapData {
   issues: any;
 }
 
-const cacheRoadmaps: IRoadmaps = {
+const cacheRoadmapsS1: IRoadmaps = {
+  "Drash": {
+    repoUri: "deno-drash",
+    issues: [],
+  },
+  "Drash Middleware": {
+    repoUri: "deno-drash-middleware",
+    issues: [],
+  },
+  "Dmm": {
+    repoUri: "dmm",
+    issues: [],
+  },
+  "Line": {
+    repoUri: "line",
+    issues: [],
+  },
+  "Rhum": {
+    repoUri: "rhum",
+    issues: [],
+  },
+  "Sinco": {
+    repoUri: "sinco",
+    issues: [],
+  },
+  "Website": {
+    repoUri: "website",
+    issues: [],
+  },
+  "Wocket": {
+    repoUri: "wocket",
+    issues: [],
+  },
+};
+
+const cacheRoadmapsS2: IRoadmaps = {
   "Drash": {
     repoUri: "deno-drash",
     issues: [],
@@ -75,7 +110,8 @@ export class LandingResource extends BaseResource {
       content = content
         .replace("{{ title }}", "Drash Land" + titleSuffix)
         .replace("{{ drash_api_configs }}", this.getServerConfigs())
-        .replace("{{ roadmaps }}", await this.getRoadmaps());
+        .replace("{{ roadmaps_s1 }}", await this.getRoadmapsS1())
+        .replace("{{ roadmaps_s2 }}", await this.getRoadmapsS2());
 
       this.response.body = content;
 
@@ -86,16 +122,16 @@ export class LandingResource extends BaseResource {
     }
   }
 
-  protected async getRoadmaps(): Promise<string> {
+  protected async getRoadmapsS1(): Promise<string> {
     const username = configs.github_api.user;
     const password = configs.github_api.password;
     const authString = `${username}:${password}`;
     const headers = new Headers();
     headers.set("Authorization", "Basic " + btoa(authString));
 
-    for (const moduleName in cacheRoadmaps) {
-      if (cacheRoadmaps[moduleName].issues.length <= 0) {
-        const uri = cacheRoadmaps[moduleName].repoUri;
+    for (const moduleName in cacheRoadmapsS1) {
+      if (cacheRoadmapsS1[moduleName].issues.length <= 0) {
+        const uri = cacheRoadmapsS1[moduleName].repoUri;
         const res = await fetch(
           `https://api.github.com/repos/drashland/${uri}/issues?state=all&labels=Sprint:%202021%20Semester%201`,
           {
@@ -103,10 +139,34 @@ export class LandingResource extends BaseResource {
           },
         );
         const json = await res.json();
-        cacheRoadmaps[moduleName].issues = json;
+        cacheRoadmapsS1[moduleName].issues = json;
       }
     }
 
-    return JSON.stringify(cacheRoadmaps);
+    return JSON.stringify(cacheRoadmapsS1);
+  }
+
+  protected async getRoadmapsS2(): Promise<string> {
+    const username = configs.github_api.user;
+    const password = configs.github_api.password;
+    const authString = `${username}:${password}`;
+    const headers = new Headers();
+    headers.set("Authorization", "Basic " + btoa(authString));
+
+    for (const moduleName in cacheRoadmapsS2) {
+      if (cacheRoadmapsS2[moduleName].issues.length <= 0) {
+        const uri = cacheRoadmapsS2[moduleName].repoUri;
+        const res = await fetch(
+          `https://api.github.com/repos/drashland/${uri}/issues?state=all&labels=Sprint:%202021%20Semester%202`,
+          {
+            headers: headers,
+          },
+        );
+        const json = await res.json();
+        cacheRoadmapsS2[moduleName].issues = json;
+      }
+    }
+
+    return JSON.stringify(cacheRoadmapsS2);
   }
 }

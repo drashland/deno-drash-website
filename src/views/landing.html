@@ -286,20 +286,49 @@
           <div class="row text-center">
             <div class="col-md-12">
               <h2>Roadmaps</h2>
-              <p class="lead">We plan our roadmaps by semester &ndash; splitting the year into two roadmaps. The current roadmap has a release date of June 30, 2021. We plan to have the following issues done and dusted by then.</p>
+              <p class="lead">We plan our roadmaps by semester &ndash; splitting the year into two roadmaps.
             </div>
           </div>
-          <div class="row mx-auto mb-5" v-for="(module, name) in roadmaps">
-            <div class="col-md-9 mx-auto u-bg--default p-5 u-icon--rounded">
-              <div class="row">
-                <div class="col">
-                  <h3>{{ name }}</h3>
-                  <ul class="mb-0" v-if="module.issues.length > 0">
-                    <li v-for="issue in module.issues">
-                      {{ issue.state == "open" ? "In Progress" : "Done" }} &ndash; <a :href="issue.html_url" target="_BLANK">{{ issue.title }}</a>
-                    </li>
-                  </ul>
-                  <p v-else>Nothing is currently planned for this module.</p>
+          <div class="row mx-auto mb-5">
+            <div class="col-md-6">
+              <div class="text-center">
+                <h3>Sprint 2</h3>
+                <p>(July 1, 2021 &ndash; December 31, 2021)</p>
+              </div>
+              <div class="row mb-5 px-2" v-for="(module, name) in roadmaps_s1">
+                <div class="col-md-12 mx-auto u-bg--default p-5 u-icon--rounded">
+                  <div class="row">
+                    <div class="col">
+                      <h3>{{ name }}</h3>
+                      <ul class="mb-0" v-if="module.issues.length > 0">
+                        <li v-for="issue in module.issues">
+                          {{ issue.state == "open" ? "In Progress" : "Done" }} &ndash; <a :href="issue.html_url" target="_BLANK">{{ issue.title }}</a>
+                        </li>
+                      </ul>
+                      <p v-else>Nothing is currently planned for this module.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="text-center">
+                <h3>Sprint 2</h3>
+                <p>(July 1, 2021 &ndash; December 31, 2021)</p>
+              </div>
+              <div class="row mb-5 px-2" v-for="(module, name) in roadmaps_s2">
+                <div class="col-md-12 mx-auto u-bg--default p-5 u-icon--rounded">
+                  <div class="row">
+                    <div class="col">
+                      <h3>{{ name }}</h3>
+                      <ul class="mb-0" v-if="module.issues.length > 0">
+                        <li v-for="issue in module.issues">
+                          {{ issue.state == "open" ? "In Progress" : "Done" }} &ndash; <a :href="issue.html_url" target="_BLANK">{{ issue.title }}</a>
+                        </li>
+                      </ul>
+                      <p v-else>Nothing is currently planned for this module.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -388,7 +417,8 @@
         data() {
           return {
             news: [],
-            roadmaps: {{ roadmaps }}
+            roadmaps_s1: {{ roadmaps_s1 }},
+            roadmaps_s2: {{ roadmaps_s2 }}
           };
         },
         computed: {
@@ -401,7 +431,6 @@
           },
         },
         async mounted() {
-          console.log(this.roadmaps);
           let res = await fetch("https://dev.to/api/articles?username=drash_land&top=14");
           let json = await res.json();
           json = json.slice(0, 6);
