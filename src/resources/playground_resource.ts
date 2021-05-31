@@ -1,0 +1,15 @@
+import { BaseResource } from "./base_resource.ts";
+
+export class PlaygroundResource extends BaseResource {
+  static paths = [
+    "/playground",
+  ];
+
+  //////////////////////////////////////////////////////////////////////////////
+  // FILE MARKER - METHODS - HTTP //////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
+
+  public async GET() {
+      this.response.redirect(302, "http://localhost:1447/")
+  }
+}
