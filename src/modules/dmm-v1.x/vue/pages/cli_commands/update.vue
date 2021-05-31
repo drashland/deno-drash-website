@@ -92,5 +92,10 @@ page(
     | INFO Checking if your modules can be updated...
     | INFO http was updated from 0.55.0 to {{ $conf.deno_std.latest_version }}
     | INFO drash was updated from v1.0.7 to {{ $conf.drash.latest_version }}
+  h3 Specify the location of your dependency file.
+  p Should your dependency file be under a different name than `deps.ts`, or you would rather not enter the directory it is in and let dmm resolve the dependency file, you can provide another argument to the update command:
+  code-block(title="Terminal" language="shell-session")
+    | $ dmm update tests/deps.ts
+    | $ dmm update my_deps_file.ts fs http
 </template>
 
