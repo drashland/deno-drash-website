@@ -10,6 +10,8 @@ export const resource = {
   }
 }
 
+const windows_tmp_path = "C:\\Users\\<user>\\AppData\\Local\\Temp"
+
 export default {
   components: {
   },
@@ -23,6 +25,7 @@ export default {
         "Steps",
         "Verification",
       ],
+      windows_tmp_path
     };
   }
 }
@@ -80,7 +83,17 @@ page(
         | await Chrome.done();
         | await Firefox.done();
       p Here you are going to create your headless browser instance for Firefox and Chrome. Note that you wouldn't need to create both at the same time, you are only doing that here for demonstration purposes.
-      p When building a client for Firefox, note that it will create a temporary profile that will be used, due to this, a Firefox client requires a <code>--allow-write=$TMPDIR</code> flag
+      p When building a client for Firefox, note that it will create a temporary profile that will be used, due to this, a Firefox client requires a <code>--allow-write=$TMPDIR</code> flag, where <code>$TMPDIR</code> is the location of your temporary directory. For example:
+      code-block(title="Terminal" language="shell")
+        | # Linux/MacOS
+        | $ echo $TMPDIR
+        | /var/folders/dir/dir
+        | $ deno run --allow-run --allow-net --allow-write=$TMPDIR --allow-read app.ts
+      code-block(title="Terminal" language="shell")
+        | # Windows
+        | PS > echo $env:TMP
+        | {{ windows_tmp_path }}
+        | PS > deno run --allow-run --allow-net --allow-write=$env:TMP --allow-read app.ts
   hr
   h2-hash Verification
   ol
