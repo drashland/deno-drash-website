@@ -37,7 +37,7 @@ function updateConfigs() {
   }
 
   fs.writeFileSync(
-    "./configs.js",
+    "./configs.sample.js",
     `export const configs = ${JSON.stringify(configs, null, 2)};\n`,
   );
 }
