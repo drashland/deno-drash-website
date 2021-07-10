@@ -1,7 +1,7 @@
 import { server } from "./server.ts";
 
-server.run({
-  hostname: "localhost",
+await server.run({
+  hostname: "0.0.0.0",
   port: 1445,
 });
 
