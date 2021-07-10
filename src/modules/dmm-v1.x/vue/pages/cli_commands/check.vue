@@ -54,7 +54,7 @@ page(
   p In this example, we are checking the dependency passed to the <code>check</code> command.
   code-block(title="Terminal" language="shell-session")
     | $ cat deps.ts
-  code-block(title="dep.ts" language="typescript")
+  code-block(title="/path/to/your/project/dep.ts" language="typescript")
     | import { serve } from "https://deno.land/std@0.55.0/http/server.ts"; // out of date
   code-block(title="Terminal" language="shell-session")
     | $ dmm check http
@@ -68,7 +68,7 @@ page(
   p In this example, we are checking the dependencies passed to the <code>check</code> command.
   code-block(title="Terminal" language="shell-session")
     | $ cat deps.ts
-  code-block(title="dep.ts" language="typescript")
+  code-block(title="/path/to/your/project/dep.ts" language="typescript")
     | import { serve } from "https://deno.land/std@0.55.0/http/server.ts"; // out of date
     | import { Drash } from "https://deno.land/x/drash@v1.0.7/mod.ts"; // out of date
   code-block(title="Terminal" language="shell-session")
@@ -84,7 +84,7 @@ page(
   p In this example, we are checking all dependencies by not passing any arguments to the <code>update</code> command.
   code-block(title="Terminal" language="shell-session")
     | $ cat deps.ts
-  code-block(title="dep.ts" language="typescript")
+  code-block(title="/path/to/your/project/dep.ts" language="typescript")
     | import { serve } from "https://deno.land/std@0.55.0/http/server.ts"; // out of date
     | import { Drash } from "https://deno.land/x/drash@v1.0.7/mod.ts"; // out of date
   code-block(title="Terminal" language="shell-session")

@@ -6,9 +6,11 @@ module.exports = (envVars) => {
     entry: {
       "dmm-v1.x": path.resolve(__dirname, "src/modules/dmm-v1.x/app.js"),
       "drash-v1.x": path.resolve(__dirname, "src/modules/drash-v1.x/app.js"),
+      "line-v0.x": path.resolve(__dirname, "src/modules/line-v0.x/app.js"),
       "rhum-v1.x": path.resolve(__dirname, "src/modules/rhum-v1.x/app.js"),
       "sinco-v1.x": path.resolve(__dirname, "src/modules/sinco-v1.x/app.js"),
       "wocket-v0.x": path.resolve(__dirname, "src/modules/wocket-v0.x/app.js"),
+      "sinco-v2.x": path.resolve(__dirname, "src/modules/sinco-v2.x/app.js"),
     },
     mode: "development",
     output: {

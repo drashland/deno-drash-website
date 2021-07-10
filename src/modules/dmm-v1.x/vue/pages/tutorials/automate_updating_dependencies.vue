@@ -47,7 +47,7 @@ page(
   p Note: This tutorial will explain how to use Dmm as a 'bumper', but will not explain the ins and outs of a workflow file. For this, refer to GitHub's documentation.
   hr
   h2-hash Example
-  code-block(title=".github/workflows/bumper.yml" language="yaml")
+  code-block(title="/path/to/your/project/.github/workflows/bumper.yml" language="yaml")
     | name: Update dependencies and bump version numbers
     |
     | on:

@@ -25,7 +25,7 @@
     <meta name="twitter:url" content="https://drash.land">
     <meta property="twitter:url" content="https://drash.land">
     <meta name="theme-color" content="#000000">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/drash/favicon.ico">
     <link rel="stylesheet" href="/assets/common/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Rubik:500,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -81,6 +81,9 @@
                   <a href="#modules" class="nav-link">Modules</a>
                 </li>
                 <li class="nav-item">
+                  <a href="#roadmaps" class="nav-link">Roadmaps</a>
+                </li>
+                <li class="nav-item">
                   <a href="#discord" class="nav-link">Discord</a>
                 </li>
                 <li class="nav-item">
@@ -101,7 +104,7 @@
               <div class="intro-content">
                 <div class="row align-items-lg-center text-center">
                   <div class="col-12">
-                    <img src="/assets/common/img/logo_drash.svg" class="img-fluid mb-3" alt="Drash" style="max-width: 200px">
+                    <img src="/assets/common/img/logo_drash.svg" class="img-fluid mb-3 mt-3" alt="Drash" style="max-width: 200px">
                     <h1 class="intro-lead-title mb-3">Drash Land</h1>
                     <p class="lead">Develop With Confidence</p>
                     <div class="intro-cta-group">
@@ -262,7 +265,7 @@
                   </a>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                  <a href="https://github.com/drashland/line" class="card integration-card text-center p-3">
+                  <a href="/line/" class="card integration-card text-center p-3">
                     <img height="150" src="/assets/common/img/logo_line.svg" alt="Line logo">
                     <div class="card-header">
                       <h4>Line</h4>
@@ -276,6 +279,68 @@
         </div>
       </section>
       <!-- ========== END MODULES SECTION ========== -->
+
+      <!-- ========== ROADMAPS SECTION ========== -->
+      <section class="section-spacer u-bg--white" id="roadmaps">
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-md-12">
+              <h2>Roadmaps</h2>
+              <p class="lead">We plan our roadmaps by semester &ndash; splitting the year into two roadmaps.
+            </div>
+          </div>
+          <div class="row mx-auto mb-5">
+            <div class="col-md-6">
+              <div class="text-center">
+                <h3>Semester 1</h3>
+                <p>(January 1, 2021 &ndash; June 30, 2021)</p>
+              </div>
+              <div class="row mb-5 px-2" v-for="(module, name) in roadmaps_s1">
+                <div class="col-md-12 mx-auto u-bg--default p-5 u-icon--rounded">
+                  <div class="row">
+                    <div class="col">
+                      <h3>{{ name }}</h3>
+                      <ul class="mb-0" v-if="module.issues.length > 0">
+                        <li v-for="issue in module.issues">
+                          {{ issue.state == "open" ? "In Progress" : "Done" }} &ndash; <a :href="issue.html_url" target="_BLANK">{{ issue.title }}</a>
+                        </li>
+                      </ul>
+                      <p v-else>Nothing is currently planned for this module.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="text-center">
+                <h3>Semester 2</h3>
+                <p>(July 1, 2021 &ndash; December 31, 2021)</p>
+              </div>
+              <div class="row mb-5 px-2" v-for="(module, name) in roadmaps_s2">
+                <div class="col-md-12 mx-auto u-bg--default p-5 u-icon--rounded">
+                  <div class="row">
+                    <div class="col">
+                      <h3>{{ name }}</h3>
+                      <ul class="mb-0" v-if="module.issues.length > 0">
+                        <li v-for="issue in module.issues">
+                          {{ issue.state == "open" ? "In Progress" : "Done" }} &ndash; <a :href="issue.html_url" target="_BLANK">{{ issue.title }}</a>
+                        </li>
+                      </ul>
+                      <p v-else>Nothing is currently planned for this module.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row" style="margin-top: 4rem">                                                   -->
+          <!--   <div class="col-md-12 mx-auto text-center">                                                -->
+          <!--     <a class="btn btn-xl btn-primary" href="/roadmaps" target="_BLANK">View all roadmaps</a> -->
+          <!--   </div>                                                                                     -->
+          <!-- </div>                                                                                       -->
+        </div>
+      </section>
+      <!-- ========== END ROADMAPS SECTION ========== -->
 
       <!-- ========== DISCORD SECTION ========== -->
       <section class="section-spacer u-bg--default" id="discord">
@@ -352,6 +417,8 @@
         data() {
           return {
             news: [],
+            roadmaps_s1: {{ roadmaps_s1 }},
+            roadmaps_s2: {{ roadmaps_s2 }}
           };
         },
         computed: {
@@ -364,16 +431,17 @@
           },
         },
         async mounted() {
-          const res = await fetch("https://dev.to/api/articles?username=drash_land&top=14");
+          let res = await fetch("https://dev.to/api/articles?username=drash_land&top=14");
           let json = await res.json();
           json = json.slice(0, 6);
           this.news = json;
+
           document.getElementById("github-icon").addEventListener("click", (e) => {
             window.open(e.target.dataset.url)
-          })
+          });
           document.getElementById("patreon-icon").addEventListener("click", (e) => {
             window.open(e.target.dataset.url)
-          })
+          });
         },
       });
       const vm = app.mount("#app");

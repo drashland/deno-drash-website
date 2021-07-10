@@ -11,11 +11,13 @@ ecosystem.config.js
 *-lock.json # we ignore this because package.json is in charge of versioning
 package-lock.json
 *.log
+configs.js
 
 # directories
-.sass-cache
-dist
-node_modules
+.sass-cache/
+dist/
+node_modules/
+tmp/
 
 # exceptions
 !.gitkeep

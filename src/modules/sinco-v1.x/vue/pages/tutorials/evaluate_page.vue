@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      base_url: this.$conf.sinco.base_url + "/#",
+      base_url: this.$conf.sinco.base_url,
       title: title,
       toc: [
         "Before You Get Started",
@@ -100,7 +100,7 @@ page(
     li
       p Create your config
       p A <code>tsconfig.json</code> file is required when targeting the DOM (using document syntax) to tell Deno that this is valid.
-      code-block(title="tsconfig.json" language="json")
+      code-block(title="/path/to/your/project/tsconfig.json" language="json")
         | {
         |   "compilerOptions": {
         |     "lib": ["dom", "deno.ns"]

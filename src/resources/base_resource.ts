@@ -2,7 +2,6 @@ import { Drash } from "../../deps.ts";
 import { configs } from "../../deps.ts";
 
 const decoder = new TextDecoder();
-const encoder = new TextEncoder();
 
 export class BaseResource extends Drash.Http.Resource {
   /**
@@ -16,6 +15,7 @@ export class BaseResource extends Drash.Http.Resource {
     "rhum",
     "wocket",
     "sinco",
+    "line",
   ];
 
   //////////////////////////////////////////////////////////////////////////////
@@ -51,12 +51,11 @@ export class BaseResource extends Drash.Http.Resource {
    * @returns The environment name.
    */
   protected getEnvironment(): string {
-    const host = this.request.headers.get("host") || "";
     const isRunningOnLiveServer = this.request.headers.get("x-forwarded-host");
-    const isStaging = host.includes("staging");
+    const env = configs["env"] ?? ""
 
-    if (isStaging) {
-      return "staging";
+    if (env) {
+      return env
     }
 
     if (isRunningOnLiveServer) {
@@ -86,11 +85,11 @@ export class BaseResource extends Drash.Http.Resource {
    * They should NOT use their own console.log() calls. This method allows us to
    * see what resource made the log call.
    */
-  protected async log(message: string) {
-    const ogDate = new Date().toISOString();
-    const filename = ogDate.split("T")[0]; // e.g., 2021-03-24
-    const bytes = encoder.encode(ogDate + " | " + message + "\n");
-    await Deno.writeFile(`./tmp/logs/${filename}.log`, bytes, {append: true});
+  protected log(message: string): string {
+    // const ogDate = new Date().toISOString();
+    // const filename = ogDate.split("T")[0]; // e.g., 2021-03-24
+    // const bytes = encoder.encode(ogDate + " | " + message + "\n");
+    return message;
   }
 
   /**

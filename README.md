@@ -40,14 +40,15 @@ you will need to take the following steps:
 
 2. Install [PM2](https://pm2.keymetrics.io/).
 
-3. Install dependencies:  `npm i`
+3. Install dependencies: `npm i`
 
 4. Make a copy of `ecosystem.config.sample.js` to `ecosystem.config.js`.
-   
+
 5. Build bundles: `npm run webpack:development #  or :production`
 
-6. Run (or restart if PM2 is already running) PM2. PM2 will use your `ecosystem.config.js` file to start the website
-   application and keep your application online 24/7.
+6. Run (or restart if PM2 is already running) PM2. PM2 will use your
+   `ecosystem.config.js` file to start the website application and keep your
+   application online 24/7.
 
 ```
 $ pm2 start

@@ -11,7 +11,7 @@ updateConfigs();
 ///////////////////////////////////////////////////////////////////////////////
 
 function updateConfigs() {
-  const contents = fs.readFileSync("./configs.js").toString("utf-8");
+  const contents = fs.readFileSync("./configs.sample.js").toString("utf-8");
   const jsonString = contents
     .replace("export const configs = ", "")
     .replace("};", "}");
@@ -37,7 +37,7 @@ function updateConfigs() {
   }
 
   fs.writeFileSync(
-    "./configs.js",
+    "./configs.sample.js",
     `export const configs = ${JSON.stringify(configs, null, 2)};\n`,
   );
 }

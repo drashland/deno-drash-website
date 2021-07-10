@@ -49,18 +49,22 @@ div
     ol
       li
         p Write your <code>app.ts</code> file.
-        code-block(title="app.ts" language="typescript")
+        code-block(title="/path/to/your/project/app.ts" language="typescript")
           | import { Drash } from "https://deno.land/x/drash@{{ $conf.drash.latest_version }}/mod.ts";
           |
           | class HomeResource extends Drash.Http.Resource {
           |   static paths = ["/"];
           |   public GET() {
-          |     this.response.body = "Hello World!";
+          |     this.response.body = `Hello World! (on ${new Date()})`;
           |     return this.response;
           |   }
           | }
           |
           | const server = new Drash.Http.Server({
+          |   logger: new Drash.CoreLoggers.ConsoleLogger({
+          |     enabled: true,
+          |     level: "debug",
+          |   }),
           |   response_output: "text/html",
           |   resources: [HomeResource]
           | });
@@ -69,6 +73,8 @@ div
           |   hostname: "localhost",
           |   port: 1447
           | });
+          |
+          | console.log(`Server running at ${server.hostname}:${server.port}`);
       li
         p Run your <code>app.ts</code> file.
         code-block(title="Terminal" language="shell-session")
