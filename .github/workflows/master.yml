@@ -57,11 +57,13 @@ jobs:
         uses: denolib/setup-deno@v2
 
       - name: Build docker image
-        run: docker build --tag website .
+        run: |
+          cp configs.sample.js configs.js
+          yarn docker:build-production
 
       - name: Start docker container and run tests
         run: |
-          docker run --detach --rm --name website --publish 1445:1445 website
+          docker run --detach --rm --name website --publish 1445:1445 drashland-website
           deno test -A tests/docker
 
   pre-release:
