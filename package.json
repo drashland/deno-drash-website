@@ -33,7 +33,7 @@
     "vue-router": "3.x",
     "vue-style-loader": "4.x",
     "vue-template-compiler": "2.x",
-    "webpack": "4.x",
-    "webpack-cli": "3.x"
+    "webpack": "5.x",
+    "webpack-cli": "4.x"
   }
 }
