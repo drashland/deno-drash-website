@@ -18,6 +18,7 @@
     "@babel/core": "7.x",
     "axios": "0.x",
     "babel-loader": "8.x",
+    "clipboard": "2.x",
     "css-loader": "3.x",
     "markdown-it": "11.x",
     "node-sass": "4.x",
