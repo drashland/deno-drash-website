@@ -1,9 +1,5 @@
 export const configs = {
   "env": "development",
-  "github_api": {
-    "user": "user",
-    "password": "password"
-  },
   "copyright_year": "2021",
   "root_directory": ".",
   "deno": {
