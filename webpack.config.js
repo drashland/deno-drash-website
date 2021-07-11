@@ -1,8 +1,8 @@
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const path = require("path");
 
-module.exports = (envVars) =>{
-  return Object.assign(getEnvConfigs(envVars), {
+module.exports = (env) =>{
+  return Object.assign(getEnvConfigs(env), {
     entry: {
       "dmm-v1.x": path.resolve(__dirname, "src/modules/dmm-v1.x/app.js"),
       "drash-v1.x": path.resolve(__dirname, "src/modules/drash-v1.x/app.js"),
@@ -61,14 +61,14 @@ module.exports = (envVars) =>{
 /**
  * Get environment-specific configs.
  *
- * @param envVars {object} - Example:
+ * @param {object} env - Example:
  *
  *     {
  *       environment: "development | staging | production"
  *     }
  */
-function getEnvConfigs(envVars) {
-  if (envVars.environment == "development") {
+function getEnvConfigs(env) {
+  if (env.development) {
     return {
       mode: "development",
       resolve: {
@@ -81,7 +81,7 @@ function getEnvConfigs(envVars) {
     };
   }
 
-  if (envVars.environment == "production" || envVars.environment == "staging") {
+  if (env.production || env.staging) {
     return {
       mode: "production",
       resolve: {
