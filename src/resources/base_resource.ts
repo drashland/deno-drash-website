@@ -52,6 +52,7 @@ export class BaseResource extends Drash.Http.Resource {
    */
   protected getEnvironment(): string {
     const isRunningOnLiveServer = this.request.headers.get("x-forwarded-host");
+    // deno-lint-ignore no-explicit-any
     const env = (configs as any)["env"] ?? "";
 
     if (env) {
