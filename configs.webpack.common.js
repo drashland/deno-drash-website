@@ -8,21 +8,30 @@
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 module.exports = {
+  entry: {
+    "dmm-v1.x": path.resolve(__dirname, "src/modules/dmm-v1.x/app.js"),
+    "drash-v1.x": path.resolve(__dirname, "src/modules/drash-v1.x/app.js"),
+    "line-v0.x": path.resolve(__dirname, "src/modules/line-v0.x/app.js"),
+    "rhum-v1.x": path.resolve(__dirname, "src/modules/rhum-v1.x/app.js"),
+    "sinco-v1.x": path.resolve(__dirname, "src/modules/sinco-v1.x/app.js"),
+    "sinco-v2.x": path.resolve(__dirname, "src/modules/sinco-v2.x/app.js"),
+    "wocket-v0.x": path.resolve(__dirname, "src/modules/wocket-v0.x/app.js"),
+  },
   module: {
     rules: [
       {
-        test: /\.pug$/,
         loader: "pug-plain-loader",
+        test: /\.pug$/,
       },
       {
-        test: /\.vue$/,
         loader: "vue-loader",
+        test: /\.vue$/,
       },
       // this will apply to both plain `.js` files
       // AND `<script>` blocks in `.vue` files
       {
-        test: /\.js$/,
         loader: "babel-loader",
+        test: /\.js$/,
       },
       // this will apply to both plain `.css` files
       // AND `<style>` blocks in `.vue` files
@@ -42,6 +51,10 @@ module.exports = {
       name: "common",
       chunks: "all",
     },
+  },
+  output: {
+    filename: `[name].js`,
+    path: path.resolve(__dirname, "assets/bundles/"),
   },
   plugins: [
     // make sure to include the plugin!
