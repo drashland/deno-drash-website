@@ -1,7 +1,7 @@
 import { Rhum } from "../deps.ts";
 const serverConfigs = {
   hostname: "0.0.0.0",
-  port: 1445,
+  port: 1446,
 };
 
 const url = `http://${serverConfigs.hostname}:${serverConfigs.port}`;

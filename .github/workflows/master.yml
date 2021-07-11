@@ -9,111 +9,57 @@ on:
       - main
 
 jobs:
-  accessibility:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
 
-      - name: Create configs.js
-        run: |
-          cp configs.sample.js configs.js
-
-      - name: Install Deno
-        uses: denolib/setup-deno@v2
-
-      - name: Accessibility Tests
-        run: |
-          yarn install
-          yarn webpack:development
-          yarn ad pa11y
-          yarn server &
-          sleep 10
-          node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445
-          node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445/drash
-
+  # Run all kinds of tests
   tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install Deno
-        uses: denolib/setup-deno@v2
-
-      - name: Server Integration Tests
+      - name: Create required configs
         run: |
           cp configs.sample.js configs.js
-          yarn install
-          yarn webpack:development
-          yarn server &
-          sleep 10
-          deno test -A tests/integration
 
-  docker_tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+      - name: Install Node modules
+        run: |
+          yarn install
+          yarn compile:vue-routes
+          yarn webpack:development
+          yarn ad pa11y
 
       - name: Install Deno
         uses: denolib/setup-deno@v2
 
       - name: Build docker image
         run: |
-          cp configs.sample.js configs.js
           yarn docker:build-production
 
-      - name: Start docker container and run tests
+      - name: Start local server
         run: |
-          docker run --detach --rm --name website --publish 1445:1445 drashland-website
-          deno test -A tests/docker
+          yarn server &
+          sleep 10
 
-  pre-release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Test Updating Module Versions Script Doesnt Fail
+      - name: Tets: Accessibility
+        run: |
+          node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445
+          node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445/drash
+
+      - name: Tests: Integration
+        run: |
+          deno test -A tests/integration
+
+      - name: Tests: Pre-release
         run: |
           node console/update_module_versions.js \
             --module drash \
             --version release-v1.0.0
 
-  builds:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Create configs.js
+      - name: Tests: Docker
         run: |
-          cp configs.sample.js configs.js
+          docker run --detach --rm --name website --publish 1446:1445 drashland-website
+          deno test -A tests/docker
 
-      - name: Install Deno
-        uses: denolib/setup-deno@v2
-
-      - name: Install Node Modules
-        run: |
-          yarn install
-
-      - name: Compiling Vue Routes Works
-        run: |
-          yarn compile:vue-routes
-
-      - name: Creating Drash API Reference Works
-        run: |
-          git clone https://github.com/drashland/deno-drash  ../deno-drash
-          yarn compile:drash-v1.x-api-reference
-
-      - name: Bundling Frontend Works For Development
-        run: |
-          yarn webpack:development
-
-      - name: Bundling Frontend Works For Production
-        run: |
-          yarn webpack:production
-
-      - name: Our Drash Server Works And Compiles
-        run: |
-          echo "server.close()" >> app.ts
-          deno run -A app.ts
-
+  # Lint roll
   linter:
     runs-on: ubuntu-latest
     steps:
