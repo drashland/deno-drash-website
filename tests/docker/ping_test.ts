@@ -15,16 +15,7 @@ Rhum.testPlan("tests/docker/ping_test.ts", () => {
       const text = await res.text();
       const title = text.split("<title>")[1].split("</title>")[0];
       Rhum.asserts.assertEquals(title, "Drash Land [development]");
-      // Staging
-      const res2 = await fetch(url, {
-        headers: {
-          "host": "staging",
-        },
-      });
-      Rhum.asserts.assertEquals(res2.status, 200);
-      const text2 = await res2.text();
-      const title2 = text2.split("<title>")[1].split("</title>")[0];
-      Rhum.asserts.assertEquals(title2, "Drash Land [staging]");
+
       // Prod
       const res3 = await fetch(url, {
         headers: {

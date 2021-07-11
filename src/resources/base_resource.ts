@@ -55,7 +55,7 @@ export class BaseResource extends Drash.Http.Resource {
     const env = (configs as any)["env"] ?? "";
 
     if (env) {
-      return env
+      return env;
     }
 
     if (isRunningOnLiveServer) {
