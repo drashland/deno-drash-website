@@ -9,9 +9,9 @@
     "docker:build-production": "docker build --build-arg NODE_ENV=production -t drashland-website .",
     "remove-ds-store": "find . -name '.DS_Store' -type f -delete",
     "server": "deno run -A console/server.ts",
-    "webpack:development": "webpack --config ./webpack.config.js --env environment=development --hide-modules",
-    "webpack:production": "webpack --config ./webpack.config.js --env environment=production --hide-modules",
-    "webpack:staging": "webpack --config ./webpack.config.js --env environment=staging --hide-modules"
+    "webpack:development": "webpack --config ./webpack.config.js --env environment=development",
+    "webpack:production": "webpack --config ./webpack.config.js --env environment=production",
+    "webpack:staging": "webpack --config ./webpack.config.js --env environment=staging"
   },
   "author": "Drash Land",
   "devDependencies": {
