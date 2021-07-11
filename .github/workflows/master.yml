@@ -23,9 +23,10 @@ jobs:
 
       - name: Accessibility Tests
         run: |
-          npm run webpack:development
-          npm i pa11y
-          npm run server &
+          yarn install
+          yarn webpack:development
+          yarn ad pa11y
+          yarn server &
           sleep 10
           node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445
           node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445/drash
@@ -41,8 +42,9 @@ jobs:
       - name: Server Integration Tests
         run: |
           cp configs.sample.js configs.js
-          npm run webpack:development
-          npm run server &
+          yarn install
+          yarn webpack:development
+          yarn server &
           sleep 10
           deno test -A tests/integration
 
@@ -84,37 +86,31 @@ jobs:
       - name: Install Deno
         uses: denolib/setup-deno@v2
 
-#      - run: |
-#          mkdir -p ~/.local/bin
-#          ln -s ~/.deno/bin/deno ~/.local/bin/deno
+      - name: Install Node Modules
+        run: |
+          yarn install
 
       - name: Compiling Vue Routes Works
         run: |
-          npm run compile:vue-routes
+          yarn compile:vue-routes
 
       - name: Creating Drash API Reference Works
         run: |
           git clone https://github.com/drashland/deno-drash  ../deno-drash
-          npm run compile:drash-v1.x-api-reference
+          yarn compile:drash-v1.x-api-reference
 
       - name: Bundling Frontend Works For Development
         run: |
-          npm run webpack:development
+          yarn webpack:development
 
       - name: Bundling Frontend Works For Production
         run: |
-          npm run webpack:production
+          yarn webpack:production
 
       - name: Our Drash Server Works And Compiles
         run: |
           echo "server.close()" >> app.ts
           deno run -A app.ts
-
-      - name: Can Start PM2
-        run: |
-          npm i pm2
-          cp ecosystem.config.sample.js ecosystem.config.js
-          node_modules/.bin/pm2 start
 
   linter:
     runs-on: ubuntu-latest
