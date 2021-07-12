@@ -3,8 +3,6 @@ description: 'Set up the CI environment'
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v2
-
     - name: Create required configs
       run: |
         cp configs.sample.js configs.js
@@ -15,6 +13,3 @@ runs:
         yarn compile:vue-routes
         yarn webpack:development
         yarn add pa11y
-
-    - name: Install Deno
-      uses: denolib/setup-deno@v2
