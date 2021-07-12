@@ -13,6 +13,3 @@ runs:
         yarn compile:vue-routes
         yarn webpack:development
         yarn add pa11y
-
-    - name: Install Deno
-      uses: denolib/setup-deno@v2
