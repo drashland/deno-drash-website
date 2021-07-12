@@ -1,4 +1,5 @@
-import VueLoaderPlugin from "./node_modules/vue-loader/lib/plugin.js";
+import TerserPlugin from "terser-webpack-plugin";
+import VueLoaderPlugin from "vue-loader/lib/plugin.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from 'url';
 
@@ -44,7 +45,13 @@ export default function(env) {
       ],
     },
     optimization: {
-      // runtimeChunk: "single",
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          extractComments: false,
+          test: /\.js(\?.*)?$/i,
+        }),
+      ],
       splitChunks: {
         name: "common",
         chunks: "all",

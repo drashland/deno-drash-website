@@ -29,6 +29,7 @@
     "sass-loader": "9.x",
     "scss-loader": "0.x",
     "style-loader": "1.x",
+    "terser-webpack-plugin": "^5.1.4",
     "vue": "2.x",
     "vue-loader": "15.x",
     "vue-router": "3.x",
