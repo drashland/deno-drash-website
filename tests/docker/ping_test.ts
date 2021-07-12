@@ -9,14 +9,6 @@ const url = `http://${serverConfigs.hostname}:${serverConfigs.port}`;
 Rhum.testPlan("tests/docker/ping_test.ts", () => {
   Rhum.testSuite("GET /", () => {
     Rhum.testCase("Responds with a 200 on request", async () => {
-      // Development
-      const res = await fetch(url);
-      Rhum.asserts.assertEquals(res.status, 200);
-      const text = await res.text();
-      const title = text.split("<title>")[1].split("</title>")[0];
-      Rhum.asserts.assertEquals(title, "Drash Land [development]");
-
-      // Prod
       const res3 = await fetch(url, {
         headers: {
           "x-forwarded-host": "Blah blah blah",
