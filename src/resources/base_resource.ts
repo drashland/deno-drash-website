@@ -76,6 +76,9 @@ export class BaseResource extends Drash.Http.Resource {
   protected getServerConfigs(): string {
     const sanitizedConfigs = configs;
     sanitizedConfigs.root_directory = "***";
+    sanitizedConfigs.github_api.password = "***";
+    sanitizedConfigs.github_api.user = "***";
+
     return JSON.stringify(Object.assign(sanitizedConfigs, {
       environment: this.getEnvironment(),
     }));
