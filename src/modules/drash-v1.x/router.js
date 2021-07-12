@@ -1,5 +1,3 @@
-let conf = process.env.conf; // This variable comes from webpack.config.js under `plugins`
-
 import VueRouter from "vue-router";
 
 import compiledRoutes from "/src/modules/drash-v1.x/compiled_vue_routes.js";
