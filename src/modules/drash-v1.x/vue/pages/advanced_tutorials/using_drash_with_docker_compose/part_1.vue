@@ -40,7 +40,7 @@ page(
   breadcrumbs(:base_url="base_url + '/#' + base_uri" :part="1" :parts="6")
   hr
   h2-hash Before You Get Started
-  p You will be creating a basic Drash server. If you haven't read the #[a( href="/#/tutorials/servers/creating-a-server") Creating A Server] section then do so before reading this tutorial.
+  p You will be creating a basic Drash server. If you haven't read the #[a( href="/drash/#/tutorials/servers/creating-an-http-server") Creating A Server] section then do so before reading this tutorial.
   hr
   folder-structure-end-state
     code-block(:header="false" language="text" :line_numbers="false")
