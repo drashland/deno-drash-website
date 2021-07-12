@@ -13,10 +13,9 @@ jobs:
   tests_accessibility:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up environment
-        uses: actions/checkout@v2
-        uses: drashland/website/actions/environment-setup@main
-        uses: denolib/setup-deno@v2
+      - uses: actions/checkout@v2
+      - uses: drashland/website/actions/environment-setup@main
+      - uses: denolib/setup-deno@v2
 
       - name: Start local server
         run: |
@@ -31,10 +30,9 @@ jobs:
   tests_integration:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up environment
-        uses: actions/checkout@v2
-        uses: drashland/website/actions/environment-setup@main
-        uses: denolib/setup-deno@v2
+      - uses: actions/checkout@v2
+      - uses: drashland/website/actions/environment-setup@main
+      - uses: denolib/setup-deno@v2
 
       - name: Run integration tests
         run: |
@@ -43,10 +41,9 @@ jobs:
   tests_pre_release:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up environment
-        uses: actions/checkout@v2
-        uses: drashland/website/actions/environment-setup@main
-        uses: denolib/setup-deno@v2
+      - uses: actions/checkout@v2
+      - uses: drashland/website/actions/environment-setup@main
+      - uses: denolib/setup-deno@v2
 
       - name: Test pre-release workflow
         run: |
@@ -57,10 +54,9 @@ jobs:
   tests_docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up environment
-        uses: actions/checkout@v2
-        uses: drashland/website/actions/environment-setup@main
-        uses: denolib/setup-deno@v2
+      - uses: actions/checkout@v2
+      - uses: drashland/website/actions/environment-setup@main
+      - uses: denolib/setup-deno@v2
 
       - name: Build Docker image
         run: |
@@ -75,9 +71,8 @@ jobs:
   linter:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up environment
-        uses: actions/checkout@v2
-        uses: denolib/setup-deno@v2
+      - uses: actions/checkout@v2
+      - uses: denolib/setup-deno@v2
 
       - name: Check formatting
         run: |
