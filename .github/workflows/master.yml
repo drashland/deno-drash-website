@@ -13,7 +13,7 @@ jobs:
   tests_accessibility:
     runs-on: ubuntu-latest
     steps:
-      - uses: drashland/website/environment-setup@main
+      - uses: drashland/website/actions/environment-setup@main
 
       - name: Start local server
         run: |
@@ -28,7 +28,7 @@ jobs:
   tests_integration:
     runs-on: ubuntu-latest
     steps:
-      - uses: drashland/website/environment-setup@main
+      - uses: drashland/website/actions/environment-setup@main
 
       - name: Run integration tests
         run: |
@@ -37,7 +37,7 @@ jobs:
   tests_pre_release:
     runs-on: ubuntu-latest
     steps:
-      - uses: drashland/website/environment-setup@main
+      - uses: drashland/website/actions/environment-setup@main
 
       - name: Test pre-release workflow
         run: |
@@ -48,7 +48,7 @@ jobs:
   tests_docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: drashland/website/environment-setup@main
+      - uses: drashland/website/actions/environment-setup@main
 
       - name: Build Docker image
         run: |
