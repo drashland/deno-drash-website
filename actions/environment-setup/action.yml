@@ -4,10 +4,12 @@ runs:
   using: "composite"
   steps:
     - name: Create required configs
+      shell: bash
       run: |
         cp configs.sample.js configs.js
 
     - name: Install Node modules
+      shell: bash
       run: |
         yarn install
         yarn compile:vue-routes
