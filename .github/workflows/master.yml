@@ -10,29 +10,10 @@ on:
 
 jobs:
 
-  # Run all kinds of tests
-  tests:
+  tests_accessibility:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Create required configs
-        run: |
-          cp configs.sample.js configs.js
-
-      - name: Install Node modules
-        run: |
-          yarn install
-          yarn compile:vue-routes
-          yarn webpack:development
-          yarn add pa11y
-
-      - name: Install Deno
-        uses: denolib/setup-deno@v2
-
-      - name: Build docker image
-        run: |
-          yarn docker:build-production
+      - uses: actions/environment-setup
 
       - name: Start local server
         run: |
@@ -44,17 +25,36 @@ jobs:
           node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445
           node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445/drash
 
+  tests_integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/environment-setup
+
       - name: Run integration tests
         run: |
           deno test -A tests/integration
 
-      - name: Run pre-release workflow
+  tests_pre_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/environment-setup
+
+      - name: Test pre-release workflow
         run: |
           node console/update_module_versions.js \
             --module drash \
             --version release-v1.0.0
 
-      - name: Run Docker tests
+  tests_docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/environment-setup
+
+      - name: Build Docker image
+        run: |
+          yarn docker:build-production
+
+      - name: Test Docker application
         run: |
           docker run --detach --rm --name website --publish 1446:1445 drashland-website
           deno test -A tests/docker
