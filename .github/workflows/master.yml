@@ -39,22 +39,22 @@ jobs:
           yarn server &
           sleep 10
 
-      - name: Tets: Accessibility
+      - name: Run accessibility tests
         run: |
           node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445
           node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445/drash
 
-      - name: Tests: Integration
+      - name: Run integration tests
         run: |
           deno test -A tests/integration
 
-      - name: Tests: Pre-release
+      - name: Run pre-release workflow
         run: |
           node console/update_module_versions.js \
             --module drash \
             --version release-v1.0.0
 
-      - name: Tests: Docker
+      - name: Run Docker tests
         run: |
           docker run --detach --rm --name website --publish 1446:1445 drashland-website
           deno test -A tests/docker
@@ -73,9 +73,12 @@ jobs:
         uses: denolib/setup-deno@v2
 
       - name: Formatter
-        # for dev: deno fmt --ignore=assets,console/compile_vue_routes.js,configs.webpack.js,console/update_module_versions.js,configs.node.js,ecosystem.config.sample.js,node_modules,configs.js
-        run: deno fmt --ignore=assets,console/compile_vue_routes.js,configs.webpack.js,console/update_module_versions.js,configs.node.js,ecosystem.config.sample.js
+        run: |
+          deno fmt src
+          deno fmt tests
 
       - name: Linter
       # command to use in dev (if you've ran builds and created compiled files): deno lint --unstable --ignore=assets,console/compile_vue_routes.js,configs.webpack.js,console/update_module_versions.js,configs.js,configs.node.js,ecosystem.config.sample.js,configs.webpack.common.js,configs.webpack.development.js,ecosystem.config.js,node_modules,src/modules/drash-v1.x/router.js,src/modules/dmm-v1.x/router.js,src/modules/rhum-v1.x/router.js,src/modules/wocket-v0.x/router.js,src/modules/sinco-v1.x/router.js,configs.webpack.production.js,src/modules/drash-v1.x/app.js,src/modules/sinco-v2.x/router.js
-        run: deno lint --unstable --ignore=assets,console/compile_vue_routes.js,configs.webpack.js,configs.webpack.production.js,console/update_module_versions.js,configs.js,configs.node.js,ecosystem.config.sample.js,configs.webpack.common.js,configs.webpack.development.js,configs.production.webpack.js,src/modules/drash-v1.x/app.js,src/modules/drash-v1.x/router.js,src/modules/dmm-v1.x/router.js,src/modules/rhum-v1.x/router.js,src/modules/wocket-v0.x/router.js,src/modules/sinco-v1.x/router.js,src/modules/sinco-v2.x/router.js,src/modules/line-v1.x/router.js,src/modules/line-v1.x/router.js
+        run: |
+          deno lint --unstable src
+          deno lint --unstable tests
