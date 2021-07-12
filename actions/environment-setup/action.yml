@@ -3,8 +3,6 @@ description: 'Set up the CI environment'
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v2
-
     - name: Create required configs
       run: |
         cp configs.sample.js configs.js
