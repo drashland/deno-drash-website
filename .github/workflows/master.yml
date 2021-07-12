@@ -34,6 +34,11 @@ jobs:
       - uses: drashland/website/actions/environment-setup@main
       - uses: denolib/setup-deno@v2
 
+      - name: Start local server
+        run: |
+          yarn server &
+          sleep 10
+
       - name: Run integration tests
         run: |
           deno test -A tests/integration
