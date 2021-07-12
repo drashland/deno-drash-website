@@ -1,6 +1,6 @@
-const configs = require("../configs.node.js");
-const fs = require("fs");
-const path = require("path");
+import { configs } from "../configs.js";
+import fs from "fs";
+import path from "path";
 
 const modules = [
   "dmm-v1.x",
