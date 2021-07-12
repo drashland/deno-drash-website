@@ -70,8 +70,8 @@ jobs:
 
       - name: Check formatting
         run: |
-          deno fmt app.ts server.ts src/modules tests --check
+          deno fmt app.ts server.ts src/resources tests --check
 
       - name: Lint the codebase
         run: |
-          deno lint --unstable src/modules tests
+          deno lint --unstable src/resources tests
