@@ -1,7 +1,10 @@
-const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const path = require("path");
+import VueLoaderPlugin from "./node_modules/vue-loader/lib/plugin.js";
+import path, { dirname } from "path";
+import { fileURLToPath } from 'url';
 
-module.exports = (env) =>{
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+export default function(env) {
   return Object.assign(getEnvConfigs(env), {
     entry: {
       "dmm-v1.x": path.resolve(__dirname, "src/modules/dmm-v1.x/app.js"),
@@ -56,7 +59,7 @@ module.exports = (env) =>{
       new VueLoaderPlugin(),
     ],
   });
-}
+};
 
 /**
  * Get environment-specific configs.
