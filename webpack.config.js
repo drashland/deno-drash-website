@@ -2,6 +2,7 @@ import TerserPlugin from "terser-webpack-plugin";
 import VueLoaderPlugin from "vue-loader/lib/plugin.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from 'url';
+import webpack from "webpack";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -64,6 +65,9 @@ export default function(env) {
     plugins: [
       // make sure to include the plugin!
       new VueLoaderPlugin(),
+      new webpack.DefinePlugin({
+          'process.env': JSON.stringify(process.env)
+      })
     ],
   });
 };
