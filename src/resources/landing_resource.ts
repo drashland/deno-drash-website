@@ -103,7 +103,7 @@ export class LandingResource extends BaseResource {
 
     try {
       let content = decoder.decode(Deno.readFileSync(filename));
-      const environment = this.getEnvironment();
+      const environment = Deno.env.get("APP_ENV") || "development";
       const titleSuffix = environment != "production"
         ? ` [${environment}]`
         : "";
