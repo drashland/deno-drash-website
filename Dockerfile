@@ -19,23 +19,22 @@ RUN yarn webpack:${NODE_ENV}
 
 ####################################################################################################
 
-FROM denoland/deno:alpine
+FROM denoland/deno:distroless
 WORKDIR /usr/src/app
 COPY --from=builder /usr/src/app/assets ./assets
 
-# Copy all required files for this app to run
+# Copy only required files for this app to run
 COPY app.ts .
 COPY configs.js .
 COPY deps.ts .
 COPY server.ts .
 COPY src/response.ts src/response.ts
 
-# Copy all required directories for this app to run
-COPY assets assets
+# Copy only required directories for this app to run
 COPY src/resources src/resources
 COPY src/views src/views
 
-RUN deno cache app.ts
+CMD [ "cache", "app.ts" ]
 
 EXPOSE 1445
 
