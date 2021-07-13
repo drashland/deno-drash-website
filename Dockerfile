@@ -38,4 +38,4 @@ CMD [ "cache", "app.ts" ]
 
 EXPOSE 1445
 
-CMD [ "run", "--allow-net", "--allow-read", "app.ts" ]
+CMD [ "run", "--allow-env", "--allow-net", "--allow-read", "app.ts" ]
