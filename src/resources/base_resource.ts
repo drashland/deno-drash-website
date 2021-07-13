@@ -90,9 +90,8 @@ export class BaseResource extends Drash.Http.Resource {
    * see what resource made the log call.
    */
   protected log(message: string): string {
-    // const ogDate = new Date().toISOString();
-    // const filename = ogDate.split("T")[0]; // e.g., 2021-03-24
-    // const bytes = encoder.encode(ogDate + " | " + message + "\n");
+    const ogDate = new Date().toISOString();
+    console.log(ogDate + " | " + message);
     return message;
   }
 
