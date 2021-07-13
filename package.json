@@ -6,8 +6,8 @@
   "scripts": {
     "compile:drash-v1.x-api-reference": "console/compile_drash_v1.x_api_reference",
     "compile:vue-routes": "node console/compile_vue_routes.js",
-    "docker:build-production": "docker build --build-arg NODE_ENV=production -t drashland-website:latest .",
-    "docker:build-staging": "docker build --build-arg NODE_ENV=staging -t drashland-website:staging-latest .",
+    "docker:build-production": "docker build --build-arg APP_ENV=production -t drashland-website:latest .",
+    "docker:build-staging": "docker build --build-arg APP_ENV=staging -t drashland-website:staging-latest .",
     "docker:production": "yarn docker:build-production && yarn docker:tag-production && yarn docker:push-production",
     "docker:push-production": "docker push registry.digitalocean.com/drashland/drashland-website:latest",
     "docker:push-staging": "docker push registry.digitalocean.com/drashland/drashland-website:staging-latest",

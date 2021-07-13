@@ -46,27 +46,6 @@ export class BaseResource extends Drash.Http.Resource {
   }
 
   /**
-   * Get the current environment based on headers and URIs.
-   *
-   * @returns The environment name.
-   */
-  protected getEnvironment(): string {
-    const isRunningOnLiveServer = this.request.headers.get("x-forwarded-host");
-    // deno-lint-ignore no-explicit-any
-    const env = (configs as any)["env"] ?? "";
-
-    if (env) {
-      return env;
-    }
-
-    if (isRunningOnLiveServer) {
-      return "production";
-    }
-
-    return "development";
-  }
-
-  /**
    * Get the server configs that can be used server-side or client-side. When
    * used client-side, we set a {{ drash_api_configs }} variable in the .html
    * files to the value of this method.
@@ -74,13 +53,8 @@ export class BaseResource extends Drash.Http.Resource {
    * @returns The configs as stringified JSON.
    */
   protected getServerConfigs(): string {
-    const sanitizedConfigs = configs;
-    sanitizedConfigs.root_directory = "***";
-    sanitizedConfigs.github_api.password = "***";
-    sanitizedConfigs.github_api.user = "***";
-
-    return JSON.stringify(Object.assign(sanitizedConfigs, {
-      environment: this.getEnvironment(),
+    return JSON.stringify(Object.assign(configs, {
+      environment: Deno.env.get("APP_ENV") || "development",
     }));
   }
 

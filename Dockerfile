@@ -8,14 +8,14 @@ RUN yarn install
 ####################################################################################################
 
 FROM node:12 as builder
-ARG NODE_ENV
+ARG APP_ENV
 WORKDIR /usr/src/app
 COPY --from=dependencies /usr/src/app/node_modules ./node_modules
 COPY . .
 
 # Compile the Vue routes and the webpack bundles
 RUN yarn compile:vue-routes
-RUN yarn webpack:${NODE_ENV}
+RUN yarn webpack:${APP_ENV}
 
 ####################################################################################################
 

@@ -1,5 +1,4 @@
 export const configs = {
-  "env": "production",
   "github_api": {
     "user": "user",
     "password": "password"
