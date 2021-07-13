@@ -1,13 +1,13 @@
 ####################################################################################################
 
-FROM node:12 as dependencies
+FROM node:14 as dependencies
 WORKDIR /usr/src/app
 COPY ./package.json .
 RUN yarn install
 
 ####################################################################################################
 
-FROM node:12 as builder
+FROM node:14 as builder
 ARG APP_ENV
 WORKDIR /usr/src/app
 COPY --from=dependencies /usr/src/app/node_modules ./node_modules
