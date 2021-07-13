@@ -1,4 +1,4 @@
-const fs = require("fs");
+import fs from "fs";
 
 const moduleToUpdate = process.argv[3];
 const releaseVersion = process.argv[5].split("release-")[1];

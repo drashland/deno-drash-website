@@ -46,26 +46,6 @@ export class BaseResource extends Drash.Http.Resource {
   }
 
   /**
-   * Get the current environment based on headers and URIs.
-   *
-   * @returns The environment name.
-   */
-  protected getEnvironment(): string {
-    const isRunningOnLiveServer = this.request.headers.get("x-forwarded-host");
-    const env = configs["env"] ?? ""
-
-    if (env) {
-      return env
-    }
-
-    if (isRunningOnLiveServer) {
-      return "production";
-    }
-
-    return "development";
-  }
-
-  /**
    * Get the server configs that can be used server-side or client-side. When
    * used client-side, we set a {{ drash_api_configs }} variable in the .html
    * files to the value of this method.
@@ -73,10 +53,8 @@ export class BaseResource extends Drash.Http.Resource {
    * @returns The configs as stringified JSON.
    */
   protected getServerConfigs(): string {
-    const sanitizedConfigs = configs;
-    sanitizedConfigs.root_directory = "***";
-    return JSON.stringify(Object.assign(sanitizedConfigs, {
-      environment: this.getEnvironment(),
+    return JSON.stringify(Object.assign(configs, {
+      environment: Deno.env.get("APP_ENV") || "development",
     }));
   }
 
@@ -86,9 +64,8 @@ export class BaseResource extends Drash.Http.Resource {
    * see what resource made the log call.
    */
   protected log(message: string): string {
-    // const ogDate = new Date().toISOString();
-    // const filename = ogDate.split("T")[0]; // e.g., 2021-03-24
-    // const bytes = encoder.encode(ogDate + " | " + message + "\n");
+    const ogDate = new Date().toISOString();
+    console.log(ogDate + " | " + message);
     return message;
   }
 

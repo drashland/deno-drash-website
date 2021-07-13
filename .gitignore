@@ -12,6 +12,7 @@ ecosystem.config.js
 package-lock.json
 *.log
 configs.js
+yarn.lock
 
 # directories
 .sass-cache/

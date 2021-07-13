@@ -9,113 +9,80 @@ on:
       - main
 
 jobs:
-  accessibility:
+
+  tests_accessibility:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: drashland/website/actions/environment-setup@main
+      - uses: denolib/setup-deno@v2
 
-      - name: Create configs.js
+      - name: Start local server
         run: |
-          cp configs.sample.js configs.js
-
-      - name: Install Deno
-        uses: denolib/setup-deno@v2
-
-      - name: Accessibility Tests
-        run: |
-          npm run webpack:development
-          npm i pa11y
-          npm run server &
+          yarn server &
           sleep 10
+
+      - name: Run accessibility tests
+        run: |
           node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445
           node_modules/.bin/pa11y --ignore "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail" http://localhost:1445/drash
 
-  tests:
+  tests_integration:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: drashland/website/actions/environment-setup@main
+      - uses: denolib/setup-deno@v2
 
-      - name: Install Deno
-        uses: denolib/setup-deno@v2
-
-      - name: Server Integration Tests
+      - name: Start local server
         run: |
-          cp configs.sample.js configs.js
-          npm run webpack:development
-          npm run server &
+          yarn server &
           sleep 10
+
+      - name: Run integration tests
+        run: |
           deno test -A tests/integration
 
-  pre-release:
+  tests_pre_release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Test Updating Module Versions Script Doesnt Fail
+      - uses: drashland/website/actions/environment-setup@main
+      - uses: denolib/setup-deno@v2
+
+      - name: Test pre-release workflow
         run: |
           node console/update_module_versions.js \
             --module drash \
             --version release-v1.0.0
 
-  builds:
+  tests_docker:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: drashland/website/actions/environment-setup@main
+      - uses: denolib/setup-deno@v2
 
-      - name: Create configs.js
+      - name: Build Docker image
         run: |
-          cp configs.sample.js configs.js
+          yarn docker:build-production
 
-      - name: Install Deno
-        uses: denolib/setup-deno@v2
-
-#      - run: |
-#          mkdir -p ~/.local/bin
-#          ln -s ~/.deno/bin/deno ~/.local/bin/deno
-
-      - name: Compiling Vue Routes Works
+      - name: Test Docker application
         run: |
-          npm run compile:vue-routes
+          docker run --detach --rm --name website --publish 1446:1445 drashland-website
+          deno test -A tests/docker
 
-      - name: Creating Drash API Reference Works
-        run: |
-          git clone https://github.com/drashland/deno-drash  ../deno-drash
-          npm run compile:drash-v1.x-api-reference
-
-      - name: Bundling Frontend Works For Development
-        run: |
-          npm run webpack:development
-
-      - name: Bundling Frontend Works For Production
-        run: |
-          npm run webpack:production
-
-      - name: Our Drash Server Works And Compiles
-        run: |
-          echo "server.close()" >> app.ts
-          deno run -A app.ts
-
-      - name: Can Start PM2
-        run: |
-          npm i pm2
-          cp ecosystem.config.sample.js ecosystem.config.js
-          node_modules/.bin/pm2 start
-
+  # Lint roll
   linter:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: denolib/setup-deno@v2
 
-      - name: Create configs.js
+      - name: Check formatting
         run: |
-          cp configs.sample.js configs.js
+          deno fmt app.ts server.ts src/resources tests --check
 
-      - name: Install Deno
-        uses: denolib/setup-deno@v2
-
-      - name: Formatter
-        # for dev: deno fmt --ignore=assets,console/compile_vue_routes.js,configs.webpack.js,console/update_module_versions.js,configs.node.js,ecosystem.config.sample.js,node_modules,configs.js
-        run: deno fmt --ignore=assets,console/compile_vue_routes.js,configs.webpack.js,console/update_module_versions.js,configs.node.js,ecosystem.config.sample.js
-
-      - name: Linter
-      # command to use in dev (if you've ran builds and created compiled files): deno lint --unstable --ignore=assets,console/compile_vue_routes.js,configs.webpack.js,console/update_module_versions.js,configs.js,configs.node.js,ecosystem.config.sample.js,configs.webpack.common.js,configs.webpack.development.js,ecosystem.config.js,node_modules,src/modules/drash-v1.x/router.js,src/modules/dmm-v1.x/router.js,src/modules/rhum-v1.x/router.js,src/modules/wocket-v0.x/router.js,src/modules/sinco-v1.x/router.js,configs.webpack.production.js,src/modules/drash-v1.x/app.js,src/modules/sinco-v2.x/router.js
-        run: deno lint --unstable --ignore=assets,console/compile_vue_routes.js,configs.webpack.js,configs.webpack.production.js,console/update_module_versions.js,configs.js,configs.node.js,ecosystem.config.sample.js,configs.webpack.common.js,configs.webpack.development.js,configs.production.webpack.js,src/modules/drash-v1.x/app.js,src/modules/drash-v1.x/router.js,src/modules/dmm-v1.x/router.js,src/modules/rhum-v1.x/router.js,src/modules/wocket-v0.x/router.js,src/modules/sinco-v1.x/router.js,src/modules/sinco-v2.x/router.js,src/modules/line-v1.x/router.js,src/modules/line-v1.x/router.js
+      - name: Lint the codebase
+        run: |
+          deno lint --unstable src/resources tests
