@@ -7,10 +7,10 @@ export const configs = {
   "copyright_year": "2021",
   "root_directory": ".",
   "deno": {
-    "latest_version": "v1.11.5"
+    "latest_version": "v1.12.1"
   },
   "deno_std": {
-    "latest_version": "0.100.0"
+    "latest_version": "0.102.0"
   },
   "dmm": {
     "base_url": "/dmm/v1.x",
